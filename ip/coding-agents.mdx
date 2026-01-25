@@ -30,11 +30,11 @@ flowchart TB
 
     subgraph EXECUTION["EXECUTION LOOP"]
         direction TB
-        PLAN["1. Plan Analysis"]
-        CODE["2. Generate SQL/Code"]
-        EXEC["3. Execute"]
-        ANALYZE["4. Analyze Results"]
-        ITERATE["5. Iterate if Needed"]
+        PLAN["Plan Analysis"]
+        CODE["Generate SQL/Code"]
+        EXEC["Execute"]
+        ANALYZE["Analyze Results"]
+        ITERATE["Iterate if Needed"]
 
         PLAN --> CODE --> EXEC --> ANALYZE --> ITERATE
         ITERATE --> PLAN

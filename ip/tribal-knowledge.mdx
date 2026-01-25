@@ -35,25 +35,11 @@ Every organization has knowledge that exists only in people's heads:
 Superatom captures tribal knowledge at **three levels**, each with different scope and application:
 
 ```mermaid
-flowchart TB
-    subgraph LEVELS["TRIBAL KNOWLEDGE LEVELS"]
-        direction TB
-        L1["🌍 GLOBAL LEVEL<br>Applies to ALL users, ALL queries<br>Organization-wide rules"]
-        L2["👤 USER LEVEL<br>Applies to SPECIFIC users<br>Role-based or personal preferences"]
-        L3["❓ QUERY LEVEL<br>Applies to SPECIFIC questions<br>Definitions and calculations"]
-    end
-
-    QUERY["User asks a question"] --> ENGINE["Knowledge Engine"]
-
-    ENGINE --> L1
-    ENGINE --> L2
-    ENGINE --> L3
-
-    L1 --> CONTEXT["Contextualized Query"]
-    L2 --> CONTEXT
-    L3 --> CONTEXT
-
-    CONTEXT --> ANSWER["Accurate, Organization-Specific Answer"]
+flowchart TD
+    QUERY["User Question"] --> ENGINE["Knowledge Engine"]
+    ENGINE --> L1["🌍 GLOBAL"] & L2["👤 USER"] & L3["❓ QUERY"]
+    L1 & L2 & L3 --> CONTEXT["Contextualized Query"]
+    CONTEXT --> ANSWER["Organization-Specific Answer"]
 
     style ENGINE fill:#0D9373,color:#fff
     style ANSWER fill:#07C983,color:#fff
@@ -203,20 +189,11 @@ Knowledge nodes connect to form a graph that captures organizational understandi
 </Frame>
 
 ```mermaid
-flowchart TB
-    subgraph GRAPH["KNOWLEDGE GRAPH"]
-        ORDER["Order"] --> CUSTOMER["Customer"]
-        ORDER --> PRODUCT["Product"]
-        ORDER --> PAYMENT["Payment"]
-
-        PRODUCT --> INVENTORY["Inventory"]
-        PRODUCT --> SUPPLY["Supply Chain"]
-
-        CUSTOMER --> SEGMENT["Segmentation"]
-
-        INVENTORY --> DEADSTOCK["Deadstock Rules"]
-        INVENTORY --> OVERSTOCK["Overstock Rules"]
-    end
+flowchart TD
+    ORDER["Order"] --> CUSTOMER["Customer"] & PRODUCT["Product"] & PAYMENT["Payment"]
+    PRODUCT --> INVENTORY["Inventory"] & SUPPLY["Supply Chain"]
+    CUSTOMER --> SEGMENT["Segmentation"]
+    INVENTORY --> DEADSTOCK["Deadstock Rules"] & OVERSTOCK["Overstock Rules"]
 
     style DEADSTOCK fill:#0D9373,color:#fff
     style OVERSTOCK fill:#0D9373,color:#fff
@@ -259,23 +236,9 @@ When the AI gives an answer that needs organizational context:
 
 ```mermaid
 flowchart TD
-    Q["User Query"] --> PARSE["Parse Question"]
-
-    PARSE --> MATCH["Match Knowledge Nodes"]
-
-    subgraph MATCHING["KNOWLEDGE MATCHING"]
-        M1["Check Query-Level<br>(most specific)"]
-        M2["Check User-Level<br>(user context)"]
-        M3["Check Global-Level<br>(organization rules)"]
-    end
-
-    MATCH --> M1 --> M2 --> M3
-
-    M3 --> MERGE["Merge Applicable Knowledge<br>(specific overrides general)"]
-
-    MERGE --> CONTEXT["Contextualized Query<br>with all relevant rules"]
-
-    CONTEXT --> EXECUTE["Execute Analysis"]
+    Q["User Query"] --> PARSE["Parse Question"] --> MATCH["Match Nodes"]
+    MATCH --> M1["Query-Level"] --> M2["User-Level"] --> M3["Global-Level"]
+    M3 --> MERGE["Merge Knowledge"] --> CONTEXT["Contextualized Query"] --> EXECUTE["Execute"]
 
     style MERGE fill:#0D9373,color:#fff
     style EXECUTE fill:#07C983,color:#fff

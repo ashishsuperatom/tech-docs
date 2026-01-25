@@ -36,26 +36,10 @@ Why enterprises hesitate to adopt AI systems:
 </Note>
 
 ```mermaid
-flowchart TB
-    subgraph ENTERPRISE["YOUR ENTERPRISE NETWORK"]
-        DATA["Your Data"]
-        SA["Superatom Platform"]
-        DATA <--> SA
-    end
+flowchart LR
+    DATA["Your Data"] <--> SA["Superatom Platform"]
+    SA --> G1["Zero Storage"] & G2["Ephemeral"] & G3["Encrypted"] & G4["IAM"]
 
-    subgraph GUARANTEES["SECURITY GUARANTEES"]
-        G1["Zero Data Storage"]
-        G2["Ephemeral Processing"]
-        G3["End-to-End Encryption"]
-        G4["Enterprise IAM"]
-    end
-
-    SA --> G1
-    SA --> G2
-    SA --> G3
-    SA --> G4
-
-    style ENTERPRISE fill:#d1fae5,stroke:#0D9373
     style SA fill:#0D9373,color:#fff
 ```
 
@@ -73,18 +57,8 @@ flowchart TB
 ## Security Layers
 
 ```mermaid
-flowchart TB
-    subgraph LAYERS["SECURITY LAYERS"]
-        L1["Layer 1: Authentication<br>Secure login, Session tokens,<br>Role-based access control"]
-
-        L2["Layer 2: Project Isolation<br>Separate Durable Objects,<br>Zero cross-project access"]
-
-        L3["Layer 3: Data Protection<br>Parameterized SQL,<br>Encrypted connections, Key hashing"]
-
-        L4["Layer 4: Message Validation<br>Zod schema validation,<br>Type-safe communication"]
-    end
-
-    L1 --> L2 --> L3 --> L4
+flowchart TD
+    L1["Authentication"] --> L2["Project Isolation"] --> L3["Data Protection"] --> L4["Message Validation"]
 
     style L1 fill:#0D9373,color:#fff
     style L2 fill:#0D9373,color:#fff

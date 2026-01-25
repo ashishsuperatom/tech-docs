@@ -30,23 +30,23 @@ These tools excel at one thing: **visualizing data that humans have already orga
 flowchart TB
     subgraph TRADITIONAL["TRADITIONAL BI (Reporting)"]
         direction TB
-        T1["1. Data Engineer prepares data"]
-        T2["2. Analyst writes queries"]
-        T3["3. Designer builds dashboards"]
-        T4["4. User views static reports"]
-        T5["5. Human interprets & decides"]
+        T1["Data Engineer prepares data"]
+        T2["Analyst writes queries"]
+        T3["Designer builds dashboards"]
+        T4["User views static reports"]
+        T5["Human interprets & decides"]
 
         T1 --> T2 --> T3 --> T4 --> T5
     end
 
     subgraph SUPERATOM["SUPERATOM (Decision Engine)"]
         direction TB
-        S1["1. Connect data sources"]
-        S2["2. AI understands data automatically"]
-        S3["3. User asks questions in English"]
-        S4["4. AI analyzes & suggests actions"]
-        S5["5. Human verifies & executes"]
-        S6["6. System learns from outcomes"]
+        S1["Connect data sources"]
+        S2["AI understands data"]
+        S3["User asks in English"]
+        S4["AI analyzes & suggests"]
+        S5["Human verifies & executes"]
+        S6["System learns"]
 
         S1 --> S2 --> S3 --> S4 --> S5 --> S6
         S6 --> S3
@@ -88,25 +88,9 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    subgraph PEOPLE["REQUIRED PEOPLE"]
-        P1["Data Engineer<br>$150K/year"]
-        P2["BI Analyst<br>$120K/year"]
-        P3["Dashboard Designer<br>$100K/year"]
-    end
+    P1["Data Engineer"] --> T1["ETL Pipeline"] --> P2["BI Analyst"] --> T2["Queries"] --> P3["Designer"] --> T3["Dashboard"] --> R1["Static Dashboard"]
 
-    subgraph TIME["TIME REQUIRED"]
-        T1["ETL Pipeline<br>2-4 weeks"]
-        T2["Query Development<br>1-2 weeks"]
-        T3["Dashboard Build<br>1-2 weeks"]
-    end
-
-    subgraph RESULT["RESULT"]
-        R1["Static Dashboard<br>Shows historical data"]
-    end
-
-    P1 --> T1 --> P2 --> T2 --> P3 --> T3 --> R1
-
-    R1 --> HUMAN["Human must:<br>Interpret, Identify issues,<br>Decide, Execute manually"]
+    R1 --> HUMAN["Human interprets & decides"]
 
     style HUMAN fill:#ef4444,color:#fff
 ```
@@ -151,7 +135,6 @@ flowchart LR
 | **Required Expertise** | BI specialists | None |
 | **Learning from Outcomes** | None | Continuous improvement |
 | **Tribal Knowledge** | None | Built-in at 3 levels |
-| **Price per User** | $10-20/month | Competitive |
 
 ### Tableau vs. Superatom
 
@@ -172,16 +155,8 @@ flowchart LR
 Superatom isn't competing with BI tools. We're creating a new category.
 
 ```mermaid
-flowchart TB
-    subgraph EVOLUTION["MARKET EVOLUTION"]
-        direction LR
-        E1["1990s-2000s<br>SPREADSHEETS<br>Manual analysis"]
-        E2["2000s-2010s<br>BI TOOLS<br>Visualized reporting"]
-        E3["2010s-2020s<br>SELF-SERVICE BI<br>User-built dashboards"]
-        E4["2020s+<br>DECISION INTELLIGENCE<br>AI-powered decisions"]
-    end
-
-    E1 --> E2 --> E3 --> E4
+flowchart LR
+    E1["1990s-2000s<br>Spreadsheets"] --> E2["2000s-2010s<br>BI Tools"] --> E3["2010s-2020s<br>Self-Service BI"] --> E4["2020s+<br>Decision Intelligence"]
 
     style E4 fill:#0D9373,color:#fff
 ```
@@ -233,19 +208,10 @@ flowchart TB
 ### Total Addressable Market
 
 ```mermaid
-flowchart TB
-    subgraph TAM["MARKET LAYERS"]
-        direction TB
-        L1["Traditional BI Market<br>$30B (Replacing existing spend)"]
-        L2["New Decision Intelligence<br>$50B+ (New capability, new buyers)"]
-        L3["Action Automation<br>$100B+ (Connected to execution)"]
-    end
-
-    L1 --> SUPERATOM
-    L2 --> SUPERATOM
-    L3 --> SUPERATOM
-
-    SUPERATOM["Superatom<br>Addresses all three layers"]
+flowchart TD
+    L1["Traditional BI - $30B"] --> SUPERATOM["Superatom"]
+    L2["Decision Intelligence - $50B+"] --> SUPERATOM
+    L3["Action Automation - $100B+"] --> SUPERATOM
 
     style SUPERATOM fill:#0D9373,color:#fff
 ```

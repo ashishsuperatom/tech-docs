@@ -20,19 +20,18 @@ Each problem builds on the previous. Solving them requires a systemic approach, 
 
 ```mermaid
 flowchart TD
-    subgraph REALITY["ENTERPRISE DATA REALITY"]
-        D1["Scattered Sources<br>ERP, DBs, Files, APIs"]
-        D2["Inconsistent Formats<br>Different schemas per system"]
-        D3["Missing Context<br>What does 'status=3' mean?"]
-        D4["Domain Blindness<br>No understanding of business meaning"]
-    end
+    TITLE["ENTERPRISE DATA REALITY"]
+    TITLE --- D1 & D2 & D3 & D4
 
-    D1 --> CHAOS["DATA CHAOS"]
-    D2 --> CHAOS
-    D3 --> CHAOS
-    D4 --> CHAOS
+    D1["Scattered Sources"]
+    D2["Inconsistent Formats"]
+    D3["Missing Context"]
+    D4["Domain Blindness"]
+
+    D1 & D2 & D3 & D4 --> CHAOS["DATA CHAOS"]
     CHAOS --> FAIL["Cannot Feed AI Quality Data"]
 
+    style TITLE fill:#fef3c7,stroke:#f59e0b
     style CHAOS fill:#ef4444,color:#fff
     style FAIL fill:#ef4444,color:#fff
 ```
@@ -56,26 +55,9 @@ For Problems 2, 3, and 4, Superatom AI makes sense of your data automatically:
 
 ```mermaid
 flowchart LR
-    subgraph SOURCES["DATA SOURCES"]
-        S1[ERP Systems]
-        S2[Databases]
-        S3[File Systems]
-        S4[APIs]
-    end
+    S1[ERP Systems] & S2[Databases] & S3[File Systems] & S4[APIs] --> A1
 
-    subgraph ANALYSIS["SUPERATOM ANALYSIS"]
-        A1["Schema Analysis<br>Table/column names, relationships"]
-        A2["Statistical Profiling<br>Distinct values, distributions, patterns"]
-        A3["Domain Classification<br>Supply chain? Retail? Finance?"]
-        A4["Query Generation<br>Common questions for this data"]
-    end
-
-    subgraph OUTPUT["OUTPUT"]
-        O1["Semantic Model<br>Unified understanding of all data"]
-    end
-
-    S1 & S2 & S3 & S4 --> A1
-    A1 --> A2 --> A3 --> A4 --> O1
+    A1["Schema Analysis"] --> A2["Statistical Profiling"] --> A3["Domain Classification"] --> A4["Query Generation"] --> O1["Semantic Model"]
 
     style O1 fill:#0D9373,color:#fff
 ```
@@ -157,23 +139,14 @@ Different departments, branches, and geographies interpret data differently. A "
 Superatom captures organization-specific knowledge at **three levels**:
 
 ```mermaid
-flowchart TB
-    subgraph LEVELS["TRIBAL KNOWLEDGE LEVELS"]
-        direction LR
-        L1["🌍 GLOBAL<br>Applies to entire organization"]
-        L2["👤 USER<br>Specific to individual users"]
-        L3["❓ QUERY<br>Attached to specific questions"]
-    end
+flowchart TD
+    Q["User Question"] --> TK["Tribal Knowledge Engine"]
 
-    Q["User asks:<br>'What are our sales?'"] --> TK["Tribal Knowledge<br>Engine"]
+    TK --> L1["🌍 GLOBAL"] & L2["👤 USER"] & L3["❓ QUERY"]
 
-    TK --> L1
-    TK --> L2
-    TK --> L3
+    L1 & L2 & L3 --> CONTEXT["Contextualized Query"]
 
-    L1 & L2 & L3 --> CONTEXT["Contextualized Query<br>with org-specific rules"]
-
-    CONTEXT --> ANSWER["Accurate Answer<br>reflecting how THIS org works"]
+    CONTEXT --> ANSWER["Accurate Answer"]
 
     style TK fill:#0D9373,color:#fff
     style ANSWER fill:#07C983,color:#fff
@@ -401,24 +374,10 @@ When you employ a person, you control what they see and how they report. Program
 ### Superatom's Solution: Zero-Storage Architecture
 
 ```mermaid
-flowchart TD
-    subgraph ENTERPRISE["YOUR ENTERPRISE NETWORK"]
-        DATA["Your Data"]
-        SA["Superatom<br>(Deployed inside your network)"]
-        DATA <--> SA
-    end
+flowchart LR
+    DATA["Your Data"] <--> SA["Superatom"]
 
-    subgraph SECURITY["SECURITY GUARANTEES"]
-        S1["Zero Data Storage<br>Never stored outside your network"]
-        S2["Ephemeral Processing<br>Deleted immediately after analysis"]
-        S3["End-to-End Encryption<br>All connections secured"]
-        S4["Enterprise IAM<br>Role-based access control"]
-    end
-
-    SA --> S1
-    SA --> S2
-    SA --> S3
-    SA --> S4
+    SA --> S1["Zero Storage"] & S2["Ephemeral Processing"] & S3["Encryption"] & S4["Enterprise IAM"]
 
     style SA fill:#0D9373,color:#fff
     style S1 fill:#07C983,color:#fff
@@ -441,35 +400,29 @@ flowchart TD
 These seven problems are interconnected, and so are Superatom's solutions:
 
 ```mermaid
-flowchart TB
-    subgraph PROBLEMS["THE SEVEN PROBLEMS"]
-        P1[Data] --> P2[Tacit Knowledge]
-        P2 --> P3[Execution]
-        P3 --> P4[Action]
-        P4 --> P5[Accessibility]
-        P5 --> P6[Delivery]
-        P6 --> P7[Security]
-    end
+flowchart LR
+    P1[Data] -.-> S1[Semantic Modeling]
+    P2[Tacit Knowledge] -.-> S2[Tribal Knowledge]
+    P3[Execution] -.-> S3[Generative UI]
+    P4[Action] -.-> S4[Dry-Run Execution]
+    P5[Accessibility] -.-> S5[Auto Mobile Apps]
+    P6[Delivery] -.-> S6[Reports & Dashboards]
+    P7[Security] -.-> S7[Zero-Storage]
 
-    subgraph SOLUTIONS["SUPERATOM SOLUTIONS"]
-        S1[Semantic Modeling] --> S2[Tribal Knowledge]
-        S2 --> S3[Generative UI]
-        S3 --> S4[Dry-Run Execution]
-        S4 --> S5[Auto Mobile Apps]
-        S5 --> S6[Reports & Dashboards]
-        S6 --> S7[Zero-Storage Architecture]
-    end
-
-    P1 -.-> S1
-    P2 -.-> S2
-    P3 -.-> S3
-    P4 -.-> S4
-    P5 -.-> S5
-    P6 -.-> S6
-    P7 -.-> S7
-
-    style PROBLEMS fill:#fef2f2
-    style SOLUTIONS fill:#f0fdf4
+    style P1 fill:#fecaca,stroke:#ef4444
+    style P2 fill:#fecaca,stroke:#ef4444
+    style P3 fill:#fecaca,stroke:#ef4444
+    style P4 fill:#fecaca,stroke:#ef4444
+    style P5 fill:#fecaca,stroke:#ef4444
+    style P6 fill:#fecaca,stroke:#ef4444
+    style P7 fill:#fecaca,stroke:#ef4444
+    style S1 fill:#bbf7d0,stroke:#22c55e
+    style S2 fill:#bbf7d0,stroke:#22c55e
+    style S3 fill:#bbf7d0,stroke:#22c55e
+    style S4 fill:#bbf7d0,stroke:#22c55e
+    style S5 fill:#bbf7d0,stroke:#22c55e
+    style S6 fill:#bbf7d0,stroke:#22c55e
+    style S7 fill:#bbf7d0,stroke:#22c55e
 ```
 
 <Card title="Continue to Our Innovations" icon="flask" href="/ip/overview">

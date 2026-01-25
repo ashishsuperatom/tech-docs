@@ -68,17 +68,9 @@ The semantic model enables natural language queries by mapping human questions t
 Organization-specific knowledge captured at three levels:
 
 ```mermaid
-flowchart TB
-    subgraph LEVELS["TRIBAL KNOWLEDGE"]
-        G["🌍 GLOBAL<br>Org-wide rules"]
-        U["👤 USER<br>Role/personal preferences"]
-        Q["❓ QUERY<br>Specific definitions"]
-    end
-
+flowchart TD
     QUESTION["User Question"] --> ENGINE["Knowledge Engine"]
-    ENGINE --> G
-    ENGINE --> U
-    ENGINE --> Q
+    ENGINE --> G["🌍 GLOBAL"] & U["👤 USER"] & Q["❓ QUERY"]
     G & U & Q --> ANSWER["Contextualized Answer"]
 
     style ENGINE fill:#0D9373,color:#fff

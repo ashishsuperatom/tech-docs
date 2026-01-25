@@ -27,17 +27,17 @@ Traditional approach: Teams of BI developers building static dashboards.
 
 ```mermaid
 flowchart TB
-    Q["User Question<br>'Show me top products by revenue'"] --> UNDERSTAND["1. UNDERSTAND<br>Parse intent & entities"]
+    Q["User Question<br>'Show me top products by revenue'"] --> UNDERSTAND["UNDERSTAND<br>Parse intent & entities"]
 
-    UNDERSTAND --> QUERY["2. QUERY<br>Generate & execute SQL"]
+    UNDERSTAND --> QUERY["QUERY<br>Generate & execute SQL"]
 
-    QUERY --> ANALYZE["3. ANALYZE<br>Profile result data"]
+    QUERY --> ANALYZE["ANALYZE<br>Profile result data"]
 
-    ANALYZE --> SELECT["4. SELECT<br>Choose optimal component"]
+    ANALYZE --> SELECT["SELECT<br>Choose optimal component"]
 
-    SELECT --> CONFIGURE["5. CONFIGURE<br>Set visualization parameters"]
+    SELECT --> CONFIGURE["CONFIGURE<br>Set parameters"]
 
-    CONFIGURE --> RENDER["6. RENDER<br>Interactive UI component"]
+    CONFIGURE --> RENDER["RENDER<br>Interactive UI"]
 
     style Q fill:#0D9373,color:#fff
     style RENDER fill:#07C983,color:#fff

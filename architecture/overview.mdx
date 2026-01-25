@@ -11,42 +11,21 @@ Superatom is built as a modular, multi-layer architecture designed for enterpris
 ## High-Level Architecture
 
 ```mermaid
-flowchart TB
-    subgraph PRESENTATION["PRESENTATION LAYER"]
-        UI["Chat Runtime<br>(React 19)"]
-        FE["Frontend Components<br>(Visualization Library)"]
-        SDK_WEB["SDK-Web<br>(Browser SDK)"]
-    end
+flowchart TD
+    UI["Chat Runtime"] --> SDK_WEB["SDK-Web"] --> DO["Durable Object"]
+    DO --> SDK_NODE["SDK-Node"] --> BACKEND["Backend"] --> ANALYSIS["Analysis"]
+    SDK_NODE --> PG["PostgreSQL"] & CHROMA["ChromaDB"]
+    BACKEND --> CUSTOMER["Customer DBs"]
 
-    subgraph INFRASTRUCTURE["INFRASTRUCTURE LAYER"]
-        DO["Durable Object WebSocket<br>(Cloudflare Edge)"]
-    end
-
-    subgraph INTELLIGENCE["INTELLIGENCE LAYER"]
-        SDK_NODE["SDK-Node<br>(Core Engine)"]
-        BACKEND["Backend<br>(Business Logic)"]
-        ANALYSIS["Analysis<br>(Schema Tools)"]
-    end
-
-    subgraph DATA["DATA LAYER"]
-        PG["PostgreSQL<br>(Relational)"]
-        CHROMA["ChromaDB<br>(Vector)"]
-        CUSTOMER["Customer DBs<br>(SQL Server, etc.)"]
-    end
-
-    UI --> SDK_WEB
-    SDK_WEB --> DO
-    DO --> SDK_NODE
-    SDK_NODE --> BACKEND
-    BACKEND --> ANALYSIS
-    SDK_NODE --> PG
-    SDK_NODE --> CHROMA
-    BACKEND --> CUSTOMER
-
-    style PRESENTATION fill:#e0f2fe,stroke:#0D9373
-    style INFRASTRUCTURE fill:#fef3c7,stroke:#f59e0b
-    style INTELLIGENCE fill:#d1fae5,stroke:#0D9373
-    style DATA fill:#fce7f3,stroke:#ec4899
+    style UI fill:#e0f2fe,stroke:#0D9373
+    style SDK_WEB fill:#e0f2fe,stroke:#0D9373
+    style DO fill:#fef3c7,stroke:#f59e0b
+    style SDK_NODE fill:#d1fae5,stroke:#0D9373
+    style BACKEND fill:#d1fae5,stroke:#0D9373
+    style ANALYSIS fill:#d1fae5,stroke:#0D9373
+    style PG fill:#fce7f3,stroke:#ec4899
+    style CHROMA fill:#fce7f3,stroke:#ec4899
+    style CUSTOMER fill:#fce7f3,stroke:#ec4899
 ```
 
 ---
@@ -175,14 +154,7 @@ Full TypeScript with Zod validation:
 
 ```mermaid
 flowchart LR
-    LOAD["Load Growth"] --> PROJECTS
-
-    subgraph PROJECTS["PROJECT ISOLATION"]
-        P1["Project A<br>Durable Object"]
-        P2["Project B<br>Durable Object"]
-        P3["Project C<br>Durable Object"]
-    end
-
+    LOAD["Load Growth"] --> P1["Project A"] & P2["Project B"] & P3["Project C"]
     P1 --> B1["Backend A"]
     P2 --> B2["Backend B"]
     P3 --> B3["Backend C"]

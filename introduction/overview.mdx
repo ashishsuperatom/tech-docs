@@ -28,11 +28,11 @@ The ideal enterprise decision system operates as a continuous loop:
 flowchart TB
     subgraph LOOP["THE DECISION LOOP"]
         direction TB
-        A["1. UNDERSTAND<br>the data collected by the org"] --> B["2. ANALYZE<br>patterns, trends, anomalies"]
-        B --> C["3. SUGGEST<br>actions that can be taken"]
-        C --> D["4. VERIFY<br>human review for high-stakes"]
-        D --> E["5. EXECUTE<br>commit the action"]
-        E --> F["6. OBSERVE<br>track the results"]
+        A["UNDERSTAND<br>Data Collection"] --> B["ANALYZE<br>Patterns & Trends"]
+        B --> C["SUGGEST<br>Actions"]
+        C --> D["VERIFY<br>Human Review"]
+        D --> E["EXECUTE<br>Commit"]
+        E --> F["OBSERVE<br>Track Results"]
         F --> A
     end
 
@@ -105,33 +105,13 @@ Superatom solves each of these problems with specific innovations:
 
 ```mermaid
 flowchart LR
-    subgraph PROBLEMS["PROBLEMS"]
-        P1[Data]
-        P2[Tacit Knowledge]
-        P3[Execution]
-        P4[Action]
-        P5[Accessibility]
-        P6[Delivery]
-        P7[Security]
-    end
-
-    subgraph SOLUTIONS["SUPERATOM SOLUTIONS"]
-        S1[Semantic Modeling]
-        S2[Tribal Knowledge]
-        S3[Generative UI]
-        S4[Dry-Run Execution]
-        S5[Auto Mobile Apps]
-        S6[Reports & Dashboards]
-        S7[Zero-Storage Architecture]
-    end
-
-    P1 --> S1
-    P2 --> S2
-    P3 --> S3
-    P4 --> S4
-    P5 --> S5
-    P6 --> S6
-    P7 --> S7
+    P1[Data] --> S1[Semantic Modeling]
+    P2[Tacit Knowledge] --> S2[Tribal Knowledge]
+    P3[Execution] --> S3[Generative UI]
+    P4[Action] --> S4[Dry-Run Execution]
+    P5[Accessibility] --> S5[Auto Mobile Apps]
+    P6[Delivery] --> S6[Reports & Dashboards]
+    P7[Security] --> S7[Zero-Storage]
 
     style P1 fill:#ef4444,color:#fff
     style P2 fill:#ef4444,color:#fff
