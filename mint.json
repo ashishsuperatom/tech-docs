@@ -35,23 +35,6 @@
       "url": "guides"
     }
   ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open",
-      "url": "https://docs.superatom.ai"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://superatom.ai/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://superatom.ai/blog"
-    }
-  ],
   "navigation": [
     {
       "group": "Getting Started",
