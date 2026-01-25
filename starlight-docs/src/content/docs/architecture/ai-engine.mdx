@@ -1,0 +1,64 @@
+---
+title: 'AI Engine'
+description: 'How Superatom AI processes queries and generates insights'
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## AI Pipeline
+
+```mermaid
+flowchart TB
+    INPUT["User Question"] --> CLASSIFY["Intent Classification"]
+    CLASSIFY --> CONTEXT["Context Enrichment"]
+    CONTEXT --> GENERATE["Query Generation"]
+    GENERATE --> EXECUTE["Execution"]
+    EXECUTE --> ANALYZE["Result Analysis"]
+    ANALYZE --> VISUALIZE["Visualization Selection"]
+    VISUALIZE --> OUTPUT["Streamed Response"]
+
+    style INPUT fill:#0D9373,color:#fff
+    style OUTPUT fill:#07C983,color:#fff
+```
+
+## Multi-LLM Architecture
+
+| Provider | Strength | Selection Criteria |
+|----------|----------|-------------------|
+| Anthropic Claude | Complex reasoning | Multi-step analysis |
+| OpenAI GPT | General purpose | Balanced tasks |
+| Google Gemini | Fast processing | Quick queries |
+| Groq | Ultra-fast | Real-time needs |
+
+## Model Strategies
+
+<CardGrid>
+  <Card title="Best" icon="star">
+		Highest quality output, complex analysis
+	</Card>
+  <Card title="Fast" icon="bolt">
+		Lowest latency, simple queries
+	</Card>
+  <Card title="Balanced" icon="scale-balanced">
+		Cost-effective, everyday use
+	</Card>
+</CardGrid>
+
+## Prompt Architecture
+
+| Prompt | Purpose |
+|--------|---------|
+| text-response | Main response generation |
+| actions | Follow-up suggestions |
+| category-classification | Intent detection |
+| dash-comp-picker | Visualization selection |
+| dash-filter-picker | Filter recommendations |
+| database-rules | SQL syntax guidance |
+| adapt-ui-block-params | UI customization |
+| match-text-components | Component matching |
+
+## Caching Strategy
+
+- **Query cache:** 5-minute TTL for repeated queries
+- **Embedding cache:** Vector representations persist
+- **Component cache:** Frequently-used configs cached

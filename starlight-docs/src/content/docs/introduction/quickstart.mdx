@@ -1,0 +1,193 @@
+---
+title: 'Quickstart'
+description: 'Get up and running with Superatom in 15 minutes'
+---
+
+import { Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+
+## Prerequisites
+
+<CardGrid>
+  <Card title="Workspace Access" icon="key">
+		Your Superatom workspace URL and credentials
+	</Card>
+  <Card title="Data Source" icon="database">
+		Connection details for at least one database
+	</Card>
+</CardGrid>
+
+---
+
+## Step 1: Log In
+
+Navigate to your Superatom workspace URL and log in with your credentials.
+
+  ![Superatom Dashboard](/images/ui-overview.png)
+
+You'll see the main interface with the sidebar navigation:
+
+| Section | Purpose |
+|---------|---------|
+| **BUILD** | Create interfaces, dashboards, reports |
+| **SYSTEM** | Configure knowledge, actions, users |
+| **MONITOR** | Analytics and logs |
+| **DEVELOPERS** | API docs, keys, integrations |
+
+---
+
+## Step 2: Connect a Data Source
+
+1. **Navigate to Knowledge Base**
+
+   Click **Knowledge Base** → **Data Sources** in the sidebar
+
+  1. **Click Add Connection**
+
+   Select your database type
+
+  1. **Enter Connection Details**
+
+   ```
+    Host: your-database-host.com
+    Port: 5432
+    Database: your_database
+    Username: your_username
+    Password: ********
+    ```
+
+  1. **Test Connection**
+
+   Verify connectivity before saving
+
+  1. **Save**
+
+   Connection is established
+
+  ![Data Sources](/images/data-sources.png)
+
+---
+
+## Step 3: Wait for Analysis
+
+Superatom automatically analyzes your connected data:
+
+```mermaid
+flowchart LR
+    CONNECT["Connect"] --> SCHEMA["Analyze Schema"]
+    SCHEMA --> SAMPLE["Sample Data"]
+    SAMPLE --> PROFILE["Statistical Profile"]
+    PROFILE --> DOMAIN["Domain Classification"]
+    DOMAIN --> READY["Ready!"]
+
+    style CONNECT fill:#0D9373,color:#fff
+    style READY fill:#07C983,color:#fff
+```
+
+This typically takes 2-5 minutes for a medium-sized database. You'll be notified when complete.
+
+---
+
+## Step 4: Ask Your First Question
+
+Navigate to **UIs / Chat Agent** and ask a question:
+
+<Tabs>
+  <TabItem label="Simple">
+    ```
+    What tables are in my database?
+    ```
+  </TabItem>
+  <TabItem label="Business">
+    ```
+    Show me total sales by category
+    ```
+  </TabItem>
+  <TabItem label="Analysis">
+    ```
+    Which products have declining sales?
+    ```
+  </TabItem>
+</Tabs>
+
+### What Happens
+
+1. **AI understands** your intent
+2. **SQL is generated** automatically
+3. **Query executes** against your database
+4. **Visualization selected** based on results
+5. **Response streams** in real-time
+
+  ![Query Response](/images/customer-segmentation.png)
+
+---
+
+## Step 5: Explore Further
+
+### Follow-Up Questions
+
+After each response, you'll see suggested follow-ups:
+- *"Break down by region"*
+- *"Compare to last quarter"*
+- *"What's driving this trend?"*
+
+Click any suggestion or type your own follow-up.
+
+### Save Useful Insights
+
+Found something valuable?
+
+1. Click the **bookmark icon** to save
+2. Add to a **dashboard** for ongoing monitoring
+3. Create a **scheduled report** for delivery
+
+---
+
+## Step 6: Add Knowledge (Optional)
+
+Make the AI smarter about YOUR organization:
+
+1. **Go to Knowledge Graphs**
+
+   Navigate to **Knowledge Base** → **Knowledge Graphs**
+
+  1. **Create a Node**
+
+   Click **+ Create Node**
+
+  1. **Add Business Rules**
+
+   ```yaml
+    Title: Sales Definition
+    Type: Global
+
+    Description: |
+      Sales figures should always exclude:
+      - Internal transfers
+      - Returns and refunds
+      - Demo units
+    ```
+
+  1. **Save**
+
+   Now all queries respect this rule
+
+  ![Knowledge Nodes](/images/knowledge-nodes-list.png)
+
+---
+
+## What's Next?
+
+<CardGrid>
+  <LinkCard title="Build a Dashboard" href="/platform/dashboards" description="Combine multiple visualizations" />
+  <LinkCard title="Create a Report" href="/platform/reports" description="Schedule automated delivery" />
+  <LinkCard title="Set Up Alerts" href="/platform/actions" description="Get notified when metrics change" />
+  <LinkCard title="Add More Data" href="/platform/knowledge-base" description="Connect additional sources" />
+</CardGrid>
+
+---
+
+## Need Help?
+
+- **Documentation** — You're in the right place
+- **Support** — support@superatom.ai
+- **Community** — Join our Slack workspace

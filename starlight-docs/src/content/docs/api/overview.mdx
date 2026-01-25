@@ -1,0 +1,106 @@
+---
+title: API Overview
+description: Programmatic access to Superatom
+sidebar:
+  order: 1
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+The Superatom API provides programmatic access to all platform capabilities.
+
+## Base URL
+
+```
+https://api.superatom.ai/v1
+```
+
+## Authentication
+
+All requests require an API key in the Authorization header:
+
+```bash
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+     https://api.superatom.ai/v1/query
+```
+
+<Aside type="caution">
+Keep your API key secret. Never expose it in client-side code.
+</Aside>
+
+## Rate Limits
+
+| Plan | Requests/minute |
+|------|-----------------|
+| Starter | 60 |
+| Professional | 300 |
+| Enterprise | Custom |
+
+## Core Endpoints
+
+### Query
+
+Execute a natural language query.
+
+```bash
+POST /v1/query
+```
+
+**Request:**
+```json
+{
+  "question": "What were sales last month?"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "answer": "Sales last month were $1.2M...",
+    "visualization": { },
+    "sql": "SELECT SUM(amount)..."
+  }
+}
+```
+
+### Dashboards
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /v1/dashboards | List all dashboards |
+| GET | /v1/dashboards/:id | Get dashboard by ID |
+| POST | /v1/dashboards | Create a dashboard |
+
+### Data Sources
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /v1/sources | List connected sources |
+| POST | /v1/sources | Add a new source |
+| DELETE | /v1/sources/:id | Remove a source |
+
+## Error Handling
+
+Errors return a consistent format:
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "INVALID_REQUEST",
+    "message": "Description of the error"
+  }
+}
+```
+
+## WebSocket API
+
+For real-time streaming responses, use the WebSocket endpoint:
+
+```
+wss://api.superatom.ai/v1/stream
+```
+
+See [WebSocket documentation](/api/websocket/) for details.

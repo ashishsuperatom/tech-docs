@@ -1,0 +1,71 @@
+---
+title: 'REST Endpoints'
+description: 'Available REST API endpoints'
+---
+
+## Query Endpoint
+
+### POST /v1/query
+
+Execute a natural language query.
+
+```bash
+curl -X POST https://api.superatom.ai/v1/query \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"question": "What were sales last month?"}'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "answer": "Sales last month were $1.2M...",
+    "visualization": { ... },
+    "sql": "SELECT SUM(amount)..."
+  }
+}
+```
+
+## Dashboards
+
+### GET /v1/dashboards
+
+List all dashboards.
+
+### GET /v1/dashboards/:id
+
+Get dashboard by ID.
+
+### POST /v1/dashboards
+
+Create a dashboard.
+
+## Bookmarks
+
+### GET /v1/bookmarks
+
+List all bookmarks.
+
+### POST /v1/bookmarks
+
+Create a bookmark.
+
+### DELETE /v1/bookmarks/:id
+
+Delete a bookmark.
+
+## Data Sources
+
+### GET /v1/sources
+
+List connected data sources.
+
+### POST /v1/sources
+
+Add a new data source.
+
+### DELETE /v1/sources/:id
+
+Remove a data source.

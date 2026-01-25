@@ -1,0 +1,64 @@
+---
+title: Semantic Modeling
+description: How Superatom understands your data automatically
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+Traditional BI tools require weeks of manual configuration. Superatom's Automated Semantic Modeling does this in hours.
+
+## The Process
+
+When you connect a data source, Superatom automatically:
+
+1. **Schema Analysis**
+   - Analyze table and column names
+   - Detect relationships between tables
+   - Identify primary and foreign keys
+
+2. **Statistical Profiling**
+   - Sample data from each field
+   - Calculate distinct values, ranges, distributions
+   - Find common patterns
+
+3. **Domain Classification**
+   - Recognize industry context (Supply Chain, Retail, Finance)
+   - Apply domain-specific interpretation rules
+   - Map standard terminology
+
+4. **Query Generation**
+   - Generate common questions for your data type
+   - Build a queryable knowledge base
+   - Create suggested starting points
+
+## What Gets Analyzed
+
+| Data Aspect | Analysis |
+|-------------|----------|
+| Table names | Purpose and domain inference |
+| Column names | Field meaning and type |
+| Data types | Numeric, text, date, boolean |
+| Value distributions | Categories, ranges, patterns |
+| Relationships | Foreign keys, join paths |
+
+<Aside>
+Analysis typically takes 2-5 minutes for most databases. Very large schemas may take longer.
+</Aside>
+
+## Continuous Learning
+
+The semantic model improves over time:
+- User queries refine understanding
+- Corrections are incorporated
+- New patterns are detected
+- Business context is enriched
+
+## Manual Overrides
+
+You can always override AI decisions:
+- Rename fields for clarity
+- Define custom calculations
+- Hide sensitive columns
+- Create virtual relationships

@@ -1,0 +1,258 @@
+---
+title: 'Architecture Overview'
+description: 'Technical architecture of the Superatom platform'
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+Superatom is built as a modular, multi-layer architecture designed for enterprise scale, security, and flexibility.
+
+---
+
+## High-Level Architecture
+
+```mermaid
+flowchart TB
+    subgraph PRESENTATION["PRESENTATION LAYER"]
+        UI["Chat Runtime\n(React 19)"]
+        FE["Frontend Components\n(Visualization Library)"]
+        SDK_WEB["SDK-Web\n(Browser SDK)"]
+    end
+
+    subgraph INFRASTRUCTURE["INFRASTRUCTURE LAYER"]
+        DO["Durable Object WebSocket\n(Cloudflare Edge)"]
+    end
+
+    subgraph INTELLIGENCE["INTELLIGENCE LAYER"]
+        SDK_NODE["SDK-Node\n(Core Engine)"]
+        BACKEND["Backend\n(Business Logic)"]
+        ANALYSIS["Analysis\n(Schema Tools)"]
+    end
+
+    subgraph DATA["DATA LAYER"]
+        PG["PostgreSQL\n(Relational)"]
+        CHROMA["ChromaDB\n(Vector)"]
+        CUSTOMER["Customer DBs\n(SQL Server, etc.)"]
+    end
+
+    UI --> SDK_WEB
+    SDK_WEB --> DO
+    DO --> SDK_NODE
+    SDK_NODE --> BACKEND
+    BACKEND --> ANALYSIS
+    SDK_NODE --> PG
+    SDK_NODE --> CHROMA
+    BACKEND --> CUSTOMER
+
+    style PRESENTATION fill:#e0f2fe,stroke:#0D9373
+    style INFRASTRUCTURE fill:#fef3c7,stroke:#f59e0b
+    style INTELLIGENCE fill:#d1fae5,stroke:#0D9373
+    style DATA fill:#fce7f3,stroke:#ec4899
+```
+
+---
+
+## Layer Overview
+
+### Presentation Layer
+
+The user-facing components:
+
+| Module | Purpose | Technology |
+|--------|---------|------------|
+| **Chat Runtime** | Primary user interface | React 19, MobX, Tailwind |
+| **Frontend Components** | Visualization library | ECharts, React |
+| **SDK-Web** | Browser-server communication | TypeScript, Zod |
+
+### Infrastructure Layer
+
+Handles real-time communication and scaling:
+
+| Module | Purpose | Technology |
+|--------|---------|------------|
+| **Durable Object WebSocket** | Message routing, session management | Cloudflare Workers |
+
+### Intelligence Layer
+
+The "brain" of the platform:
+
+| Module | Purpose | Technology |
+|--------|---------|------------|
+| **SDK-Node** | Core AI engine | Node.js, TypeScript |
+| **Backend** | Business logic, tools | Express, TypeScript |
+| **Analysis** | Schema documentation | Python |
+
+### Data Layer
+
+Persistent storage:
+
+| Module | Purpose | Technology |
+|--------|---------|------------|
+| **PostgreSQL** | User data, configs, history | Drizzle ORM |
+| **ChromaDB** | Vector search, semantic matching | Python |
+| **Customer Databases** | Enterprise data | SQL Server, etc. |
+
+---
+
+## Request Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant ChatUI as Chat Runtime
+    participant WebSDK as SDK-Web
+    participant DO as Durable Object
+    participant Backend as Backend Agent
+    participant LLM as LLM Provider
+    participant DB as Database
+
+    User->>ChatUI: Types question
+    ChatUI->>WebSDK: Send message
+    WebSDK->>DO: WebSocket message
+    DO->>Backend: Forward to agent
+
+    Backend->>LLM: Process with AI
+    LLM-->>Backend: Analysis + SQL
+
+    Backend->>DB: Execute query
+    DB-->>Backend: Results
+
+    Backend->>LLM: Select visualization
+    LLM-->>Backend: Component config
+
+    Backend-->>DO: Stream response
+    DO-->>WebSDK: WebSocket stream
+    WebSDK-->>ChatUI: Render UI
+    ChatUI-->>User: Visual answer
+```
+
+---
+
+## Key Design Decisions
+
+### WebSocket-First Communication
+
+All real-time communication uses WebSockets:
+
+<CardGrid>
+  <Card title="Bi-directional" icon="arrows-left-right">
+		Server can push updates without polling
+	</Card>
+  <Card title="Streaming" icon="wave-square">
+		Responses appear as they're generated
+	</Card>
+  <Card title="Efficient" icon="gauge">
+		Lower latency than REST for interactive apps
+	</Card>
+  <Card title="Hibernatable" icon="moon">
+		90-99% cost reduction with Cloudflare DO
+	</Card>
+</CardGrid>
+
+### Multi-LLM Support
+
+No vendor lock-in:
+
+| Provider | Strength | Use Case |
+|----------|----------|----------|
+| Anthropic Claude | Best reasoning | Complex analysis |
+| OpenAI GPT | General purpose | Balanced tasks |
+| Google Gemini | Fast processing | Quick queries |
+| Groq | Ultra-fast | Real-time responses |
+
+### Type Safety Throughout
+
+Full TypeScript with Zod validation:
+
+- **Compile-time** type checking
+- **Runtime** message validation
+- **Schema generation** for API documentation
+
+---
+
+## Scalability
+
+### Horizontal Scaling
+
+```mermaid
+flowchart LR
+    LOAD["Load Growth"] --> PROJECTS
+
+    subgraph PROJECTS["PROJECT ISOLATION"]
+        P1["Project A\nDurable Object"]
+        P2["Project B\nDurable Object"]
+        P3["Project C\nDurable Object"]
+    end
+
+    P1 --> B1["Backend A"]
+    P2 --> B2["Backend B"]
+    P3 --> B3["Backend C"]
+```
+
+Each project has:
+- **Dedicated Durable Object** for WebSocket handling
+- **Independent scaling** based on load
+- **Complete isolation** from other projects
+
+### Cost Efficiency
+
+| Component | Strategy | Savings |
+|-----------|----------|---------|
+| WebSockets | Hibernatable DOs | 90-99% |
+| Queries | 5-minute caching | 30-50% |
+| LLM | Model strategy selection | 20-40% |
+| Edge | Cloudflare global network | 10-20% |
+
+---
+
+## Technology Stack
+
+### Frontend
+
+| Technology | Purpose |
+|------------|---------|
+| React 19 | Component framework |
+| MobX | State management |
+| Tailwind CSS | Styling |
+| ECharts | Visualizations |
+| TypeScript | Type safety |
+| Zod | Schema validation |
+
+### Backend
+
+| Technology | Purpose |
+|------------|---------|
+| Node.js | Runtime |
+| Express | HTTP server |
+| TypeScript | Type safety |
+| Drizzle | ORM |
+| PM2 | Process management |
+
+### Infrastructure
+
+| Technology | Purpose |
+|------------|---------|
+| Cloudflare Workers | Edge compute |
+| Durable Objects | Stateful WebSockets |
+| PostgreSQL | Primary database |
+| ChromaDB | Vector search |
+
+### DevOps
+
+| Technology | Purpose |
+|------------|---------|
+| pnpm | Package management |
+| Vite | Build tool |
+| GitHub Actions | CI/CD |
+| Docker | Containerization |
+
+---
+
+## Next Steps
+
+<CardGrid>
+  <LinkCard title="Data Flow" href="/architecture/data-flow" description="Detailed request/response flow" />
+  <LinkCard title="Modules" href="/architecture/modules" description="Deep dive into each module" />
+  <LinkCard title="AI Engine" href="/architecture/ai-engine" description="How the intelligence layer works" />
+  <LinkCard title="Infrastructure" href="/architecture/infrastructure" description="Deployment and scaling" />
+</CardGrid>

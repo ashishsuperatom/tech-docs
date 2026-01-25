@@ -1,0 +1,67 @@
+---
+title: 'API Introduction'
+description: 'Getting started with the Superatom API'
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## Overview
+
+The Superatom API provides programmatic access to the platform's capabilities.
+
+## Base URL
+
+```
+https://api.superatom.ai/v1
+```
+
+## Authentication
+
+All API requests require authentication using an API key:
+
+```bash
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+     https://api.superatom.ai/v1/query
+```
+
+## Rate Limits
+
+| Plan | Requests/minute |
+|------|-----------------|
+| Starter | 60 |
+| Professional | 300 |
+| Enterprise | Custom |
+
+## Response Format
+
+All responses are JSON:
+
+```json
+{
+  "success": true,
+  "data": { ... },
+  "meta": {
+    "request_id": "req_abc123",
+    "duration_ms": 234
+  }
+}
+```
+
+## Error Handling
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "INVALID_REQUEST",
+    "message": "Description of the error"
+  }
+}
+```
+
+## Next Steps
+
+<CardGrid>
+  <LinkCard title="Authentication" href="/api-reference/authentication" description="Set up API authentication" />
+  <LinkCard title="WebSocket" href="/api-reference/websocket" description="Real-time streaming API" />
+</CardGrid>

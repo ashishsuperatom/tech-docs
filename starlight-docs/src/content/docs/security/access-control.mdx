@@ -1,0 +1,55 @@
+---
+title: 'Access Control'
+description: 'User permissions and data access'
+---
+
+## Role-Based Access Control
+
+  ![User Management](/images/users-management.png)
+
+## Roles
+
+| Role | Description | Capabilities |
+|------|-------------|--------------|
+| **Viewer** | Read-only access | View dashboards, ask questions |
+| **Analyst** | Standard user | Viewer + export, bookmark, create |
+| **Admin** | Project admin | Analyst + user management |
+| **Super Admin** | System admin | Admin + system configuration |
+
+## Permission Levels
+
+### Project Access
+- Which projects a user can see
+- Assigned by admin
+
+### Data Source Access
+- Which databases/tables
+- Configurable per user/role
+
+### Row-Level Security
+- Filter data based on user attributes
+- Example: Regional managers see only their region
+
+### Column-Level Security
+- Hide sensitive columns
+- Example: Hide salary from non-HR
+
+## Permission Matrix
+
+| Action | Viewer | Analyst | Admin |
+|--------|--------|---------|-------|
+| View dashboards | Yes | Yes | Yes |
+| Ask questions | Yes | Yes | Yes |
+| Export data | No | Yes | Yes |
+| Create bookmarks | No | Yes | Yes |
+| Create dashboards | No | Yes | Yes |
+| Manage users | No | No | Yes |
+| Configure sources | No | No | Yes |
+
+## SSO Integration
+
+Coming soon:
+- Okta
+- Azure AD
+- SAML 2.0
+- OpenID Connect

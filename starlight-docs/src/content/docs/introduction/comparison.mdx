@@ -1,0 +1,337 @@
+---
+title: 'Beyond Business Intelligence'
+description: 'Why Superatom is not another BI tool—and why that matters'
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+:::note
+**For Investors & Decision Makers:** This page explains how Superatom creates a new market category beyond traditional Business Intelligence.
+:::
+
+## The Market Today
+
+The Business Intelligence market is dominated by tools built for **reporting**:
+
+- Microsoft Power BI
+- Tableau
+- Looker
+- Qlik
+- Metabase
+
+These tools excel at one thing: **visualizing data that humans have already organized, queried, and understood.**
+
+**But reporting is not decision-making.**
+
+---
+
+## Reporting vs. Decision-Making
+
+```mermaid
+flowchart TB
+    subgraph TRADITIONAL["TRADITIONAL BI (Reporting)"]
+        direction TB
+        T1["1. Data Engineer prepares data"]
+        T2["2. Analyst writes queries"]
+        T3["3. Designer builds dashboards"]
+        T4["4. User views static reports"]
+        T5["5. Human interprets & decides"]
+
+        T1 --> T2 --> T3 --> T4 --> T5
+    end
+
+    subgraph SUPERATOM["SUPERATOM (Decision Engine)"]
+        direction TB
+        S1["1. Connect data sources"]
+        S2["2. AI understands data automatically"]
+        S3["3. User asks questions in English"]
+        S4["4. AI analyzes & suggests actions"]
+        S5["5. Human verifies & executes"]
+        S6["6. System learns from outcomes"]
+
+        S1 --> S2 --> S3 --> S4 --> S5 --> S6
+        S6 --> S3
+    end
+
+    style T5 fill:#ef4444,color:#fff
+    style S4 fill:#0D9373,color:#fff
+    style S5 fill:#0D9373,color:#fff
+    style S6 fill:#07C983,color:#fff
+```
+
+| Aspect | Traditional BI | Superatom |
+|--------|---------------|-----------|
+| **Primary Function** | Show what happened | Understand why and suggest what to do |
+| **User Interaction** | Navigate pre-built dashboards | Ask questions in natural language |
+| **Analysis** | Human-performed | AI-automated |
+| **Output** | Static charts and tables | Dynamic insights with recommended actions |
+| **Learning** | None | Improves from feedback and outcomes |
+| **Accessibility** | Desktop-first | Conversational, mobile, embedded |
+
+---
+
+## The Gap Traditional BI Can't Fill
+
+<CardGrid>
+  <Card title="They Show" icon="eye">
+		Traditional BI tools show you **what** the data says.
+
+    *"Sales were $1.2M last quarter"*
+	</Card>
+  <Card title="We Explain & Act" icon="lightbulb">
+		Superatom explains **why** and suggests **what to do**.
+
+    *"Sales dropped 15% because of stockouts in Region 3. Here's a transfer plan to fix it."*
+	</Card>
+</CardGrid>
+
+### The Traditional BI Workflow
+
+```mermaid
+flowchart LR
+    subgraph PEOPLE["REQUIRED PEOPLE"]
+        P1["Data Engineer\n$150K/year"]
+        P2["BI Analyst\n$120K/year"]
+        P3["Dashboard Designer\n$100K/year"]
+    end
+
+    subgraph TIME["TIME REQUIRED"]
+        T1["ETL Pipeline\n2-4 weeks"]
+        T2["Query Development\n1-2 weeks"]
+        T3["Dashboard Build\n1-2 weeks"]
+    end
+
+    subgraph RESULT["RESULT"]
+        R1["Static Dashboard\nShows historical data"]
+    end
+
+    P1 --> T1 --> P2 --> T2 --> P3 --> T3 --> R1
+
+    R1 --> HUMAN["Human must:\n- Interpret data\n- Identify issues\n- Decide actions\n- Execute manually"]
+
+    style HUMAN fill:#ef4444,color:#fff
+```
+
+**Total cost to answer a new business question:** $10,000+ and 4-8 weeks
+
+### The Superatom Workflow
+
+```mermaid
+flowchart LR
+    USER["Business User"] --> QUESTION["Asks question in English\n'Why did sales drop?'"]
+
+    QUESTION --> SUPERATOM["Superatom\n(< 3 seconds)"]
+
+    SUPERATOM --> INSIGHT["AI-Generated:\n- Root cause analysis\n- Visual explanation\n- Recommended actions"]
+
+    INSIGHT --> VERIFY["Human verifies\n& approves action"]
+
+    VERIFY --> EXECUTE["Action executed\n& tracked"]
+
+    style SUPERATOM fill:#0D9373,color:#fff
+    style INSIGHT fill:#0D9373,color:#fff
+    style EXECUTE fill:#07C983,color:#fff
+```
+
+**Total cost to answer a new business question:** $0 marginal cost and < 3 seconds
+
+---
+
+## Head-to-Head Comparison
+
+### Microsoft Power BI vs. Superatom
+
+| Capability | Power BI | Superatom |
+|-----------|----------|-----------|
+| **Data Visualization** | Excellent | Excellent (auto-generated) |
+| **Natural Language Queries** | Limited (Q&A feature) | Full conversational AI |
+| **Automatic Analysis** | None | AI-powered root cause analysis |
+| **Action Recommendations** | None | Built-in with dry-run execution |
+| **Mobile App Generation** | Manual development | Automatic from data model |
+| **Setup Time** | Weeks-months | ~15 minutes |
+| **Required Expertise** | BI specialists | None |
+| **Learning from Outcomes** | None | Continuous improvement |
+| **Tribal Knowledge** | None | Built-in at 3 levels |
+| **Price per User** | $10-20/month | Competitive |
+
+### Tableau vs. Superatom
+
+| Capability | Tableau | Superatom |
+|-----------|---------|-----------|
+| **Visualization Quality** | Industry-leading | AI-optimized selection |
+| **Self-Service** | For technical users | For everyone (natural language) |
+| **Data Prep** | Requires Prep product | Automatic semantic modeling |
+| **Predictive Analytics** | Limited | Built-in AI forecasting |
+| **Decision Automation** | None | Human-in-the-loop execution |
+| **Real-Time Streaming** | Add-on cost | Native |
+| **Embedded Analytics** | Complex SDK | Simple integration |
+
+---
+
+## The New Category: Decision Intelligence
+
+Superatom isn't competing with BI tools. We're creating a new category.
+
+```mermaid
+flowchart TB
+    subgraph EVOLUTION["MARKET EVOLUTION"]
+        direction LR
+        E1["1990s-2000s\nSPREADSHEETS\nManual analysis"]
+        E2["2000s-2010s\nBI TOOLS\nVisualized reporting"]
+        E3["2010s-2020s\nSELF-SERVICE BI\nUser-built dashboards"]
+        E4["2020s+\nDECISION INTELLIGENCE\nAI-powered decisions"]
+    end
+
+    E1 --> E2 --> E3 --> E4
+
+    style E4 fill:#0D9373,color:#fff
+```
+
+### What Decision Intelligence Means
+
+1. **Automated Understanding**
+
+   AI automatically understands your data—no data engineering required.
+
+  1. **Natural Interaction**
+
+   Anyone can ask questions in plain English. No training, no SQL, no dashboard navigation.
+
+  1. **Insight Generation**
+
+   AI doesn't just display data—it finds patterns, anomalies, and root causes automatically.
+
+  1. **Action Recommendation**
+
+   System suggests specific actions to address issues or capitalize on opportunities.
+
+  1. **Human-in-the-Loop Execution**
+
+   Humans verify and approve. Actions execute with accountability and auditability.
+
+  1. **Continuous Learning**
+
+   System learns from outcomes to improve future recommendations.
+
+---
+
+## Market Opportunity
+
+### Why Every Organization Needs This
+
+<CardGrid>
+  <Card title="SMBs Can't Afford BI Teams" icon="building">
+		Traditional BI requires expensive specialists. Superatom gives SMBs enterprise-grade decision intelligence without the headcount.
+	</Card>
+  <Card title="Enterprises Are Drowning in Data" icon="database">
+		Large organizations have data everywhere but can't connect insights to actions. Superatom closes the loop.
+	</Card>
+  <Card title="Field Workers Need Access" icon="mobile">
+		Warehouse managers, sales reps, and field service don't use Power BI. They need mobile-first, conversational access.
+	</Card>
+  <Card title="Speed is Competitive Advantage" icon="gauge-high">
+		Organizations that can make decisions in minutes vs. weeks win. Period.
+	</Card>
+</CardGrid>
+
+### Total Addressable Market
+
+```mermaid
+flowchart TB
+    subgraph TAM["MARKET LAYERS"]
+        direction TB
+        L1["Traditional BI Market\n$30B (Replacing existing spend)"]
+        L2["New Decision Intelligence\n$50B+ (New capability, new buyers)"]
+        L3["Action Automation\n$100B+ (Connected to execution)"]
+    end
+
+    L1 --> SUPERATOM
+    L2 --> SUPERATOM
+    L3 --> SUPERATOM
+
+    SUPERATOM["Superatom\nAddresses all three layers"]
+
+    style SUPERATOM fill:#0D9373,color:#fff
+```
+
+---
+
+## Competitive Moat
+
+### Why Incumbents Can't Easily Respond
+
+  <details>
+<summary>1. Architectural Limitations</summary>
+
+Traditional BI tools are built for visualization, not AI-powered analysis. Retrofitting is harder than building new.
+
+</details>
+  <details>
+<summary>2. Business Model Conflict</summary>
+
+Incumbent revenue depends on seats and services. Superatom's efficiency threatens their model.
+
+</details>
+  <details>
+<summary>3. Accumulated IP</summary>
+
+Our six core innovations—Semantic Modeling, Generative UI, Tribal Knowledge, Coding Agents, Automated Semantic Modeling, Automated Analyst—represent years of development.
+
+</details>
+  <details>
+<summary>4. Data Flywheel</summary>
+
+Every deployment adds domain knowledge to our system. Each new customer makes us better for the next.
+
+</details>
+
+### Our Defensible Advantages
+
+| Advantage | Description | Defensibility |
+|-----------|-------------|---------------|
+| **Generative UI** | First to market with auto-generated visualizations | Patent-pending, years of refinement |
+| **Tribal Knowledge** | Only system capturing org-specific context at 3 levels | Novel architecture, network effects |
+| **Enterprise Coding Agents** | AI agents that understand business context | Proprietary training and integration |
+| **Zero-Setup Modeling** | Automatic semantic understanding | Accumulating domain knowledge |
+
+---
+
+## The Investment Thesis
+
+:::note
+**Superatom is not a better BI tool. It's the replacement for the entire reporting-to-decision workflow.**
+:::
+
+### Why Now?
+
+1. **LLMs Have Matured** — Foundation models can now understand business context
+2. **Data Infrastructure is Ubiquitous** — Cloud data warehouses are standard
+3. **Enterprises Are Ready** — AI adoption has crossed the chasm
+4. **Talent is Scarce** — Organizations can't hire enough analysts
+
+### Why Superatom?
+
+1. **Purpose-Built** — Not retrofitting existing tools
+2. **Full Stack** — From data connection to action execution
+3. **Enterprise-First** — Security, compliance, and scalability from day one
+4. **Domain Accumulation** — Every customer makes the platform smarter
+
+### The Outcome
+
+Organizations using Superatom will:
+- **Reduce** decision latency from weeks to seconds
+- **Eliminate** dependency on scarce technical talent
+- **Enable** every employee to access data insights
+- **Connect** insights to actions in a verifiable loop
+- **Compound** organizational knowledge over time
+
+---
+
+## See It In Action
+
+<CardGrid>
+  <LinkCard title="Platform Overview" href="/platform/chat-agent" description="Explore the Superatom platform capabilities" />
+  <LinkCard title="Technical Architecture" href="/architecture/overview" description="Understand how it's built" />
+  <LinkCard title="Our Innovations" href="/ip/overview" description="Deep dive into our intellectual property" />
+  <LinkCard title="Request Demo" href="https://superatom.ai/demo" description="See Superatom with your data" />
+</CardGrid>

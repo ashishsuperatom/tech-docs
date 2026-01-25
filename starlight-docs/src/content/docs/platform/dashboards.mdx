@@ -1,0 +1,223 @@
+---
+title: 'Dashboards'
+description: 'Build custom dashboards with your most important metrics'
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+Dashboards let you combine multiple visualizations into a single view—perfect for monitoring key metrics, sharing with teams, and presenting to stakeholders.
+
+  ![Dashboard Builder](/images/dashboard-builder.png)
+
+---
+
+## Creating a Dashboard
+
+1. **Navigate to Dashboards**
+
+   Click **Dashboards** in the sidebar under BUILD
+
+  1. **Click Create Dashboard**
+
+   Start with a blank canvas
+
+  1. **Add Components**
+
+   - Ask questions in natural language, or
+    - Add from bookmarks, or
+    - Drag from component library
+
+  1. **Arrange Layout**
+
+   Drag and resize components to create your layout
+
+  1. **Save & Share**
+
+   Name your dashboard and set permissions
+
+---
+
+## Dashboard Components
+
+### From Natural Language
+
+Type a question directly in the dashboard:
+
+1. Click **+ Add Component**
+2. Type your question: *"Revenue by region this quarter"*
+3. Superatom generates the visualization
+4. Resize and position as needed
+
+### From Bookmarks
+
+Reuse visualizations you've already created:
+
+1. Click **+ Add from Bookmarks**
+2. Select from your saved visualizations
+3. Component added with same configuration
+
+### Component Types
+
+<CardGrid>
+  <Card title="KPI Cards" icon="gauge">
+		Single metrics with trend indicators
+	</Card>
+  <Card title="Charts" icon="chart-bar">
+		Bar, line, pie, scatter, and more
+	</Card>
+  <Card title="Tables" icon="table">
+		Detailed data grids
+	</Card>
+  <Card title="Maps" icon="map">
+		Geographic visualizations
+	</Card>
+  <Card title="Filters" icon="filter">
+		Interactive data filters
+	</Card>
+  <Card title="Text" icon="text">
+		Headers, descriptions, notes
+	</Card>
+</CardGrid>
+
+---
+
+## Layout & Design
+
+### Grid System
+
+Dashboards use a flexible grid:
+- **12 columns** for precise positioning
+- **Auto-resize** components to fit
+- **Snap-to-grid** for alignment
+- **Responsive** for different screen sizes
+
+### Sizing Options
+
+| Size | Use Case |
+|------|----------|
+| **Small** | KPI cards, single metrics |
+| **Medium** | Standard charts |
+| **Large** | Detailed tables, complex charts |
+| **Full Width** | Main visualizations |
+
+### Themes
+
+Choose from built-in themes or customize:
+- Light mode
+- Dark mode
+- Custom brand colors
+
+---
+
+## Interactive Features
+
+### Global Filters
+
+Add filters that affect all components:
+
+- **Date Range** — Filter entire dashboard by time period
+- **Region** — Show data for specific regions
+- **Product** — Focus on product categories
+- **Custom** — Any dimension in your data
+
+### Drill-Down
+
+Click any data point to:
+- See underlying details
+- Open related visualizations
+- Ask follow-up questions
+
+### Auto-Refresh
+
+Keep dashboards current:
+
+| Interval | Use Case |
+|----------|----------|
+| Real-time | Operations centers |
+| 5 minutes | Active monitoring |
+| 15 minutes | Standard dashboards |
+| Manual | Point-in-time analysis |
+
+---
+
+## Sharing & Permissions
+
+### Access Levels
+
+| Level | Capabilities |
+|-------|-------------|
+| **View** | See the dashboard |
+| **Edit** | Modify components and layout |
+| **Admin** | Manage sharing and delete |
+
+### Sharing Options
+
+- **Specific Users** — By email or username
+- **Roles** — All users with a role
+- **Public** — Anyone with the link (optional)
+
+### Embedding
+
+Embed dashboards in other applications:
+- Iframe embed code
+- Authenticated embedding
+- Custom domain support
+
+---
+
+## Dashboard Templates
+
+Start faster with templates:
+
+<CardGrid>
+  <Card title="Executive Overview" icon="briefcase">
+		KPIs, revenue, orders, customer metrics
+	</Card>
+  <Card title="Sales Performance" icon="chart-line">
+		Pipeline, win rates, rep performance
+	</Card>
+  <Card title="Inventory Health" icon="warehouse">
+		Stock levels, turnover, alerts
+	</Card>
+  <Card title="Financial Summary" icon="coins">
+		Revenue, margins, cash flow
+	</Card>
+</CardGrid>
+
+---
+
+## Best Practices
+
+  <details>
+<summary>Keep It Focused</summary>
+
+One dashboard = one purpose. Don't try to show everything.
+
+</details>
+  <details>
+<summary>Prioritize Top-Left</summary>
+
+Most important metrics go top-left (where eyes start).
+
+</details>
+  <details>
+<summary>Use Consistent Sizing</summary>
+
+Similar components should be similar sizes.
+
+</details>
+  <details>
+<summary>Add Context</summary>
+
+Include titles, descriptions, and time periods.
+
+</details>
+
+---
+
+## Next Steps
+
+<CardGrid>
+  <LinkCard title="Reports" href="/platform/reports" description="Schedule dashboard delivery" />
+  <LinkCard title="Mobile Apps" href="/platform/mobile-apps" description="Access dashboards on mobile" />
+</CardGrid>
