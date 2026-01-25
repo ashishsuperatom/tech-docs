@@ -1,0 +1,130 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Superatom",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#0D9373",
+    "light": "#07C983",
+    "dark": "#0D9373",
+    "anchors": {
+      "from": "#0D9373",
+      "to": "#07C983"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "mailto:support@superatom.ai"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "https://app.superatom.ai"
+  },
+  "tabs": [
+    {
+      "name": "API Reference",
+      "url": "api-reference"
+    },
+    {
+      "name": "Guides",
+      "url": "guides"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "Documentation",
+      "icon": "book-open",
+      "url": "https://docs.superatom.ai"
+    },
+    {
+      "name": "Community",
+      "icon": "slack",
+      "url": "https://superatom.ai/community"
+    },
+    {
+      "name": "Blog",
+      "icon": "newspaper",
+      "url": "https://superatom.ai/blog"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        "introduction/overview",
+        "introduction/problems",
+        "introduction/comparison",
+        "introduction/quickstart",
+        "introduction/core-concepts"
+      ]
+    },
+    {
+      "group": "Platform",
+      "pages": [
+        "platform/chat-agent",
+        "platform/dashboards",
+        "platform/reports",
+        "platform/mobile-apps",
+        "platform/actions",
+        "platform/knowledge-base"
+      ]
+    },
+    {
+      "group": "Architecture",
+      "pages": [
+        "architecture/overview",
+        "architecture/data-flow",
+        "architecture/modules",
+        "architecture/ai-engine",
+        "architecture/infrastructure"
+      ]
+    },
+    {
+      "group": "Intellectual Property",
+      "pages": [
+        "ip/overview",
+        "ip/semantic-modeling",
+        "ip/generative-ui",
+        "ip/tribal-knowledge",
+        "ip/coding-agents",
+        "ip/automated-analyst"
+      ]
+    },
+    {
+      "group": "Security & Compliance",
+      "pages": [
+        "security/overview",
+        "security/data-protection",
+        "security/access-control"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "api-reference/introduction",
+        "api-reference/authentication",
+        "api-reference/websocket",
+        "api-reference/endpoints"
+      ]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+        "guides/getting-started",
+        "guides/connecting-data",
+        "guides/building-dashboards",
+        "guides/creating-reports"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/superatom_ai",
+    "github": "https://github.com/superatom",
+    "linkedin": "https://linkedin.com/company/superatom"
+  }
+}

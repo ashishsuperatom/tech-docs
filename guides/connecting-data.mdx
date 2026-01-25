@@ -1,0 +1,67 @@
+---
+title: 'Connecting Data Sources'
+description: 'How to connect your databases and data sources'
+icon: 'plug'
+---
+
+## Supported Sources
+
+<CardGroup cols={3}>
+  <Card title="Databases" icon="database">
+    PostgreSQL, MySQL, SQL Server, Oracle
+  </Card>
+  <Card title="Warehouses" icon="warehouse">
+    BigQuery, Snowflake, Databricks, Redshift
+  </Card>
+  <Card title="ERPs" icon="building">
+    SAP, Oracle ERP, Dynamics 365
+  </Card>
+</CardGroup>
+
+## Connection Steps
+
+<Steps>
+  <Step title="Navigate to Data Sources">
+    Knowledge Base → Data Sources
+  </Step>
+  <Step title="Select Type">
+    Choose your database type
+  </Step>
+  <Step title="Enter Details">
+    Host, port, database, credentials
+  </Step>
+  <Step title="Test Connection">
+    Verify connectivity
+  </Step>
+  <Step title="Run Analysis">
+    Superatom analyzes your schema
+  </Step>
+</Steps>
+
+## Connection Details
+
+### PostgreSQL
+
+```
+Host: your-host.com
+Port: 5432
+Database: your_database
+Username: your_user
+Password: ********
+SSL: Required
+```
+
+### BigQuery
+
+```
+Project ID: your-project
+Dataset: your_dataset
+Service Account: credentials.json
+```
+
+## Best Practices
+
+- Use read-only credentials
+- Enable SSL/TLS
+- Whitelist Superatom IPs
+- Test before production use

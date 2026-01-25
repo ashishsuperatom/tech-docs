@@ -1,0 +1,225 @@
+---
+title: 'Mobile Apps'
+description: 'Auto-generated iOS and Android apps for field access'
+icon: 'mobile'
+---
+
+Superatom automatically generates mobile applications from your data model—giving field workers, executives, and anyone on the go instant access to insights and actions.
+
+<Frame>
+  <img src="/images/mobile-app.png" alt="Superatom Mobile App" />
+</Frame>
+
+---
+
+## The Accessibility Problem
+
+Traditional approach to mobile data access:
+- **Months** of development time
+- **$50K-200K** development cost
+- **Ongoing maintenance** burden
+- **Separate codebase** to manage
+
+**Superatom approach:** Mobile apps are automatically generated from your data model. Zero development required.
+
+---
+
+## How It Works
+
+```mermaid
+flowchart LR
+    DATA["Your Data Model"] --> ANALYSIS["Superatom Analysis"]
+    ANALYSIS --> IOS["iOS App"]
+    ANALYSIS --> ANDROID["Android App"]
+    IOS --> USERS["Field Workers"]
+    ANDROID --> USERS
+
+    style IOS fill:#0D9373,color:#fff
+    style ANDROID fill:#0D9373,color:#fff
+```
+
+<Steps>
+  <Step title="Connect Data Sources">
+    Your data is already connected to Superatom
+  </Step>
+  <Step title="Define Mobile Views">
+    Select which dashboards, reports, and actions are mobile-enabled
+  </Step>
+  <Step title="Configure Roles">
+    Set permissions for different user types
+  </Step>
+  <Step title="Deploy">
+    Apps are instantly available on iOS and Android
+  </Step>
+</Steps>
+
+---
+
+## Mobile Capabilities
+
+### View Dashboards
+
+<CardGroup cols={2}>
+  <Card title="KPI Summary" icon="gauge">
+    See key metrics at a glance
+  </Card>
+  <Card title="Charts" icon="chart-bar">
+    Interactive visualizations optimized for touch
+  </Card>
+  <Card title="Tables" icon="table">
+    Scrollable data with search
+  </Card>
+  <Card title="Alerts" icon="bell">
+    Push notifications for important changes
+  </Card>
+</CardGroup>
+
+### Ask Questions
+
+Natural language works on mobile too:
+- Tap to speak or type
+- See streaming responses
+- View auto-generated visualizations
+
+### Take Actions
+
+Execute approved actions from the field:
+- Approve transfers
+- Update statuses
+- Submit requests
+- Acknowledge alerts
+
+---
+
+## App Overview
+
+<Frame>
+  <img src="/images/apps-overview.png" alt="Apps Overview" />
+</Frame>
+
+### App Configuration
+
+| Setting | Options |
+|---------|---------|
+| **App Name** | Your organization's branding |
+| **Logo** | Custom app icon |
+| **Color Theme** | Match your brand |
+| **Features** | Which capabilities to include |
+| **Offline Mode** | Cache data for disconnected use |
+
+---
+
+## Role-Based Access
+
+Different users see different things:
+
+| Role | Mobile Access |
+|------|--------------|
+| **Executive** | High-level KPIs, trend summaries |
+| **Manager** | Team metrics, approval workflows |
+| **Field Worker** | Task-specific views, action buttons |
+| **Analyst** | Full query access, detailed data |
+
+---
+
+## Offline Capabilities
+
+Work without internet connection:
+- **Cached data** — Recent queries available offline
+- **Queued actions** — Submit actions when reconnected
+- **Sync indicator** — Know when data was last updated
+
+---
+
+## Push Notifications
+
+Stay informed with smart alerts:
+
+| Notification Type | Example |
+|------------------|---------|
+| **Threshold Alert** | "Inventory below safety stock at Warehouse A" |
+| **Scheduled Report** | "Your weekly summary is ready" |
+| **Action Required** | "Transfer request needs approval" |
+| **Anomaly Detected** | "Revenue 15% below forecast" |
+
+Configure notification preferences:
+- Which alerts to receive
+- Quiet hours
+- Frequency limits
+
+---
+
+## Security
+
+Mobile apps maintain enterprise security:
+
+<CardGroup cols={2}>
+  <Card title="Biometric Auth" icon="fingerprint">
+    Face ID, Touch ID, fingerprint
+  </Card>
+  <Card title="Session Management" icon="clock">
+    Automatic timeout, forced logout
+  </Card>
+  <Card title="Data Encryption" icon="lock">
+    All data encrypted at rest and in transit
+  </Card>
+  <Card title="MDM Compatible" icon="mobile">
+    Works with mobile device management
+  </Card>
+</CardGroup>
+
+---
+
+## Deployment Options
+
+### Cloud Deployment
+
+- Instantly available via app stores
+- Automatic updates
+- Managed infrastructure
+
+### Enterprise Deployment
+
+- Private app store distribution
+- MDM integration
+- Custom deployment rules
+
+---
+
+## Use Cases
+
+<AccordionGroup>
+  <Accordion title="Warehouse Manager" icon="warehouse">
+    Check inventory levels, approve transfers, receive low-stock alerts while walking the floor.
+  </Accordion>
+  <Accordion title="Sales Rep" icon="handshake">
+    View customer history, check product availability, submit orders from client meetings.
+  </Accordion>
+  <Accordion title="Executive" icon="briefcase">
+    Quick morning KPI check, review dashboards before meetings, stay informed while traveling.
+  </Accordion>
+  <Accordion title="Field Service" icon="wrench">
+    Access equipment history, update service status, capture completion photos.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Automated Actions"
+    icon="bolt"
+    href="/platform/actions"
+  >
+    Configure mobile notifications
+  </Card>
+  <Card
+    title="Security"
+    icon="shield"
+    href="/security/overview"
+  >
+    Mobile security details
+  </Card>
+</CardGroup>

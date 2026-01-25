@@ -1,0 +1,289 @@
+---
+title: 'Core Concepts'
+description: 'Fundamental concepts to understand Superatom'
+icon: 'lightbulb'
+---
+
+Before diving deeper, understand these core concepts that power Superatom.
+
+---
+
+## The Decision Loop
+
+Superatom implements a continuous decision-making loop:
+
+```mermaid
+flowchart LR
+    A["UNDERSTAND"] --> B["ANALYZE"]
+    B --> C["SUGGEST"]
+    C --> D["VERIFY"]
+    D --> E["EXECUTE"]
+    E --> F["OBSERVE"]
+    F --> A
+
+    style A fill:#0D9373,color:#fff
+    style B fill:#0D9373,color:#fff
+    style C fill:#0D9373,color:#fff
+    style D fill:#07C983,color:#fff
+    style E fill:#07C983,color:#fff
+    style F fill:#07C983,color:#fff
+```
+
+| Stage | What Happens |
+|-------|--------------|
+| **Understand** | Connect data, build semantic model |
+| **Analyze** | AI finds patterns, anomalies, insights |
+| **Suggest** | Recommend actions to address findings |
+| **Verify** | Human reviews and approves |
+| **Execute** | Action committed to systems |
+| **Observe** | Track outcomes, learn from results |
+
+---
+
+## Semantic Model
+
+The semantic model is Superatom's understanding of your data:
+
+<CardGroup cols={2}>
+  <Card title="Schema Understanding" icon="sitemap">
+    Tables, columns, relationships, data types
+  </Card>
+  <Card title="Statistical Profile" icon="chart-bar">
+    Distributions, patterns, common values
+  </Card>
+  <Card title="Domain Context" icon="building">
+    Industry-specific interpretation
+  </Card>
+  <Card title="Query Capability" icon="magnifying-glass">
+    What questions can be asked
+  </Card>
+</CardGroup>
+
+The semantic model enables natural language queries by mapping human questions to database operations.
+
+---
+
+## Tribal Knowledge
+
+Organization-specific knowledge captured at three levels:
+
+```mermaid
+flowchart TB
+    subgraph LEVELS["TRIBAL KNOWLEDGE"]
+        G["🌍 GLOBAL\nOrg-wide rules"]
+        U["👤 USER\nRole/personal preferences"]
+        Q["❓ QUERY\nSpecific definitions"]
+    end
+
+    QUESTION["User Question"] --> ENGINE["Knowledge Engine"]
+    ENGINE --> G
+    ENGINE --> U
+    ENGINE --> Q
+    G & U & Q --> ANSWER["Contextualized Answer"]
+
+    style ENGINE fill:#0D9373,color:#fff
+```
+
+| Level | Example | Scope |
+|-------|---------|-------|
+| **Global** | "Sales exclude returns" | All users, all queries |
+| **User** | "Show only West Coast data" | Specific user |
+| **Query** | "Deadstock = no sales in 12 months" | Specific question type |
+
+---
+
+## Generative UI
+
+Automatic visualization creation:
+
+<Steps>
+  <Step title="User Asks Question">
+    Natural language query submitted
+  </Step>
+  <Step title="Data Retrieved">
+    SQL generated and executed
+  </Step>
+  <Step title="Data Analyzed">
+    Result set profiled for characteristics
+  </Step>
+  <Step title="Component Selected">
+    AI chooses optimal visualization
+  </Step>
+  <Step title="UI Rendered">
+    Interactive component displayed
+  </Step>
+</Steps>
+
+16+ component types automatically selected based on data patterns.
+
+---
+
+## Knowledge Nodes
+
+Building blocks of organizational knowledge:
+
+```yaml
+knowledge_node:
+  title: "Overstock Definition"
+  type: query
+
+  description: |
+    Items where inventory exceeds 90 days
+    of average sales velocity
+
+  rules:
+    - "Calculate days_supply = qty / avg_daily_sales"
+    - "Overstock when days_supply > 90"
+
+  applies_to:
+    - "inventory queries"
+    - "overstock analysis"
+```
+
+Knowledge nodes guide how the AI interprets and answers questions.
+
+---
+
+## Knowledge Graph
+
+Visual representation of how concepts connect:
+
+<Frame>
+  <img src="/images/knowledge-graph.png" alt="Knowledge Graph" />
+</Frame>
+
+The graph shows relationships between:
+- **Entities** — Orders, Customers, Products
+- **Processes** — Workflows, lifecycles
+- **Insights** — Derived knowledge, calculations
+
+---
+
+## Coding Agents
+
+AI agents that understand business context:
+
+```mermaid
+flowchart LR
+    Q["Complex Question"] --> AGENT["Coding Agent"]
+
+    AGENT --> THINK["Think"]
+    THINK --> ACT["Act"]
+    ACT --> OBSERVE["Observe"]
+    OBSERVE --> DECIDE{"Done?"}
+    DECIDE -->|No| THINK
+    DECIDE -->|Yes| ANSWER["Answer"]
+
+    style AGENT fill:#0D9373,color:#fff
+```
+
+Agents can:
+- Break complex questions into sub-tasks
+- Generate and execute multiple queries
+- Iterate until they find the answer
+- Explain their reasoning
+
+---
+
+## Dry-Run Execution
+
+Safe action execution with human oversight:
+
+```mermaid
+flowchart LR
+    AI["AI Suggests Action"] --> SIM["Simulate"]
+    SIM --> REVIEW["Human Review"]
+    REVIEW --> APPROVE{"Approved?"}
+    APPROVE -->|Yes| EXECUTE["Execute"]
+    APPROVE -->|No| MODIFY["Modify/Reject"]
+
+    style SIM fill:#f59e0b,color:#fff
+    style REVIEW fill:#0D9373,color:#fff
+```
+
+Actions are simulated first, showing what WOULD happen before committing.
+
+---
+
+## Project Isolation
+
+Each deployment is completely isolated:
+
+<CardGroup cols={2}>
+  <Card title="Separate Infrastructure" icon="server">
+    Dedicated Durable Objects per project
+  </Card>
+  <Card title="Data Isolation" icon="database">
+    No cross-project data access
+  </Card>
+  <Card title="Independent Scaling" icon="chart-line">
+    Resources scale per project needs
+  </Card>
+  <Card title="Security Boundary" icon="shield">
+    Complete security separation
+  </Card>
+</CardGroup>
+
+---
+
+## Real-Time Streaming
+
+Responses appear as they're generated:
+
+- **Text** streams character by character
+- **Charts** build progressively
+- **Tables** populate row by row
+- **Follow-ups** appear after main content
+
+This creates a more engaging, responsive experience than waiting for complete results.
+
+---
+
+## Multi-LLM Support
+
+No single AI vendor dependency:
+
+| Provider | When Used |
+|----------|-----------|
+| Anthropic Claude | Complex reasoning tasks |
+| OpenAI GPT | General purpose queries |
+| Google Gemini | Fast processing needs |
+| Groq | Real-time, high-volume |
+
+Switch providers based on task, cost, or preference.
+
+---
+
+## Key Terminology
+
+| Term | Definition |
+|------|------------|
+| **Semantic Model** | AI's understanding of your data structure and meaning |
+| **Tribal Knowledge** | Organization-specific context captured in knowledge nodes |
+| **Knowledge Node** | Individual piece of organizational knowledge |
+| **Knowledge Graph** | Visual map of how concepts relate |
+| **Generative UI** | Automatic visualization creation |
+| **Coding Agent** | AI that iteratively solves complex problems |
+| **Dry-Run** | Simulated execution before commitment |
+| **Durable Object** | Cloudflare's stateful serverless unit |
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Quickstart"
+    icon="rocket"
+    href="/introduction/quickstart"
+  >
+    Get started in 15 minutes
+  </Card>
+  <Card
+    title="Architecture"
+    icon="sitemap"
+    href="/architecture/overview"
+  >
+    Technical deep dive
+  </Card>
+</CardGroup>

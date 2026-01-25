@@ -1,0 +1,75 @@
+---
+title: 'Data Flow'
+description: 'How data moves through the Superatom platform'
+icon: 'diagram-project'
+---
+
+## Request Lifecycle
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant UI as Chat UI
+    participant WS as WebSocket
+    participant DO as Durable Object
+    participant BE as Backend
+    participant AI as LLM
+    participant DB as Database
+
+    U->>UI: Types question
+    UI->>WS: Send message
+    WS->>DO: Route to project
+    DO->>BE: Forward request
+
+    BE->>AI: Classify intent
+    AI-->>BE: Intent + entities
+
+    BE->>AI: Generate SQL
+    AI-->>BE: Query
+
+    BE->>DB: Execute query
+    DB-->>BE: Results
+
+    BE->>AI: Select visualization
+    AI-->>BE: Component config
+
+    loop Streaming
+        BE-->>DO: Chunk
+        DO-->>WS: Forward
+        WS-->>UI: Render
+    end
+
+    UI-->>U: Complete response
+```
+
+## Data Processing Stages
+
+<Steps>
+  <Step title="Intent Classification">
+    AI determines what type of question was asked and extracts entities (metrics, dimensions, filters, time periods).
+  </Step>
+  <Step title="Context Enrichment">
+    Tribal knowledge is applied at global, user, and query levels to add organizational context.
+  </Step>
+  <Step title="Query Generation">
+    SQL or analysis code is generated using the semantic model and context.
+  </Step>
+  <Step title="Execution">
+    Query runs against the connected data source with parameterized inputs.
+  </Step>
+  <Step title="Visualization">
+    AI selects the optimal component based on data characteristics.
+  </Step>
+  <Step title="Streaming">
+    Response is streamed to the user in real-time.
+  </Step>
+</Steps>
+
+## Data Security Throughout
+
+| Stage | Security Measure |
+|-------|-----------------|
+| Transit | TLS 1.3 encryption |
+| Processing | Ephemeral, deleted after use |
+| Storage | Never persisted outside your network |
+| Access | Role-based, row-level filtering |

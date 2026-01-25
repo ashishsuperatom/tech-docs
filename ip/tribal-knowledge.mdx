@@ -1,0 +1,371 @@
+---
+title: 'Tribal Knowledge System'
+description: 'Capturing organizational wisdom in AI'
+icon: 'brain'
+---
+
+## The Hidden Knowledge Problem
+
+Every organization has knowledge that exists only in people's heads:
+
+<CardGroup cols={3}>
+  <Card title="Institutional Knowledge" icon="building">
+    *"We never count demo units as inventory"*
+
+    Unwritten rules specific to this organization
+  </Card>
+  <Card title="Experiential Knowledge" icon="graduation-cap">
+    *"We tried that approach in 2019—it doesn't work with our suppliers"*
+
+    Learned through doing, never documented
+  </Card>
+  <Card title="Operational Knowledge" icon="gears">
+    *"Sales from the Miami branch always come in a day late"*
+
+    How things actually work day-to-day
+  </Card>
+</CardGroup>
+
+**This knowledge is critical for correct analysis.** Without it, AI will give technically correct but practically wrong answers.
+
+---
+
+## The Three-Level System
+
+Superatom captures tribal knowledge at **three levels**, each with different scope and application:
+
+```mermaid
+flowchart TB
+    subgraph LEVELS["TRIBAL KNOWLEDGE LEVELS"]
+        direction TB
+        L1["🌍 GLOBAL LEVEL\nApplies to ALL users, ALL queries\nOrganization-wide rules"]
+        L2["👤 USER LEVEL\nApplies to SPECIFIC users\nRole-based or personal preferences"]
+        L3["❓ QUERY LEVEL\nApplies to SPECIFIC questions\nDefinitions and calculations"]
+    end
+
+    QUERY["User asks a question"] --> ENGINE["Knowledge Engine"]
+
+    ENGINE --> L1
+    ENGINE --> L2
+    ENGINE --> L3
+
+    L1 --> CONTEXT["Contextualized Query"]
+    L2 --> CONTEXT
+    L3 --> CONTEXT
+
+    CONTEXT --> ANSWER["Accurate, Organization-Specific Answer"]
+
+    style ENGINE fill:#0D9373,color:#fff
+    style ANSWER fill:#07C983,color:#fff
+```
+
+---
+
+## Level 1: Global Knowledge
+
+**Scope:** Applies to every query for every user
+
+**Purpose:** Organization-wide definitions, rules, and conventions
+
+### Examples
+
+| Knowledge Node | Effect |
+|---------------|--------|
+| *"Sales always exclude returns and refunds"* | All sales queries automatically filter out returns |
+| *"Fiscal year starts April 1"* | Date calculations use Apr-Mar fiscal year |
+| *"EMEA region includes UK despite Brexit"* | Geographic groupings remain consistent |
+| *"Inactive products have status code 'D'"* | Product queries can correctly filter active items |
+
+### How It Works
+
+```mermaid
+flowchart LR
+    Q["'What were Q3 sales?'"] --> GLOBAL["Global Knowledge:\nFiscal year starts April 1"]
+
+    GLOBAL --> INTERPRET["Interprets Q3 as\nOct 1 - Dec 31"]
+
+    INTERPRET --> SQL["SELECT SUM(amount)\nWHERE date BETWEEN\n'2025-10-01' AND '2025-12-31'"]
+
+    style GLOBAL fill:#0D9373,color:#fff
+```
+
+Without global knowledge, "Q3" might be interpreted as calendar Q3 (Jul-Sep) instead of fiscal Q3.
+
+---
+
+## Level 2: User Knowledge
+
+**Scope:** Applies to queries from specific users
+
+**Purpose:** Role-based views, personal preferences, access restrictions
+
+### Examples
+
+| User/Role | Knowledge Node | Effect |
+|-----------|---------------|--------|
+| West Coast Manager | *"Only show data for regions CA, OR, WA"* | All queries automatically filtered to West Coast |
+| Finance Team | *"Include pending transactions"* | Queries show uncommitted data |
+| Executive | *"Always compare to same period last year"* | Automatic YoY comparison |
+| Warehouse Staff | *"Show quantities in cases, not units"* | Unit conversion applied |
+
+### How It Works
+
+```mermaid
+flowchart LR
+    Q["'Show me inventory levels'"] --> USER["User Knowledge:\nWest Coast Manager\n'Only show CA, OR, WA'"]
+
+    USER --> FILTER["Applies regional filter\nautomatically"]
+
+    FILTER --> RESULT["Shows only West Coast\ninventory"]
+
+    style USER fill:#0D9373,color:#fff
+```
+
+The same question from a different user would show different data based on their knowledge nodes.
+
+---
+
+## Level 3: Query Knowledge
+
+**Scope:** Applies to specific types of questions
+
+**Purpose:** Define business terms, calculation methods, domain-specific logic
+
+### Examples
+
+| Term/Query | Knowledge Node | Effect |
+|-----------|---------------|--------|
+| "deadstock" | *"Items with no sales in 12 months where On-Hand Cash Value exceeds COGS"* | Specific calculation applied |
+| "overstock" | *"Inventory exceeding 90 days of average sales"* | Days-of-supply calculation |
+| "margin" | *"(Revenue - COGS - Shipping) / Revenue"* | Includes shipping in calculation |
+| "active customer" | *"Placed order in last 180 days"* | Customer status definition |
+
+### How It Works
+
+<Frame>
+  <img src="/images/knowledge-node-detail.png" alt="Knowledge Node Detail" />
+</Frame>
+
+```mermaid
+flowchart LR
+    Q["'Which items are overstock?'"] --> QUERY["Query Knowledge:\n'Overstock = inventory > 90 days supply'"]
+
+    QUERY --> CALC["Calculates:\ninventory_qty / (avg_daily_sales)"]
+
+    CALC --> FILTER["Filters:\nwhere days_supply > 90"]
+
+    FILTER --> RESULT["Returns overstock items\nwith consistent definition"]
+
+    style QUERY fill:#0D9373,color:#fff
+```
+
+---
+
+## Knowledge Node Structure
+
+Each knowledge node contains:
+
+```yaml
+knowledge_node:
+  id: "kn_overstock_definition"
+  type: "query"  # global | user | query
+  trigger: "overstock"  # when to apply
+
+  content:
+    description: "Items with inventory exceeding 90 days of sales"
+    calculation: |
+      - Structural products: Rolling 90 days COGS > $0
+      - Decking products (MajorMinorCode = '0103DEC'): Rolling 180 days COGS > $0
+      - Specialty products: Rolling 120 days COGS > $0
+
+    key_columns:
+      - "FactInventoryDaily.OnHandInventory"
+      - "FactSalesInvoice.AverageCostExtended"
+      - "DimItem.ProductType"
+
+    formula: "OnHandInventory - (RollingPeriod * COGS)"
+
+  metadata:
+    created_by: "admin@company.com"
+    created_at: "2025-11-15"
+    updated_at: "2026-01-21"
+    applies_to: ["inventory queries", "deadstock analysis"]
+```
+
+---
+
+## The Knowledge Graph
+
+Knowledge nodes connect to form a graph that captures organizational understanding:
+
+<Frame>
+  <img src="/images/knowledge-graph.png" alt="Knowledge Graph Visualization" />
+</Frame>
+
+```mermaid
+flowchart TB
+    subgraph GRAPH["KNOWLEDGE GRAPH"]
+        ORDER["Order"] --> CUSTOMER["Customer"]
+        ORDER --> PRODUCT["Product"]
+        ORDER --> PAYMENT["Payment"]
+
+        PRODUCT --> INVENTORY["Inventory"]
+        PRODUCT --> SUPPLY["Supply Chain"]
+
+        CUSTOMER --> SEGMENT["Segmentation"]
+
+        INVENTORY --> DEADSTOCK["Deadstock Rules"]
+        INVENTORY --> OVERSTOCK["Overstock Rules"]
+    end
+
+    style DEADSTOCK fill:#0D9373,color:#fff
+    style OVERSTOCK fill:#0D9373,color:#fff
+```
+
+This graph enables:
+- **Relationship traversal** — Understanding how concepts connect
+- **Context inheritance** — Child nodes inherit parent knowledge
+- **Conflict resolution** — More specific nodes override general ones
+
+---
+
+## Creating Knowledge Nodes
+
+### From the UI
+
+<Frame>
+  <img src="/images/knowledge-nodes-list.png" alt="Knowledge Nodes Management" />
+</Frame>
+
+1. Navigate to **Knowledge Base → Knowledge Graphs**
+2. Click **+ Create Node**
+3. Select level (Global, User, Query)
+4. Define trigger conditions
+5. Add description and rules
+6. Save and test
+
+### From Conversations
+
+When the AI gives an answer that needs organizational context:
+
+1. User corrects: *"Actually, we don't count returns in sales"*
+2. System prompts: *"Would you like to save this as a rule?"*
+3. User confirms scope (global, user, query)
+4. Knowledge node created automatically
+
+---
+
+## How Knowledge Flows
+
+```mermaid
+flowchart TD
+    Q["User Query"] --> PARSE["Parse Question"]
+
+    PARSE --> MATCH["Match Knowledge Nodes"]
+
+    subgraph MATCHING["KNOWLEDGE MATCHING"]
+        M1["Check Query-Level\n(most specific)"]
+        M2["Check User-Level\n(user context)"]
+        M3["Check Global-Level\n(organization rules)"]
+    end
+
+    MATCH --> M1 --> M2 --> M3
+
+    M3 --> MERGE["Merge Applicable Knowledge\n(specific overrides general)"]
+
+    MERGE --> CONTEXT["Contextualized Query\nwith all relevant rules"]
+
+    CONTEXT --> EXECUTE["Execute Analysis"]
+
+    style MERGE fill:#0D9373,color:#fff
+    style EXECUTE fill:#07C983,color:#fff
+```
+
+**Priority Order:**
+1. Query-level knowledge (most specific) wins
+2. User-level adds personal/role context
+3. Global-level provides baseline rules
+
+---
+
+## Why This Matters
+
+### The Problem with Generic AI
+
+| Scenario | Generic AI Answer | With Tribal Knowledge |
+|----------|------------------|----------------------|
+| "Show sales" | All transactions | Excludes returns, demos, internal transfers |
+| "Q4 revenue" | Oct-Dec | Jan-Mar (fiscal year) |
+| "Top customers" | By raw revenue | By margin-adjusted lifetime value |
+| "Overstock items" | Undefined error | Calculated per product category rules |
+
+### Business Impact
+
+<CardGroup cols={2}>
+  <Card title="Accuracy" icon="bullseye">
+    Answers reflect how YOUR organization actually works
+  </Card>
+  <Card title="Consistency" icon="equals">
+    Same terminology means the same thing for everyone
+  </Card>
+  <Card title="Onboarding" icon="user-plus">
+    New employees get organization-aware AI from day one
+  </Card>
+  <Card title="Knowledge Preservation" icon="vault">
+    Institutional knowledge survives employee turnover
+  </Card>
+</CardGroup>
+
+---
+
+## Curating for Any Domain
+
+The Tribal Knowledge system allows Superatom to be **curated for any industry and any organization**:
+
+<Tabs>
+  <Tab title="Supply Chain">
+    - Lead time calculations
+    - Safety stock formulas
+    - Supplier rating methods
+    - Logistics cost allocation
+  </Tab>
+  <Tab title="Retail">
+    - Markdown definitions
+    - Same-store sales rules
+    - Promotional lift calculations
+    - Customer segment criteria
+  </Tab>
+  <Tab title="Finance">
+    - Revenue recognition rules
+    - Cost allocation methods
+    - Reporting period definitions
+    - Currency conversion timing
+  </Tab>
+  <Tab title="Healthcare">
+    - Patient outcome metrics
+    - Compliance definitions
+    - Care pathway criteria
+    - Quality score calculations
+  </Tab>
+</Tabs>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Knowledge Base Platform"
+    icon="database"
+    href="/platform/knowledge-base"
+  >
+    Managing knowledge in the platform
+  </Card>
+  <Card
+    title="Coding Agents"
+    icon="robot"
+    href="/ip/coding-agents"
+  >
+    How agents use tribal knowledge
+  </Card>
+</CardGroup>

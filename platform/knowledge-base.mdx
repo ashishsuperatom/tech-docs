@@ -1,0 +1,309 @@
+---
+title: 'Knowledge Base'
+description: 'Connect data sources and build organizational intelligence'
+icon: 'database'
+---
+
+The Knowledge Base is where Superatom connects to your data and builds understanding of your organization. It includes data sources, file management, integrations, and knowledge graphs.
+
+---
+
+## Data Sources
+
+Connect to your enterprise databases and data warehouses:
+
+<Frame>
+  <img src="/images/data-sources.png" alt="Data Sources" />
+</Frame>
+
+### Supported Databases
+
+<CardGroup cols={3}>
+  <Card title="PostgreSQL" icon="database">
+    Open-source relational database
+  </Card>
+  <Card title="MySQL" icon="database">
+    Popular relational database
+  </Card>
+  <Card title="SQL Server" icon="microsoft">
+    Microsoft enterprise database
+  </Card>
+  <Card title="BigQuery" icon="google">
+    Google Cloud data warehouse
+  </Card>
+  <Card title="Snowflake" icon="snowflake">
+    Cloud data platform
+  </Card>
+  <Card title="ClickHouse" icon="database">
+    Column-oriented database
+  </Card>
+  <Card title="Databricks" icon="chart-mixed">
+    Unified analytics platform
+  </Card>
+  <Card title="Redshift" icon="aws">
+    AWS data warehouse
+  </Card>
+</CardGroup>
+
+### Connecting a Database
+
+<Steps>
+  <Step title="Click Add Connection">
+    Navigate to Knowledge Base → Data Sources → Add Connection
+  </Step>
+  <Step title="Select Database Type">
+    Choose from the supported database types
+  </Step>
+  <Step title="Enter Connection Details">
+    - Host/Server address
+    - Port number
+    - Database name
+    - Username and password
+  </Step>
+  <Step title="Test Connection">
+    Verify connectivity before saving
+  </Step>
+  <Step title="Run Analysis">
+    Superatom analyzes the schema and builds a semantic model
+  </Step>
+</Steps>
+
+---
+
+## ERP Systems
+
+Connect directly to enterprise resource planning systems:
+
+<Frame>
+  <img src="/images/erp-connections.png" alt="ERP Connections" />
+</Frame>
+
+### Supported ERPs
+
+| System | Description |
+|--------|-------------|
+| **SAP** | Integrated business processes and real-time data |
+| **Oracle ERP Cloud** | Complete suite of cloud applications |
+| **Microsoft Dynamics 365** | CRM and ERP capabilities |
+
+---
+
+## Files & Documents
+
+Upload and manage reference documents:
+
+<Frame>
+  <img src="/images/files-documents.png" alt="Files and Documents" />
+</Frame>
+
+### Document Types
+
+<CardGroup cols={2}>
+  <Card title="Data Dictionary" icon="book">
+    Reference of tables, columns, and business definitions
+  </Card>
+  <Card title="Business Glossary" icon="spell-check">
+    Key metrics and KPI definitions
+  </Card>
+  <Card title="Analytics Guide" icon="chart-line">
+    Best practices for customer segmentation, cohort analysis
+  </Card>
+  <Card title="Schema Documentation" icon="sitemap">
+    Entity relationships and data flow
+  </Card>
+</CardGroup>
+
+Documents are:
+- **Searchable** — AI uses them for context
+- **Categorized** — By type and topic
+- **Versioned** — Track changes over time
+
+---
+
+## Integrations
+
+Connect to third-party tools and services:
+
+<Frame>
+  <img src="/images/integrations.png" alt="Integrations" />
+</Frame>
+
+### Available Integrations
+
+<Tabs>
+  <Tab title="Email">
+    - Gmail
+    - Outlook
+  </Tab>
+  <Tab title="Project Management">
+    - Asana
+    - Trello
+    - Monday.com
+    - Jira
+  </Tab>
+  <Tab title="Communication">
+    - Slack
+    - Microsoft Teams
+  </Tab>
+  <Tab title="Development">
+    - GitHub
+    - GitLab
+  </Tab>
+  <Tab title="CRM & Support">
+    - Salesforce
+    - HubSpot
+    - Zendesk
+    - Intercom
+  </Tab>
+  <Tab title="Documentation">
+    - Confluence
+    - Notion
+  </Tab>
+</Tabs>
+
+---
+
+## Knowledge Graphs
+
+Visualize and manage organizational knowledge:
+
+<Frame>
+  <img src="/images/knowledge-graph.png" alt="Knowledge Graph" />
+</Frame>
+
+### What Knowledge Graphs Show
+
+The graph visualizes relationships between:
+
+- **Entities** — Orders, Customers, Products, etc.
+- **Processes** — Order lifecycle, payment flow, shipping
+- **Categories** — Overview, Structure, Data, Relationships, Insights
+
+### Node Categories
+
+| Category | Color | Description |
+|----------|-------|-------------|
+| Overview | Blue | High-level concepts |
+| Structure | Green | Organizational structure |
+| Data | Yellow | Data entities |
+| Relationship | Pink | Entity connections |
+| Process | Red | Business processes |
+| Insight | Purple | Derived knowledge |
+
+---
+
+## Knowledge Nodes
+
+Create and manage knowledge nodes that guide AI analysis:
+
+<Frame>
+  <img src="/images/knowledge-nodes-list.png" alt="Knowledge Nodes List" />
+</Frame>
+
+### Node Types
+
+| Type | Purpose |
+|------|---------|
+| **Global** | Organization-wide rules and definitions |
+| **User** | Role-specific or personal preferences |
+| **Query** | Definitions for specific questions |
+
+### Creating a Knowledge Node
+
+<Frame caption="Knowledge Node Detail - Overstock Definition">
+  <img src="/images/knowledge-node-detail.png" alt="Knowledge Node Detail" />
+</Frame>
+
+Each node includes:
+
+- **Title** — Clear, descriptive name
+- **Description** — What this knowledge represents
+- **Rules** — Specific conditions and calculations
+- **Key Columns** — Data fields involved
+- **Formula** — How to calculate (if applicable)
+
+### Example: Overstock Definition
+
+```yaml
+title: "Overstock"
+type: "classification"
+
+description: |
+  Overstock items are items where the On Hand Cash Value
+  exceeds the Cost of Goods Sold (COGS) over a rolling period.
+  The rolling period varies by product type.
+
+rules:
+  - "Structural products (ProductType = 'Structural'): Rolling 90 days COGS > $0"
+  - "Decking products (MajorMinorCode = '0103DEC'): Rolling 180 days COGS > $0"
+  - "Specialty products: Rolling 120 days COGS > $0"
+
+key_columns:
+  - "FactInventoryDaily.OnHandInventory"
+  - "FactSalesInvoice.AverageCostExtended"
+  - "DimItem.ProductType"
+  - "DimItem.MajorMinorCode"
+
+formula: "OnHandInventory - (Rolling Period COGS)"
+```
+
+---
+
+## Data Model
+
+View the semantic model Superatom has built:
+
+### What's Included
+
+- **Tables** — All discovered tables and their purposes
+- **Columns** — Field-level details with data types
+- **Relationships** — Foreign keys and joins
+- **Statistics** — Row counts, distributions, patterns
+
+### Using the Data Model
+
+The data model powers:
+- **Natural language understanding** — Mapping questions to tables
+- **Query generation** — Building correct SQL
+- **Visualization selection** — Choosing appropriate charts
+- **Tribal knowledge application** — Applying org-specific rules
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Start with Core Data" icon="database">
+    Connect your most critical data sources first. Add more as needed.
+  </Accordion>
+  <Accordion title="Document Business Terms" icon="book">
+    Create knowledge nodes for every important business term.
+  </Accordion>
+  <Accordion title="Keep Documents Updated" icon="rotate">
+    Upload current data dictionaries and business glossaries.
+  </Accordion>
+  <Accordion title="Review the Graph" icon="diagram-project">
+    Periodically review the knowledge graph for accuracy.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Tribal Knowledge"
+    icon="brain"
+    href="/ip/tribal-knowledge"
+  >
+    Deep dive into the knowledge system
+  </Card>
+  <Card
+    title="Semantic Modeling"
+    icon="link"
+    href="/ip/semantic-modeling"
+  >
+    How Superatom understands your data
+  </Card>
+</CardGroup>

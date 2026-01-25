@@ -1,0 +1,51 @@
+---
+title: 'Authentication'
+description: 'Authenticating with the Superatom API'
+icon: 'key'
+---
+
+## API Keys
+
+Generate API keys from the Developer section of your Superatom dashboard.
+
+### Creating a Key
+
+1. Navigate to **Developers** → **API Keys**
+2. Click **+ Create API Key**
+3. Name your key and set permissions
+4. Copy and securely store the key
+
+<Warning>
+API keys are shown only once. Store them securely.
+</Warning>
+
+## Using API Keys
+
+Include the key in the Authorization header:
+
+```bash
+Authorization: Bearer sk_live_abc123...
+```
+
+## Key Scopes
+
+| Scope | Access |
+|-------|--------|
+| `read` | Query data, view dashboards |
+| `write` | Create bookmarks, dashboards |
+| `admin` | User management, configuration |
+
+## Key Rotation
+
+Best practice: Rotate keys every 90 days.
+
+1. Create new key
+2. Update your applications
+3. Delete old key
+
+## Security Best Practices
+
+- Never commit keys to version control
+- Use environment variables
+- Implement key rotation
+- Use minimum required scopes
