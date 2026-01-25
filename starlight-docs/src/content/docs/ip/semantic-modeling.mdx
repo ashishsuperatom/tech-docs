@@ -4,6 +4,10 @@ description: 'How Superatom makes sense of disconnected enterprise data'
 ---
 
 import { Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+import SemanticPipelineDiagram from '../../../components/diagrams/ip/SemanticPipelineDiagram';
+import StatisticalProfileDiagram from '../../../components/diagrams/ip/StatisticalProfileDiagram';
+import KnowledgeAccumulationDiagram from '../../../components/diagrams/ip/KnowledgeAccumulationDiagram';
+import DataConnectorsDiagram from '../../../components/diagrams/ip/DataConnectorsDiagram';
 
 ## The Challenge
 
@@ -22,34 +26,7 @@ Enterprise data is scattered across dozens of systems—ERPs, databases, file sy
 
 Our semantic modeling system performs a multi-stage analysis that transforms disconnected data sources into a unified, queryable knowledge structure.
 
-```mermaid
-flowchart TB
-    subgraph SOURCES["DATA SOURCES"]
-        S1["ERP Systems\nSAP, Oracle, Dynamics"]
-        S2["Databases\nPostgres, MySQL, SQL Server"]
-        S3["Data Warehouses\nSnowflake, BigQuery, Redshift"]
-        S4["Files\nCSV, Excel, JSON"]
-        S5["APIs\nREST, GraphQL"]
-    end
-
-    subgraph ANALYSIS["ANALYSIS PIPELINE"]
-        direction TB
-        A1["Stage 1: Schema Analysis\nStructure & relationships"]
-        A2["Stage 2: Sample Extraction\nRepresentative data"]
-        A3["Stage 3: Statistical Profiling\nPatterns & distributions"]
-        A4["Stage 4: Domain Classification\nBusiness context"]
-        A5["Stage 5: Query Generation\nPossible questions"]
-    end
-
-    subgraph OUTPUT["OUTPUT"]
-        O1["Semantic Model\nUnified understanding"]
-    end
-
-    S1 & S2 & S3 & S4 & S5 --> A1
-    A1 --> A2 --> A3 --> A4 --> A5 --> O1
-
-    style O1 fill:#0D9373,color:#fff
-```
+<SemanticPipelineDiagram client:load />
 
 ---
 
@@ -106,22 +83,7 @@ We retrieve representative samples from each field to understand actual data cha
 
 Deep statistical analysis of each field:
 
-```mermaid
-flowchart LR
-    subgraph PROFILE["STATISTICAL PROFILE"]
-        P1["Distinct Values\nCardinality analysis"]
-        P2["Distribution\nMean, median, std dev"]
-        P3["Frequency\nMost common values"]
-        P4["Ratios\nYes/No, True/False splits"]
-        P5["Patterns\nRegex detection"]
-    end
-
-    DATA["Field Data"] --> P1 & P2 & P3 & P4 & P5
-
-    P1 & P2 & P3 & P4 & P5 --> INSIGHT["Field Intelligence"]
-
-    style INSIGHT fill:#0D9373,color:#fff
-```
+<StatisticalProfileDiagram client:load />
 
 **Example Output:**
 
@@ -224,21 +186,7 @@ Questions that reveal insights:
 
 As we add more domain knowledge and verticals, setup cost for new organizations approaches zero:
 
-```mermaid
-flowchart LR
-    subgraph LEARNING["ACCUMULATED KNOWLEDGE"]
-        K1["Retail Domain\nPatterns & terminology"]
-        K2["Supply Chain\nWorkflows & metrics"]
-        K3["Finance\nStructures & compliance"]
-        K4["Healthcare\nRegulations & data types"]
-    end
-
-    NEW["New Organization"] --> MATCH["Pattern Matching"]
-    K1 & K2 & K3 & K4 --> MATCH
-    MATCH --> MODEL["Instant Semantic Model"]
-
-    style MODEL fill:#0D9373,color:#fff
-```
+<KnowledgeAccumulationDiagram client:load />
 
 Each new deployment adds to our knowledge base. Each addition makes the next deployment faster.
 
@@ -275,24 +223,7 @@ Enterprise data isn't static. Superatom handles evolution:
 
 ### Connection Layer
 
-```mermaid
-flowchart LR
-    subgraph CONNECTORS["DATA CONNECTORS"]
-        C1["JDBC\nPostgres, MySQL, SQL Server"]
-        C2["Native\nBigQuery, Snowflake, Databricks"]
-        C3["ERP\nSAP, Oracle, Dynamics"]
-        C4["File\nS3, GCS, Azure Blob"]
-        C5["API\nREST, GraphQL"]
-    end
-
-    subgraph ABSTRACTION["UNIFIED ABSTRACTION"]
-        UA["Universal Data Interface"]
-    end
-
-    C1 & C2 & C3 & C4 & C5 --> UA
-
-    UA --> ANALYSIS["Analysis Pipeline"]
-```
+<DataConnectorsDiagram client:load />
 
 ### Supported Sources
 

@@ -13,25 +13,25 @@ Superatom is built as a modular, multi-layer architecture designed for enterpris
 ```mermaid
 flowchart TB
     subgraph PRESENTATION["PRESENTATION LAYER"]
-        UI["Chat Runtime\n(React 19)"]
-        FE["Frontend Components\n(Visualization Library)"]
-        SDK_WEB["SDK-Web\n(Browser SDK)"]
+        UI["Chat Runtime<br>(React 19)"]
+        FE["Frontend Components<br>(Visualization Library)"]
+        SDK_WEB["SDK-Web<br>(Browser SDK)"]
     end
 
     subgraph INFRASTRUCTURE["INFRASTRUCTURE LAYER"]
-        DO["Durable Object WebSocket\n(Cloudflare Edge)"]
+        DO["Durable Object WebSocket<br>(Cloudflare Edge)"]
     end
 
     subgraph INTELLIGENCE["INTELLIGENCE LAYER"]
-        SDK_NODE["SDK-Node\n(Core Engine)"]
-        BACKEND["Backend\n(Business Logic)"]
-        ANALYSIS["Analysis\n(Schema Tools)"]
+        SDK_NODE["SDK-Node<br>(Core Engine)"]
+        BACKEND["Backend<br>(Business Logic)"]
+        ANALYSIS["Analysis<br>(Schema Tools)"]
     end
 
     subgraph DATA["DATA LAYER"]
-        PG["PostgreSQL\n(Relational)"]
-        CHROMA["ChromaDB\n(Vector)"]
-        CUSTOMER["Customer DBs\n(SQL Server, etc.)"]
+        PG["PostgreSQL<br>(Relational)"]
+        CHROMA["ChromaDB<br>(Vector)"]
+        CUSTOMER["Customer DBs<br>(SQL Server, etc.)"]
     end
 
     UI --> SDK_WEB
@@ -178,9 +178,9 @@ flowchart LR
     LOAD["Load Growth"] --> PROJECTS
 
     subgraph PROJECTS["PROJECT ISOLATION"]
-        P1["Project A\nDurable Object"]
-        P2["Project B\nDurable Object"]
-        P3["Project C\nDurable Object"]
+        P1["Project A<br>Durable Object"]
+        P2["Project B<br>Durable Object"]
+        P3["Project C<br>Durable Object"]
     end
 
     P1 --> B1["Backend A"]

@@ -89,24 +89,24 @@ flowchart TB
 ```mermaid
 flowchart LR
     subgraph PEOPLE["REQUIRED PEOPLE"]
-        P1["Data Engineer\n$150K/year"]
-        P2["BI Analyst\n$120K/year"]
-        P3["Dashboard Designer\n$100K/year"]
+        P1["Data Engineer<br>$150K/year"]
+        P2["BI Analyst<br>$120K/year"]
+        P3["Dashboard Designer<br>$100K/year"]
     end
 
     subgraph TIME["TIME REQUIRED"]
-        T1["ETL Pipeline\n2-4 weeks"]
-        T2["Query Development\n1-2 weeks"]
-        T3["Dashboard Build\n1-2 weeks"]
+        T1["ETL Pipeline<br>2-4 weeks"]
+        T2["Query Development<br>1-2 weeks"]
+        T3["Dashboard Build<br>1-2 weeks"]
     end
 
     subgraph RESULT["RESULT"]
-        R1["Static Dashboard\nShows historical data"]
+        R1["Static Dashboard<br>Shows historical data"]
     end
 
     P1 --> T1 --> P2 --> T2 --> P3 --> T3 --> R1
 
-    R1 --> HUMAN["Human must:\n- Interpret data\n- Identify issues\n- Decide actions\n- Execute manually"]
+    R1 --> HUMAN["Human must:<br>Interpret, Identify issues,<br>Decide, Execute manually"]
 
     style HUMAN fill:#ef4444,color:#fff
 ```
@@ -117,15 +117,15 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    USER["Business User"] --> QUESTION["Asks question in English\n'Why did sales drop?'"]
+    USER["Business User"] --> QUESTION["Asks question in English<br>'Why did sales drop?'"]
 
-    QUESTION --> SUPERATOM["Superatom\n(< 3 seconds)"]
+    QUESTION --> SUPERATOM["Superatom<br>(< 3 seconds)"]
 
-    SUPERATOM --> INSIGHT["AI-Generated:\n- Root cause analysis\n- Visual explanation\n- Recommended actions"]
+    SUPERATOM --> INSIGHT["AI-Generated:<br>Root cause analysis,<br>Visuals, Recommendations"]
 
-    INSIGHT --> VERIFY["Human verifies\n& approves action"]
+    INSIGHT --> VERIFY["Human verifies<br>& approves action"]
 
-    VERIFY --> EXECUTE["Action executed\n& tracked"]
+    VERIFY --> EXECUTE["Action executed<br>& tracked"]
 
     style SUPERATOM fill:#0D9373,color:#fff
     style INSIGHT fill:#0D9373,color:#fff
@@ -175,10 +175,10 @@ Superatom isn't competing with BI tools. We're creating a new category.
 flowchart TB
     subgraph EVOLUTION["MARKET EVOLUTION"]
         direction LR
-        E1["1990s-2000s\nSPREADSHEETS\nManual analysis"]
-        E2["2000s-2010s\nBI TOOLS\nVisualized reporting"]
-        E3["2010s-2020s\nSELF-SERVICE BI\nUser-built dashboards"]
-        E4["2020s+\nDECISION INTELLIGENCE\nAI-powered decisions"]
+        E1["1990s-2000s<br>SPREADSHEETS<br>Manual analysis"]
+        E2["2000s-2010s<br>BI TOOLS<br>Visualized reporting"]
+        E3["2010s-2020s<br>SELF-SERVICE BI<br>User-built dashboards"]
+        E4["2020s+<br>DECISION INTELLIGENCE<br>AI-powered decisions"]
     end
 
     E1 --> E2 --> E3 --> E4
@@ -236,16 +236,16 @@ flowchart TB
 flowchart TB
     subgraph TAM["MARKET LAYERS"]
         direction TB
-        L1["Traditional BI Market\n$30B (Replacing existing spend)"]
-        L2["New Decision Intelligence\n$50B+ (New capability, new buyers)"]
-        L3["Action Automation\n$100B+ (Connected to execution)"]
+        L1["Traditional BI Market<br>$30B (Replacing existing spend)"]
+        L2["New Decision Intelligence<br>$50B+ (New capability, new buyers)"]
+        L3["Action Automation<br>$100B+ (Connected to execution)"]
     end
 
     L1 --> SUPERATOM
     L2 --> SUPERATOM
     L3 --> SUPERATOM
 
-    SUPERATOM["Superatom\nAddresses all three layers"]
+    SUPERATOM["Superatom<br>Addresses all three layers"]
 
     style SUPERATOM fill:#0D9373,color:#fff
 ```

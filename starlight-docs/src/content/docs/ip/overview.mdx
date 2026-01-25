@@ -4,28 +4,12 @@ description: 'The intellectual property that makes Superatom uniquely powerful'
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import InnovationsOverviewDiagram from '../../../components/diagrams/ip/InnovationsOverviewDiagram';
+import InnovationsFlowDiagram from '../../../components/diagrams/ip/InnovationsFlowDiagram';
 
 Superatom has developed **six core innovations** that together create an enterprise AI platform unlike anything else in the market. Each innovation addresses specific challenges and represents years of research and development.
 
-```mermaid
-flowchart TB
-    subgraph IP["SUPERATOM INTELLECTUAL PROPERTY"]
-        direction TB
-        I1["🔗 Multi-Source Semantic Understanding\nMaking sense of disconnected data"]
-        I2["🎨 Generative UI\nAuto-creating perfect visualizations"]
-        I3["🧠 Tribal Knowledge System\nCapturing organizational wisdom"]
-        I4["🤖 Coding Agents for Enterprise\nAI agents that understand business context"]
-        I5["📊 Automated Semantic Modeling\nZero-setup data understanding"]
-        I6["🔄 Automated Analyst\nContinuous intelligence, even while you sleep"]
-    end
-
-    style I1 fill:#0D9373,color:#fff
-    style I2 fill:#0D9373,color:#fff
-    style I3 fill:#0D9373,color:#fff
-    style I4 fill:#0D9373,color:#fff
-    style I5 fill:#0D9373,color:#fff
-    style I6 fill:#0D9373,color:#fff
-```
+<InnovationsOverviewDiagram client:load />
 
 ---
 
@@ -53,29 +37,7 @@ flowchart TB
 
 These innovations aren't isolated—they form an integrated system:
 
-```mermaid
-flowchart TD
-    DATA["Enterprise Data Sources"] --> SM["Semantic Modeling\nUnderstand the data"]
-
-    SM --> TK["Tribal Knowledge\nAdd organizational context"]
-
-    TK --> CA["Coding Agents\nProcess complex queries"]
-
-    CA --> AA["Automated Analyst\nContinuous monitoring"]
-
-    CA --> GUI["Generative UI\nPerfect visualizations"]
-
-    AA --> GUI
-
-    GUI --> USER["Business Users\nActionable insights"]
-
-    style SM fill:#0D9373,color:#fff
-    style TK fill:#0D9373,color:#fff
-    style CA fill:#0D9373,color:#fff
-    style AA fill:#0D9373,color:#fff
-    style GUI fill:#07C983,color:#fff
-    style USER fill:#07C983,color:#fff
-```
+<InnovationsFlowDiagram client:load />
 
 | Innovation | Feeds Into | Receives From |
 |------------|-----------|---------------|

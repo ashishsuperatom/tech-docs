@@ -18,12 +18,12 @@ icon: 'robot'
 
 ```mermaid
 flowchart TB
-    Q["Complex Question:\n'Why did margins drop in the\nNortheast last quarter?'"] --> AGENT["Superatom\nCoding Agent"]
+    Q["Complex Question:<br>'Why did margins drop in the<br>Northeast last quarter?'"] --> AGENT["Superatom<br>Coding Agent"]
 
     subgraph CONTEXT["CONTEXT LAYER"]
-        SM["Semantic Model\nData relationships"]
-        TK["Tribal Knowledge\nOrg-specific rules"]
-        HIST["Query History\nPrior analysis"]
+        SM["Semantic Model<br>Data relationships"]
+        TK["Tribal Knowledge<br>Org-specific rules"]
+        HIST["Query History<br>Prior analysis"]
     end
 
     AGENT --> CONTEXT
@@ -42,7 +42,7 @@ flowchart TB
 
     CONTEXT --> EXECUTION
 
-    EXECUTION --> RESULT["Root Cause Analysis:\n- Product mix shift (-3%)\n- Supplier cost increase (-2%)\n- Promotional discounting (-1.5%)"]
+    EXECUTION --> RESULT["Root Cause Analysis:<br>Product mix shift, Supplier costs,<br>Promotional discounting"]
 
     style AGENT fill:#0D9373,color:#fff
     style RESULT fill:#07C983,color:#fff
@@ -99,10 +99,10 @@ The agent executes a reasoning loop:
 ```mermaid
 flowchart LR
     subgraph LOOP["AGENT REASONING LOOP"]
-        THINK["Think:\nWhat do I need to know?"]
-        ACT["Act:\nExecute query/analysis"]
-        OBSERVE["Observe:\nInterpret results"]
-        DECIDE["Decide:\nComplete or continue?"]
+        THINK["Think:<br>What do I need to know?"]
+        ACT["Act:<br>Execute query/analysis"]
+        OBSERVE["Observe:<br>Interpret results"]
+        DECIDE["Decide:<br>Complete or continue?"]
     end
 
     THINK --> ACT --> OBSERVE --> DECIDE
@@ -300,9 +300,9 @@ Superatom agents work with multiple LLM providers:
 flowchart LR
     AGENT["Agent"] --> STRATEGY["Model Strategy"]
 
-    STRATEGY --> BEST["BEST\nHighest quality\n(Claude)"]
-    STRATEGY --> FAST["FAST\nLowest latency\n(Groq)"]
-    STRATEGY --> BALANCED["BALANCED\nCost-effective\n(GPT)"]
+    STRATEGY --> BEST["BEST<br>Highest quality<br>(Claude)"]
+    STRATEGY --> FAST["FAST<br>Lowest latency<br>(Groq)"]
+    STRATEGY --> BALANCED["BALANCED<br>Cost-effective<br>(GPT)"]
 
     BEST & FAST & BALANCED --> RESULT["Result"]
 ```

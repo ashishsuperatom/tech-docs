@@ -4,6 +4,7 @@ description: 'Auto-generated iOS and Android apps for field access'
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import MobileAppsFlowDiagram from '../../../components/diagrams/platform/MobileAppsFlowDiagram';
 
 Superatom automatically generates mobile applications from your data model—giving field workers, executives, and anyone on the go instant access to insights and actions.
 
@@ -25,17 +26,7 @@ Traditional approach to mobile data access:
 
 ## How It Works
 
-```mermaid
-flowchart LR
-    DATA["Your Data Model"] --> ANALYSIS["Superatom Analysis"]
-    ANALYSIS --> IOS["iOS App"]
-    ANALYSIS --> ANDROID["Android App"]
-    IOS --> USERS["Field Workers"]
-    ANDROID --> USERS
-
-    style IOS fill:#0D9373,color:#fff
-    style ANDROID fill:#0D9373,color:#fff
-```
+<MobileAppsFlowDiagram client:load />
 
 1. **Connect Data Sources**
 

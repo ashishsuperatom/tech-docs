@@ -4,6 +4,10 @@ description: 'Automatically creating perfect visualizations from raw data'
 ---
 
 import { Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+import GenerativeUIPipelineDiagram from '../../../components/diagrams/ip/GenerativeUIPipelineDiagram';
+import DataAnalysisDiagram from '../../../components/diagrams/ip/DataAnalysisDiagram';
+import DecisionTreeDiagram from '../../../components/diagrams/ip/DecisionTreeDiagram';
+import ComponentArchitectureDiagram from '../../../components/diagrams/ip/ComponentArchitectureDiagram';
 
 :::note
 **Superatom pioneered Generative UI.** We were first to market with the ability to automatically generate interactive UI components from raw data sources.
@@ -26,23 +30,7 @@ Traditional approach: Teams of BI developers building static dashboards.
 
 ## How Generative UI Works
 
-```mermaid
-flowchart TB
-    Q["User Question\n'Show me top products by revenue'"] --> UNDERSTAND["1. UNDERSTAND\nParse intent & entities"]
-
-    UNDERSTAND --> QUERY["2. QUERY\nGenerate & execute SQL"]
-
-    QUERY --> ANALYZE["3. ANALYZE\nProfile result data"]
-
-    ANALYZE --> SELECT["4. SELECT\nChoose optimal component"]
-
-    SELECT --> CONFIGURE["5. CONFIGURE\nSet visualization parameters"]
-
-    CONFIGURE --> RENDER["6. RENDER\nInteractive UI component"]
-
-    style Q fill:#0D9373,color:#fff
-    style RENDER fill:#07C983,color:#fff
-```
+<GenerativeUIPipelineDiagram client:load />
 
 ### Stage 1: Understanding Intent
 
@@ -75,17 +63,7 @@ LIMIT 10
 
 Before visualization, we analyze the result set:
 
-```mermaid
-flowchart LR
-    DATA["Query Results"] --> A1["Cardinality\nHow many unique values?"]
-    DATA --> A2["Data Types\nNumeric? Categorical? Temporal?"]
-    DATA --> A3["Distribution\nEven? Skewed? Outliers?"]
-    DATA --> A4["Relationships\nPart-to-whole? Time series?"]
-
-    A1 & A2 & A3 & A4 --> DECISION["Component Selection Decision"]
-
-    style DECISION fill:#0D9373,color:#fff
-```
+<DataAnalysisDiagram client:load />
 
 ### Stage 4: Component Selection
 
@@ -173,33 +151,7 @@ The system automatically:
 
 ### Decision Tree Example
 
-```mermaid
-flowchart TD
-    START["Result Data"] --> Q1{"Single value?"}
-    Q1 -->|Yes| KPI["KPI Card"]
-    Q1 -->|No| Q2{"Has time dimension?"}
-
-    Q2 -->|Yes| Q3{"Multiple series?"}
-    Q3 -->|Yes| MULTI_LINE["Multi-Line Chart"]
-    Q3 -->|No| LINE["Line Chart"]
-
-    Q2 -->|No| Q4{"Categorical grouping?"}
-    Q4 -->|Yes| Q5{"< 7 categories?"}
-    Q5 -->|Yes| PIE["Pie Chart"]
-    Q5 -->|No| BAR["Bar Chart"]
-
-    Q4 -->|No| Q6{"Two numeric dimensions?"}
-    Q6 -->|Yes| SCATTER["Scatter Plot"]
-    Q6 -->|No| TABLE["Data Table"]
-
-    style KPI fill:#0D9373,color:#fff
-    style LINE fill:#0D9373,color:#fff
-    style MULTI_LINE fill:#0D9373,color:#fff
-    style PIE fill:#0D9373,color:#fff
-    style BAR fill:#0D9373,color:#fff
-    style SCATTER fill:#0D9373,color:#fff
-    style TABLE fill:#0D9373,color:#fff
-```
+<DecisionTreeDiagram client:load />
 
 ### Contextual Adaptation
 
@@ -218,28 +170,7 @@ The same data can be visualized differently based on context:
 
 ### Component Architecture
 
-```mermaid
-flowchart LR
-    subgraph ENGINE["GENERATIVE UI ENGINE"]
-        SELECTOR["Component\nSelector"]
-        MAPPER["Data\nMapper"]
-        CONFIG["Config\nGenerator"]
-    end
-
-    subgraph LIBRARY["COMPONENT LIBRARY"]
-        CHARTS["Chart\nComponents"]
-        DISPLAY["Display\nComponents"]
-        INTERACTIVE["Interactive\nComponents"]
-    end
-
-    subgraph RENDER["RENDER LAYER"]
-        REACT["React 19"]
-        ECHARTS["ECharts"]
-        TAILWIND["Tailwind CSS"]
-    end
-
-    ENGINE --> LIBRARY --> RENDER
-```
+<ComponentArchitectureDiagram client:load />
 
 ### Technology Stack
 

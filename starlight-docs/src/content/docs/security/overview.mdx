@@ -4,6 +4,8 @@ description: 'Enterprise-grade security for your data'
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import ZeroStorageDiagram from '../../../components/diagrams/security/ZeroStorageDiagram';
+import SecurityLayersDiagram from '../../../components/diagrams/security/SecurityLayersDiagram';
 
 Security is the #1 concern for enterprise AI adoption. Superatom addresses this with a **zero-storage architecture** and comprehensive security controls.
 
@@ -36,29 +38,7 @@ Why enterprises hesitate to adopt AI systems:
 **Superatom NEVER stores your data.** The platform is deployed within your enterprise network and data never leaves your control.
 :::
 
-```mermaid
-flowchart TB
-    subgraph ENTERPRISE["YOUR ENTERPRISE NETWORK"]
-        DATA["Your Data"]
-        SA["Superatom Platform"]
-        DATA <--> SA
-    end
-
-    subgraph GUARANTEES["SECURITY GUARANTEES"]
-        G1["Zero Data Storage"]
-        G2["Ephemeral Processing"]
-        G3["End-to-End Encryption"]
-        G4["Enterprise IAM"]
-    end
-
-    SA --> G1
-    SA --> G2
-    SA --> G3
-    SA --> G4
-
-    style ENTERPRISE fill:#d1fae5,stroke:#0D9373
-    style SA fill:#0D9373,color:#fff
-```
+<ZeroStorageDiagram client:load />
 
 ### How It Works
 
@@ -73,25 +53,7 @@ flowchart TB
 
 ## Security Layers
 
-```mermaid
-flowchart TB
-    subgraph LAYERS["SECURITY LAYERS"]
-        L1["Layer 1: Authentication\n• Secure login with hashed passwords\n• Session tokens with expiration\n• Role-based access control"]
-
-        L2["Layer 2: Project Isolation\n• Each project in separate Durable Object\n• Zero cross-project data access\n• Independent scaling"]
-
-        L3["Layer 3: Data Protection\n• Parameterized SQL queries\n• Encrypted connections (TLS/SSL)\n• API key hashing"]
-
-        L4["Layer 4: Message Validation\n• Zod schema validation\n• Type-safe communication\n• Input sanitization"]
-    end
-
-    L1 --> L2 --> L3 --> L4
-
-    style L1 fill:#0D9373,color:#fff
-    style L2 fill:#0D9373,color:#fff
-    style L3 fill:#0D9373,color:#fff
-    style L4 fill:#0D9373,color:#fff
-```
+<SecurityLayersDiagram client:load />
 
 ---
 

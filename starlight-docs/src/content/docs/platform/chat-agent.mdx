@@ -4,6 +4,7 @@ description: 'Natural language interface to your enterprise data'
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import ChatAgentFlowDiagram from '../../../components/diagrams/platform/ChatAgentFlowDiagram';
 
 The Chat Agent is Superatom's primary interface—where users ask questions in plain English and receive instant, visual answers.
 
@@ -11,17 +12,7 @@ The Chat Agent is Superatom's primary interface—where users ask questions in p
 
 ## How It Works
 
-```mermaid
-flowchart LR
-    USER["User types question"] --> AI["AI processes intent"]
-    AI --> SQL["SQL generated"]
-    SQL --> DATA["Data retrieved"]
-    DATA --> VIZ["Visualization selected"]
-    VIZ --> STREAM["Response streamed"]
-
-    style USER fill:#0D9373,color:#fff
-    style STREAM fill:#07C983,color:#fff
-```
+<ChatAgentFlowDiagram client:load />
 
 1. **Ask in Natural Language**
 

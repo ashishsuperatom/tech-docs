@@ -4,6 +4,8 @@ description: 'An AI Decision Engine that closes the loop between insight and act
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import DecisionLoopDiagram from '../../../components/diagrams/DecisionLoopDiagram';
+import ProblemsSolutionsDiagram from '../../../components/diagrams/ProblemsSolutionsDiagram';
 
 ## The Goal
 
@@ -25,47 +27,29 @@ Superatom bridges this gap. We don't just answer questions—we create a continu
 
 The ideal enterprise decision system operates as a continuous loop:
 
-```mermaid
-flowchart TB
-    subgraph LOOP["THE DECISION LOOP"]
-        direction TB
-        A["1. UNDERSTAND\nthe data collected by the org"] --> B["2. ANALYZE\npatterns, trends, anomalies"]
-        B --> C["3. SUGGEST\nactions that can be taken"]
-        C --> D["4. VERIFY\nhuman review for high-stakes"]
-        D --> E["5. EXECUTE\ncommit the action"]
-        E --> F["6. OBSERVE\ntrack the results"]
-        F --> A
-    end
-
-    style A fill:#0D9373,color:#fff,stroke:#0D9373
-    style B fill:#0D9373,color:#fff,stroke:#0D9373
-    style C fill:#0D9373,color:#fff,stroke:#0D9373
-    style D fill:#07C983,color:#fff,stroke:#07C983
-    style E fill:#07C983,color:#fff,stroke:#07C983
-    style F fill:#07C983,color:#fff,stroke:#07C983
-```
+<DecisionLoopDiagram client:load />
 
 1. **Understand the Data**
 
    Connect to all organizational data sources and build a semantic understanding of what the data represents, how it's structured, and how different pieces relate.
 
-  1. **Perform Analysis**
+2. **Perform Analysis**
 
    Apply AI-powered analysis to find patterns, detect anomalies, identify trends, and surface insights that matter to the business.
 
-  1. **Suggest Actions**
+3. **Suggest Actions**
 
    Based on insights discovered, recommend specific, actionable steps that can address issues or capitalize on opportunities.
 
-  1. **Human Verification**
+4. **Human Verification**
 
    For high-stakes decisions, present recommendations to humans for review and approval. As confidence builds from historical accuracy, low-stakes decisions can be automated.
 
-  1. **Execute Actions**
+5. **Execute Actions**
 
    Commit approved actions to connected systems—whether that's updating inventory, sending alerts, or triggering workflows.
 
-  1. **Observe Results**
+6. **Observe Results**
 
    Track the outcomes of actions taken to measure effectiveness and continuously improve future recommendations.
 
@@ -78,13 +62,13 @@ flowchart TB
 This loop sounds simple. In practice, **seven serious problems** make enterprise adoption nearly impossible:
 
 <CardGrid>
-  <LinkCard title="1. The Data Problem" href="/introduction/problems#the-data-problem" description="Data isn't clean, connected, or contextualized" />
-  <LinkCard title="2. The Tacit Knowledge Problem" href="/introduction/problems#the-tacit-knowledge-problem" description="Critical knowledge lives in people's heads, not systems" />
-  <LinkCard title="3. The Execution Problem" href="/introduction/problems#the-execution-problem" description="Insights need to be accessible, visual, and auditable" />
-  <LinkCard title="4. The Action Problem" href="/introduction/problems#the-action-problem" description="AI suggestions don't account for organizational reality" />
-  <LinkCard title="5. The Accessibility Problem" href="/introduction/problems#the-accessibility-problem" description="Data needs to be available everywhere, not just desktops" />
-  <LinkCard title="6. The Delivery Problem" href="/introduction/problems#the-delivery-problem" description="Insights must come to users, not wait to be queried" />
-  <LinkCard title="7. The Security Problem" href="/introduction/problems#the-security-problem" description="Enterprise data requires enterprise-grade protection" />
+  <LinkCard title="1. The Data Problem" href="/introduction/problems#1-the-data-problem" description="Data isn't clean, connected, or contextualized" />
+  <LinkCard title="2. The Tacit Knowledge Problem" href="/introduction/problems#2-the-tacit-knowledge-problem" description="Critical knowledge lives in people's heads, not systems" />
+  <LinkCard title="3. The Execution Problem" href="/introduction/problems#3-the-execution-problem" description="Insights need to be accessible, visual, and auditable" />
+  <LinkCard title="4. The Action Problem" href="/introduction/problems#4-the-action-problem" description="AI suggestions don't account for organizational reality" />
+  <LinkCard title="5. The Accessibility Problem" href="/introduction/problems#5-the-accessibility-problem" description="Data needs to be available everywhere, not just desktops" />
+  <LinkCard title="6. The Delivery Problem" href="/introduction/problems#6-the-delivery-problem" description="Insights must come to users, not wait to be queried" />
+  <LinkCard title="7. The Security Problem" href="/introduction/problems#7-the-security-problem" description="Enterprise data requires enterprise-grade protection" />
 </CardGrid>
 
 ---
@@ -93,51 +77,7 @@ This loop sounds simple. In practice, **seven serious problems** make enterprise
 
 Superatom solves each of these problems with specific innovations:
 
-```mermaid
-flowchart LR
-    subgraph PROBLEMS["PROBLEMS"]
-        P1[Data]
-        P2[Tacit Knowledge]
-        P3[Execution]
-        P4[Action]
-        P5[Accessibility]
-        P6[Delivery]
-        P7[Security]
-    end
-
-    subgraph SOLUTIONS["SUPERATOM SOLUTIONS"]
-        S1[Semantic Modeling]
-        S2[Tribal Knowledge]
-        S3[Generative UI]
-        S4[Dry-Run Execution]
-        S5[Auto Mobile Apps]
-        S6[Reports & Dashboards]
-        S7[Zero-Storage Architecture]
-    end
-
-    P1 --> S1
-    P2 --> S2
-    P3 --> S3
-    P4 --> S4
-    P5 --> S5
-    P6 --> S6
-    P7 --> S7
-
-    style P1 fill:#ef4444,color:#fff
-    style P2 fill:#ef4444,color:#fff
-    style P3 fill:#ef4444,color:#fff
-    style P4 fill:#ef4444,color:#fff
-    style P5 fill:#ef4444,color:#fff
-    style P6 fill:#ef4444,color:#fff
-    style P7 fill:#ef4444,color:#fff
-    style S1 fill:#0D9373,color:#fff
-    style S2 fill:#0D9373,color:#fff
-    style S3 fill:#0D9373,color:#fff
-    style S4 fill:#0D9373,color:#fff
-    style S5 fill:#0D9373,color:#fff
-    style S6 fill:#0D9373,color:#fff
-    style S7 fill:#0D9373,color:#fff
-```
+<ProblemsSolutionsDiagram client:load />
 
 | Problem | Solution | How It Works |
 |---------|----------|--------------|
@@ -154,24 +94,24 @@ flowchart LR
 ## What Makes Us Different
 
 <CardGrid>
-  <Card title="< 3 seconds" icon="gauge-high">
-		Average query response time
-	</Card>
-  <Card title="90-99%" icon="piggy-bank">
-		Infrastructure cost reduction
-	</Card>
-  <Card title="~15 minutes" icon="clock">
-		New project setup time
-	</Card>
-  <Card title="4 LLM Providers" icon="brain-circuit">
-		No vendor lock-in
-	</Card>
-  <Card title="16+ Components" icon="chart-mixed">
-		Automatic visualization selection
-	</Card>
-  <Card title="Zero Data Storage" icon="shield-check">
-		Enterprise-grade security
-	</Card>
+  <Card title="< 3 seconds" icon="rocket">
+    Average query response time
+  </Card>
+  <Card title="90-99%" icon="seti:salesforce">
+    Infrastructure cost reduction
+  </Card>
+  <Card title="~15 minutes" icon="approve-check">
+    New project setup time
+  </Card>
+  <Card title="4 LLM Providers" icon="puzzle">
+    No vendor lock-in
+  </Card>
+  <Card title="16+ Components" icon="bars">
+    Automatic visualization selection
+  </Card>
+  <Card title="Zero Data Storage" icon="approve-check-circle">
+    Enterprise-grade security
+  </Card>
 </CardGrid>
 
 ---

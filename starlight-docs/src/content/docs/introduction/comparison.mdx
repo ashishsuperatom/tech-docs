@@ -4,6 +4,11 @@ description: 'Why Superatom is not another BI tool—and why that matters'
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import TraditionalVsSuperatomDiagram from '../../../components/diagrams/comparison/TraditionalVsSuperatomDiagram';
+import TraditionalBIWorkflowDiagram from '../../../components/diagrams/comparison/TraditionalBIWorkflowDiagram';
+import SuperatomWorkflowDiagram from '../../../components/diagrams/comparison/SuperatomWorkflowDiagram';
+import MarketEvolutionDiagram from '../../../components/diagrams/comparison/MarketEvolutionDiagram';
+import TAMDiagram from '../../../components/diagrams/comparison/TAMDiagram';
 
 :::note
 **For Investors & Decision Makers:** This page explains how Superatom creates a new market category beyond traditional Business Intelligence.
@@ -27,37 +32,7 @@ These tools excel at one thing: **visualizing data that humans have already orga
 
 ## Reporting vs. Decision-Making
 
-```mermaid
-flowchart TB
-    subgraph TRADITIONAL["TRADITIONAL BI (Reporting)"]
-        direction TB
-        T1["1. Data Engineer prepares data"]
-        T2["2. Analyst writes queries"]
-        T3["3. Designer builds dashboards"]
-        T4["4. User views static reports"]
-        T5["5. Human interprets & decides"]
-
-        T1 --> T2 --> T3 --> T4 --> T5
-    end
-
-    subgraph SUPERATOM["SUPERATOM (Decision Engine)"]
-        direction TB
-        S1["1. Connect data sources"]
-        S2["2. AI understands data automatically"]
-        S3["3. User asks questions in English"]
-        S4["4. AI analyzes & suggests actions"]
-        S5["5. Human verifies & executes"]
-        S6["6. System learns from outcomes"]
-
-        S1 --> S2 --> S3 --> S4 --> S5 --> S6
-        S6 --> S3
-    end
-
-    style T5 fill:#ef4444,color:#fff
-    style S4 fill:#0D9373,color:#fff
-    style S5 fill:#0D9373,color:#fff
-    style S6 fill:#07C983,color:#fff
-```
+<TraditionalVsSuperatomDiagram client:load />
 
 | Aspect | Traditional BI | Superatom |
 |--------|---------------|-----------|
@@ -87,51 +62,13 @@ flowchart TB
 
 ### The Traditional BI Workflow
 
-```mermaid
-flowchart LR
-    subgraph PEOPLE["REQUIRED PEOPLE"]
-        P1["Data Engineer\n$150K/year"]
-        P2["BI Analyst\n$120K/year"]
-        P3["Dashboard Designer\n$100K/year"]
-    end
-
-    subgraph TIME["TIME REQUIRED"]
-        T1["ETL Pipeline\n2-4 weeks"]
-        T2["Query Development\n1-2 weeks"]
-        T3["Dashboard Build\n1-2 weeks"]
-    end
-
-    subgraph RESULT["RESULT"]
-        R1["Static Dashboard\nShows historical data"]
-    end
-
-    P1 --> T1 --> P2 --> T2 --> P3 --> T3 --> R1
-
-    R1 --> HUMAN["Human must:\n- Interpret data\n- Identify issues\n- Decide actions\n- Execute manually"]
-
-    style HUMAN fill:#ef4444,color:#fff
-```
+<TraditionalBIWorkflowDiagram client:load />
 
 **Total cost to answer a new business question:** $10,000+ and 4-8 weeks
 
 ### The Superatom Workflow
 
-```mermaid
-flowchart LR
-    USER["Business User"] --> QUESTION["Asks question in English\n'Why did sales drop?'"]
-
-    QUESTION --> SUPERATOM["Superatom\n(< 3 seconds)"]
-
-    SUPERATOM --> INSIGHT["AI-Generated:\n- Root cause analysis\n- Visual explanation\n- Recommended actions"]
-
-    INSIGHT --> VERIFY["Human verifies\n& approves action"]
-
-    VERIFY --> EXECUTE["Action executed\n& tracked"]
-
-    style SUPERATOM fill:#0D9373,color:#fff
-    style INSIGHT fill:#0D9373,color:#fff
-    style EXECUTE fill:#07C983,color:#fff
-```
+<SuperatomWorkflowDiagram client:load />
 
 **Total cost to answer a new business question:** $0 marginal cost and < 3 seconds
 
@@ -172,20 +109,7 @@ flowchart LR
 
 Superatom isn't competing with BI tools. We're creating a new category.
 
-```mermaid
-flowchart TB
-    subgraph EVOLUTION["MARKET EVOLUTION"]
-        direction LR
-        E1["1990s-2000s\nSPREADSHEETS\nManual analysis"]
-        E2["2000s-2010s\nBI TOOLS\nVisualized reporting"]
-        E3["2010s-2020s\nSELF-SERVICE BI\nUser-built dashboards"]
-        E4["2020s+\nDECISION INTELLIGENCE\nAI-powered decisions"]
-    end
-
-    E1 --> E2 --> E3 --> E4
-
-    style E4 fill:#0D9373,color:#fff
-```
+<MarketEvolutionDiagram client:load />
 
 ### What Decision Intelligence Means
 
@@ -236,23 +160,7 @@ flowchart TB
 
 ### Total Addressable Market
 
-```mermaid
-flowchart TB
-    subgraph TAM["MARKET LAYERS"]
-        direction TB
-        L1["Traditional BI Market\n$30B (Replacing existing spend)"]
-        L2["New Decision Intelligence\n$50B+ (New capability, new buyers)"]
-        L3["Action Automation\n$100B+ (Connected to execution)"]
-    end
-
-    L1 --> SUPERATOM
-    L2 --> SUPERATOM
-    L3 --> SUPERATOM
-
-    SUPERATOM["Superatom\nAddresses all three layers"]
-
-    style SUPERATOM fill:#0D9373,color:#fff
-```
+<TAMDiagram client:load />
 
 ---
 

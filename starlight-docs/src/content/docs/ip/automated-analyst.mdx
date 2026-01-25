@@ -4,6 +4,13 @@ description: 'Continuous intelligence that works even while you sleep'
 ---
 
 import { Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+import AutomatedAnalystSystemDiagram from '../../../components/diagrams/ip/AutomatedAnalystSystemDiagram';
+import AnomalyDetectionDiagram from '../../../components/diagrams/ip/AnomalyDetectionDiagram';
+import DependencyMappingDiagram from '../../../components/diagrams/ip/DependencyMappingDiagram';
+import KnowledgeNodeGraphDiagram from '../../../components/diagrams/ip/KnowledgeNodeGraphDiagram';
+import SeasonalityDiagram from '../../../components/diagrams/ip/SeasonalityDiagram';
+import IntelligenceCycleDiagram from '../../../components/diagrams/ip/IntelligenceCycleDiagram';
+import CompleteDecisionEngineDiagram from '../../../components/diagrams/ip/CompleteDecisionEngineDiagram';
 
 ## The Problem with On-Demand Analysis
 
@@ -22,27 +29,7 @@ Traditional analytics—including conversational AI—only works when someone as
 
 ## The Automated Analyst System
 
-```mermaid
-flowchart TB
-    subgraph CONTINUOUS["CONTINUOUS OPERATION"]
-        direction TB
-        MONITOR["24/7 Data Monitoring"]
-        ANALYZE["Automated Analysis"]
-        DETECT["Anomaly Detection"]
-        CAUSAL["Causal Analysis"]
-        ALERT["Smart Alerting"]
-    end
-
-    DATA["Enterprise Data"] --> MONITOR
-    MONITOR --> ANALYZE
-    ANALYZE --> DETECT
-    DETECT --> CAUSAL
-    CAUSAL --> ALERT
-    ALERT --> USERS["Users\n(when it matters)"]
-
-    style CONTINUOUS fill:#0D9373,color:#fff
-    style USERS fill:#07C983,color:#fff
-```
+<AutomatedAnalystSystemDiagram client:load />
 
 ---
 
@@ -62,20 +49,7 @@ The system watches key metrics automatically:
 
 ### 2. Anomaly Detection
 
-```mermaid
-flowchart LR
-    DATA["Incoming Data"] --> BASELINE["Historical Baseline"]
-    BASELINE --> COMPARE["Statistical Comparison"]
-    COMPARE --> ANOMALY{"Anomaly?"}
-
-    ANOMALY -->|Yes| CLASSIFY["Classify:\n- Spike\n- Drop\n- Trend shift\n- Pattern break"]
-    ANOMALY -->|No| CONTINUE["Continue monitoring"]
-
-    CLASSIFY --> INVESTIGATE["Trigger investigation"]
-
-    style ANOMALY fill:#f59e0b,color:#fff
-    style INVESTIGATE fill:#0D9373,color:#fff
-```
+<AnomalyDetectionDiagram client:load />
 
 **Detection Methods:**
 - Statistical outlier detection (z-score, IQR)
@@ -106,19 +80,7 @@ When something changes, the system automatically investigates **why**:
   <TabItem label="Dependency Mapping">
     Understand what depends on what:
 
-    ```mermaid
-    flowchart TD
-        REVENUE["Revenue"] --> ORDERS["Order Volume"]
-        REVENUE --> AOV["Avg Order Value"]
-
-        ORDERS --> NEW["New Customers"]
-        ORDERS --> RETURNING["Returning Customers"]
-
-        NEW --> MARKETING["Marketing Spend"]
-        NEW --> CONVERSION["Website Conversion"]
-
-        style MARKETING fill:#ef4444,color:#fff
-    ```
+    <DependencyMappingDiagram client:load />
 
     Automatically identifies: Marketing spend dropped → Fewer new customers → Lower order volume → Revenue decline
   </TabItem>
@@ -145,21 +107,7 @@ When something changes, the system automatically investigates **why**:
 
 The Automated Analyst uses **Knowledge Nodes**—fundamental building blocks that define how computations work:
 
-```mermaid
-flowchart TB
-    subgraph NODES["KNOWLEDGE NODE GRAPH"]
-        N1["Revenue\nSum of sales"] --> N2["Gross Margin\nRevenue - COGS"]
-        N2 --> N3["Net Margin\nGross - Operating Costs"]
-        N1 --> N4["Growth Rate\nYoY change"]
-        N4 --> N5["Trend\n3-month moving avg"]
-    end
-
-    N3 --> ALERT1["Alert if < 5%"]
-    N5 --> ALERT2["Alert if declining 3+ months"]
-
-    style ALERT1 fill:#ef4444,color:#fff
-    style ALERT2 fill:#ef4444,color:#fff
-```
+<KnowledgeNodeGraphDiagram client:load />
 
 Each node knows:
 - How to calculate its value
@@ -230,18 +178,7 @@ The Automated Analyst understands time in business context:
 
 ### Seasonality Awareness
 
-```mermaid
-flowchart LR
-    DATA["Raw Data"] --> DECOMPOSE["Decomposition"]
-
-    DECOMPOSE --> TREND["Trend Component"]
-    DECOMPOSE --> SEASON["Seasonal Component"]
-    DECOMPOSE --> RESIDUAL["Residual/Noise"]
-
-    TREND --> ANALYSIS["Analysis considers:\n- True underlying trend\n- Seasonal expectations\n- Genuine anomalies"]
-
-    style ANALYSIS fill:#0D9373,color:#fff
-```
+<SeasonalityDiagram client:load />
 
 The system knows that a December sales spike isn't an anomaly—but a December spike that's 30% below last December IS.
 
@@ -249,31 +186,7 @@ The system knows that a December sales spike isn't an anomaly—but a December s
 
 ## Always-On Intelligence
 
-```mermaid
-flowchart TB
-    subgraph CYCLE["CONTINUOUS INTELLIGENCE CYCLE"]
-        direction TB
-        C1["Monitor\n(real-time)"]
-        C2["Detect\n(anomalies)"]
-        C3["Investigate\n(root cause)"]
-        C4["Alert\n(stakeholders)"]
-        C5["Learn\n(from feedback)"]
-    end
-
-    C1 --> C2 --> C3 --> C4 --> C5 --> C1
-
-    subgraph HUMANS["HUMAN INTERACTION"]
-        H1["Review insights"]
-        H2["Provide feedback"]
-        H3["Adjust thresholds"]
-    end
-
-    C4 --> H1
-    H2 --> C5
-    H3 --> C1
-
-    style CYCLE fill:#0D9373,color:#fff
-```
+<IntelligenceCycleDiagram client:load />
 
 **The system gets smarter over time:**
 - False positive alerts? Thresholds adjusted.
@@ -324,22 +237,7 @@ flowchart TB
 
 The Automated Analyst is the final piece that closes the decision loop:
 
-```mermaid
-flowchart TB
-    subgraph COMPLETE["THE COMPLETE DECISION ENGINE"]
-        DATA["1. Data Connected\n(Semantic Modeling)"]
-        UNDERSTAND["2. Context Added\n(Tribal Knowledge)"]
-        ANALYZE["3. Analysis Performed\n(Coding Agents)"]
-        MONITOR["4. Continuous Monitoring\n(Automated Analyst)"]
-        INSIGHT["5. Insights Delivered\n(Generative UI)"]
-        ACTION["6. Actions Suggested\n(Decision Loop)"]
-    end
-
-    DATA --> UNDERSTAND --> ANALYZE --> MONITOR --> INSIGHT --> ACTION
-    ACTION --> DATA
-
-    style MONITOR fill:#0D9373,color:#fff
-```
+<CompleteDecisionEngineDiagram client:load />
 
 **Top leaders in the organization can just ask questions and get insights. We connect it to action systems. And it runs in a loop.**
 

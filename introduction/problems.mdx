@@ -21,10 +21,10 @@ Each problem builds on the previous. Solving them requires a systemic approach, 
 ```mermaid
 flowchart TD
     subgraph REALITY["ENTERPRISE DATA REALITY"]
-        D1["Scattered Sources\nERP, DBs, Files, APIs"]
-        D2["Inconsistent Formats\nDifferent schemas per system"]
-        D3["Missing Context\nWhat does 'status=3' mean?"]
-        D4["Domain Blindness\nNo understanding of business meaning"]
+        D1["Scattered Sources<br>ERP, DBs, Files, APIs"]
+        D2["Inconsistent Formats<br>Different schemas per system"]
+        D3["Missing Context<br>What does 'status=3' mean?"]
+        D4["Domain Blindness<br>No understanding of business meaning"]
     end
 
     D1 --> CHAOS["DATA CHAOS"]
@@ -64,14 +64,14 @@ flowchart LR
     end
 
     subgraph ANALYSIS["SUPERATOM ANALYSIS"]
-        A1["Schema Analysis\nTable/column names, relationships"]
-        A2["Statistical Profiling\nDistinct values, distributions, patterns"]
-        A3["Domain Classification\nSupply chain? Retail? Finance?"]
-        A4["Query Generation\nCommon questions for this data"]
+        A1["Schema Analysis<br>Table/column names, relationships"]
+        A2["Statistical Profiling<br>Distinct values, distributions, patterns"]
+        A3["Domain Classification<br>Supply chain? Retail? Finance?"]
+        A4["Query Generation<br>Common questions for this data"]
     end
 
     subgraph OUTPUT["OUTPUT"]
-        O1["Semantic Model\nUnified understanding of all data"]
+        O1["Semantic Model<br>Unified understanding of all data"]
     end
 
     S1 & S2 & S3 & S4 --> A1
@@ -135,14 +135,14 @@ This analysis typically takes ~2 days for a complex enterprise database. It lear
 
 ```mermaid
 flowchart TD
-    HQ["Headquarters"] --> R1["Region 1\nDifferent processes"]
-    HQ --> R2["Region 2\nDifferent terminology"]
-    HQ --> R3["Region 3\nDifferent data formats"]
+    HQ["Headquarters"] --> R1["Region 1<br>Different processes"]
+    HQ --> R2["Region 2<br>Different terminology"]
+    HQ --> R3["Region 3<br>Different data formats"]
 
-    R1 --> B1["Branch A\nLocal variations"]
-    R1 --> B2["Branch B\nLocal variations"]
-    R2 --> B3["Branch C\nLocal variations"]
-    R2 --> B4["Branch D\nLocal variations"]
+    R1 --> B1["Branch A<br>Local variations"]
+    R1 --> B2["Branch B<br>Local variations"]
+    R2 --> B3["Branch C<br>Local variations"]
+    R2 --> B4["Branch D<br>Local variations"]
 
     style HQ fill:#0D9373,color:#fff
     style R1 fill:#ef4444,color:#fff
@@ -160,20 +160,20 @@ Superatom captures organization-specific knowledge at **three levels**:
 flowchart TB
     subgraph LEVELS["TRIBAL KNOWLEDGE LEVELS"]
         direction LR
-        L1["🌍 GLOBAL\nApplies to entire organization"]
-        L2["👤 USER\nSpecific to individual users"]
-        L3["❓ QUERY\nAttached to specific questions"]
+        L1["🌍 GLOBAL<br>Applies to entire organization"]
+        L2["👤 USER<br>Specific to individual users"]
+        L3["❓ QUERY<br>Attached to specific questions"]
     end
 
-    Q["User asks:\n'What are our sales?'"] --> TK["Tribal Knowledge\nEngine"]
+    Q["User asks:<br>'What are our sales?'"] --> TK["Tribal Knowledge<br>Engine"]
 
     TK --> L1
     TK --> L2
     TK --> L3
 
-    L1 & L2 & L3 --> CONTEXT["Contextualized Query\nwith org-specific rules"]
+    L1 & L2 & L3 --> CONTEXT["Contextualized Query<br>with org-specific rules"]
 
-    CONTEXT --> ANSWER["Accurate Answer\nreflecting how THIS org works"]
+    CONTEXT --> ANSWER["Accurate Answer<br>reflecting how THIS org works"]
 
     style TK fill:#0D9373,color:#fff
     style ANSWER fill:#07C983,color:#fff
@@ -234,8 +234,8 @@ Superatom pioneered **Generative UI**—automatically creating the perfect visua
 flowchart LR
     Q["User Question"] --> AI["AI Analysis"]
     AI --> DATA["Data Retrieved"]
-    DATA --> SELECT["Component Selection\n16+ visualization types"]
-    SELECT --> RENDER["Rendered UI\nInteractive, explorable"]
+    DATA --> SELECT["Component Selection<br>16+ visualization types"]
+    SELECT --> RENDER["Rendered UI<br>Interactive, explorable"]
 
     style SELECT fill:#0D9373,color:#fff
     style RENDER fill:#07C983,color:#fff
@@ -279,10 +279,10 @@ Superatom implements a **simulation-first approach**:
 
 ```mermaid
 flowchart TD
-    AI["AI Suggests Action"] --> DRY["Dry-Run Execution\nSimulated environment"]
-    DRY --> REVIEW["Human Review\nSee what WOULD happen"]
+    AI["AI Suggests Action"] --> DRY["Dry-Run Execution<br>Simulated environment"]
+    DRY --> REVIEW["Human Review<br>See what WOULD happen"]
     REVIEW --> APPROVE{Approved?}
-    APPROVE -->|Yes| COMMIT["Final Commit\nReal execution"]
+    APPROVE -->|Yes| COMMIT["Final Commit<br>Real execution"]
     APPROVE -->|No| MODIFY["Modify or Reject"]
     MODIFY --> AI
 
@@ -324,10 +324,10 @@ Superatom automatically generates **iOS and Android applications** from your dat
 ```mermaid
 flowchart LR
     DATA["Data Model"] --> ANALYSIS["Superatom Analysis"]
-    ANALYSIS --> IOS["iOS App\nAuto-generated"]
-    ANALYSIS --> ANDROID["Android App\nAuto-generated"]
+    ANALYSIS --> IOS["iOS App<br>Auto-generated"]
+    ANALYSIS --> ANDROID["Android App<br>Auto-generated"]
 
-    IOS --> FIELD["Field Workers\nAccess from anywhere"]
+    IOS --> FIELD["Field Workers<br>Access from anywhere"]
     ANDROID --> FIELD
 
     style IOS fill:#0D9373,color:#fff
@@ -404,15 +404,15 @@ When you employ a person, you control what they see and how they report. Program
 flowchart TD
     subgraph ENTERPRISE["YOUR ENTERPRISE NETWORK"]
         DATA["Your Data"]
-        SA["Superatom\n(Deployed inside your network)"]
+        SA["Superatom<br>(Deployed inside your network)"]
         DATA <--> SA
     end
 
     subgraph SECURITY["SECURITY GUARANTEES"]
-        S1["Zero Data Storage\nNever stored outside your network"]
-        S2["Ephemeral Processing\nDeleted immediately after analysis"]
-        S3["End-to-End Encryption\nAll connections secured"]
-        S4["Enterprise IAM\nRole-based access control"]
+        S1["Zero Data Storage<br>Never stored outside your network"]
+        S2["Ephemeral Processing<br>Deleted immediately after analysis"]
+        S3["End-to-End Encryption<br>All connections secured"]
+        S4["Enterprise IAM<br>Role-based access control"]
     end
 
     SA --> S1

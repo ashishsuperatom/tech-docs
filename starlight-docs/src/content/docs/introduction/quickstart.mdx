@@ -4,6 +4,7 @@ description: 'Get up and running with Superatom in 15 minutes'
 ---
 
 import { Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+import AnalysisFlowDiagram from '../../../components/diagrams/quickstart/AnalysisFlowDiagram';
 
 ## Prerequisites
 
@@ -71,17 +72,7 @@ You'll see the main interface with the sidebar navigation:
 
 Superatom automatically analyzes your connected data:
 
-```mermaid
-flowchart LR
-    CONNECT["Connect"] --> SCHEMA["Analyze Schema"]
-    SCHEMA --> SAMPLE["Sample Data"]
-    SAMPLE --> PROFILE["Statistical Profile"]
-    PROFILE --> DOMAIN["Domain Classification"]
-    DOMAIN --> READY["Ready!"]
-
-    style CONNECT fill:#0D9373,color:#fff
-    style READY fill:#07C983,color:#fff
-```
+<AnalysisFlowDiagram client:load />
 
 This typically takes 2-5 minutes for a medium-sized database. You'll be notified when complete.
 

@@ -4,6 +4,8 @@ description: 'Automated analysis and scheduled report delivery'
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import ScheduledReportsDiagram from '../../../components/diagrams/platform/ScheduledReportsDiagram';
+import TriggeredReportsDiagram from '../../../components/diagrams/platform/TriggeredReportsDiagram';
 
 Superatom's Reports module combines AI-powered analysis with automated delivery—ensuring insights reach the right people at the right time.
 
@@ -99,14 +101,7 @@ Share reports with team members:
 
 Automated delivery on a recurring basis:
 
-```mermaid
-flowchart LR
-    SCHEDULE["Schedule\n(Weekly, Monday 9 AM)"] --> GENERATE["Generate Report"]
-    GENERATE --> DELIVER["Deliver to Recipients"]
-    DELIVER --> TRACK["Track Opens/Views"]
-
-    style GENERATE fill:#0D9373,color:#fff
-```
+<ScheduledReportsDiagram client:load />
 
 Use cases:
 - Weekly sales summaries
@@ -117,16 +112,7 @@ Use cases:
 
 Sent when specific conditions are met:
 
-```mermaid
-flowchart LR
-    MONITOR["Monitor Metric"] --> THRESHOLD{"Threshold\nBreached?"}
-    THRESHOLD -->|Yes| GENERATE["Generate Report"]
-    THRESHOLD -->|No| MONITOR
-    GENERATE --> ALERT["Send Alert Report"]
-
-    style THRESHOLD fill:#f59e0b,color:#fff
-    style ALERT fill:#ef4444,color:#fff
-```
+<TriggeredReportsDiagram client:load />
 
 Use cases:
 - Inventory below safety stock

@@ -4,6 +4,12 @@ description: 'Capturing organizational wisdom in AI'
 ---
 
 import { Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+import TribalKnowledgeLevelsDiagram from '../../../components/diagrams/ip/TribalKnowledgeLevelsDiagram';
+import GlobalKnowledgeDiagram from '../../../components/diagrams/ip/GlobalKnowledgeDiagram';
+import UserKnowledgeDiagram from '../../../components/diagrams/ip/UserKnowledgeDiagram';
+import QueryKnowledgeDiagram from '../../../components/diagrams/ip/QueryKnowledgeDiagram';
+import KnowledgeGraphDiagram from '../../../components/diagrams/ip/KnowledgeGraphDiagram';
+import KnowledgeFlowDiagram from '../../../components/diagrams/ip/KnowledgeFlowDiagram';
 
 ## The Hidden Knowledge Problem
 
@@ -35,30 +41,7 @@ Every organization has knowledge that exists only in people's heads:
 
 Superatom captures tribal knowledge at **three levels**, each with different scope and application:
 
-```mermaid
-flowchart TB
-    subgraph LEVELS["TRIBAL KNOWLEDGE LEVELS"]
-        direction TB
-        L1["🌍 GLOBAL LEVEL\nApplies to ALL users, ALL queries\nOrganization-wide rules"]
-        L2["👤 USER LEVEL\nApplies to SPECIFIC users\nRole-based or personal preferences"]
-        L3["❓ QUERY LEVEL\nApplies to SPECIFIC questions\nDefinitions and calculations"]
-    end
-
-    QUERY["User asks a question"] --> ENGINE["Knowledge Engine"]
-
-    ENGINE --> L1
-    ENGINE --> L2
-    ENGINE --> L3
-
-    L1 --> CONTEXT["Contextualized Query"]
-    L2 --> CONTEXT
-    L3 --> CONTEXT
-
-    CONTEXT --> ANSWER["Accurate, Organization-Specific Answer"]
-
-    style ENGINE fill:#0D9373,color:#fff
-    style ANSWER fill:#07C983,color:#fff
-```
+<TribalKnowledgeLevelsDiagram client:load />
 
 ---
 
@@ -79,16 +62,7 @@ flowchart TB
 
 ### How It Works
 
-```mermaid
-flowchart LR
-    Q["'What were Q3 sales?'"] --> GLOBAL["Global Knowledge:\nFiscal year starts April 1"]
-
-    GLOBAL --> INTERPRET["Interprets Q3 as\nOct 1 - Dec 31"]
-
-    INTERPRET --> SQL["SELECT SUM(amount)\nWHERE date BETWEEN\n'2025-10-01' AND '2025-12-31'"]
-
-    style GLOBAL fill:#0D9373,color:#fff
-```
+<GlobalKnowledgeDiagram client:load />
 
 Without global knowledge, "Q3" might be interpreted as calendar Q3 (Jul-Sep) instead of fiscal Q3.
 
@@ -111,16 +85,7 @@ Without global knowledge, "Q3" might be interpreted as calendar Q3 (Jul-Sep) ins
 
 ### How It Works
 
-```mermaid
-flowchart LR
-    Q["'Show me inventory levels'"] --> USER["User Knowledge:\nWest Coast Manager\n'Only show CA, OR, WA'"]
-
-    USER --> FILTER["Applies regional filter\nautomatically"]
-
-    FILTER --> RESULT["Shows only West Coast\ninventory"]
-
-    style USER fill:#0D9373,color:#fff
-```
+<UserKnowledgeDiagram client:load />
 
 The same question from a different user would show different data based on their knowledge nodes.
 
@@ -145,18 +110,7 @@ The same question from a different user would show different data based on their
 
   ![Knowledge Node Detail](/images/knowledge-node-detail.png)
 
-```mermaid
-flowchart LR
-    Q["'Which items are overstock?'"] --> QUERY["Query Knowledge:\n'Overstock = inventory > 90 days supply'"]
-
-    QUERY --> CALC["Calculates:\ninventory_qty / (avg_daily_sales)"]
-
-    CALC --> FILTER["Filters:\nwhere days_supply > 90"]
-
-    FILTER --> RESULT["Returns overstock items\nwith consistent definition"]
-
-    style QUERY fill:#0D9373,color:#fff
-```
+<QueryKnowledgeDiagram client:load />
 
 ---
 
@@ -199,25 +153,7 @@ Knowledge nodes connect to form a graph that captures organizational understandi
 
   ![Knowledge Graph Visualization](/images/knowledge-graph.png)
 
-```mermaid
-flowchart TB
-    subgraph GRAPH["KNOWLEDGE GRAPH"]
-        ORDER["Order"] --> CUSTOMER["Customer"]
-        ORDER --> PRODUCT["Product"]
-        ORDER --> PAYMENT["Payment"]
-
-        PRODUCT --> INVENTORY["Inventory"]
-        PRODUCT --> SUPPLY["Supply Chain"]
-
-        CUSTOMER --> SEGMENT["Segmentation"]
-
-        INVENTORY --> DEADSTOCK["Deadstock Rules"]
-        INVENTORY --> OVERSTOCK["Overstock Rules"]
-    end
-
-    style DEADSTOCK fill:#0D9373,color:#fff
-    style OVERSTOCK fill:#0D9373,color:#fff
-```
+<KnowledgeGraphDiagram client:load />
 
 This graph enables:
 - **Relationship traversal** — Understanding how concepts connect
@@ -252,29 +188,7 @@ When the AI gives an answer that needs organizational context:
 
 ## How Knowledge Flows
 
-```mermaid
-flowchart TD
-    Q["User Query"] --> PARSE["Parse Question"]
-
-    PARSE --> MATCH["Match Knowledge Nodes"]
-
-    subgraph MATCHING["KNOWLEDGE MATCHING"]
-        M1["Check Query-Level\n(most specific)"]
-        M2["Check User-Level\n(user context)"]
-        M3["Check Global-Level\n(organization rules)"]
-    end
-
-    MATCH --> M1 --> M2 --> M3
-
-    M3 --> MERGE["Merge Applicable Knowledge\n(specific overrides general)"]
-
-    MERGE --> CONTEXT["Contextualized Query\nwith all relevant rules"]
-
-    CONTEXT --> EXECUTE["Execute Analysis"]
-
-    style MERGE fill:#0D9373,color:#fff
-    style EXECUTE fill:#07C983,color:#fff
-```
+<KnowledgeFlowDiagram client:load />
 
 **Priority Order:**
 1. Query-level knowledge (most specific) wins

@@ -38,9 +38,9 @@ Superatom captures tribal knowledge at **three levels**, each with different sco
 flowchart TB
     subgraph LEVELS["TRIBAL KNOWLEDGE LEVELS"]
         direction TB
-        L1["🌍 GLOBAL LEVEL\nApplies to ALL users, ALL queries\nOrganization-wide rules"]
-        L2["👤 USER LEVEL\nApplies to SPECIFIC users\nRole-based or personal preferences"]
-        L3["❓ QUERY LEVEL\nApplies to SPECIFIC questions\nDefinitions and calculations"]
+        L1["🌍 GLOBAL LEVEL<br>Applies to ALL users, ALL queries<br>Organization-wide rules"]
+        L2["👤 USER LEVEL<br>Applies to SPECIFIC users<br>Role-based or personal preferences"]
+        L3["❓ QUERY LEVEL<br>Applies to SPECIFIC questions<br>Definitions and calculations"]
     end
 
     QUERY["User asks a question"] --> ENGINE["Knowledge Engine"]
@@ -80,11 +80,11 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    Q["'What were Q3 sales?'"] --> GLOBAL["Global Knowledge:\nFiscal year starts April 1"]
+    Q["'What were Q3 sales?'"] --> GLOBAL["Global Knowledge:<br>Fiscal year starts April 1"]
 
-    GLOBAL --> INTERPRET["Interprets Q3 as\nOct 1 - Dec 31"]
+    GLOBAL --> INTERPRET["Interprets Q3 as<br>Oct 1 - Dec 31"]
 
-    INTERPRET --> SQL["SELECT SUM(amount)\nWHERE date BETWEEN\n'2025-10-01' AND '2025-12-31'"]
+    INTERPRET --> SQL["SELECT SUM(amount)<br>WHERE date BETWEEN<br>'2025-10-01' AND '2025-12-31'"]
 
     style GLOBAL fill:#0D9373,color:#fff
 ```
@@ -112,11 +112,11 @@ Without global knowledge, "Q3" might be interpreted as calendar Q3 (Jul-Sep) ins
 
 ```mermaid
 flowchart LR
-    Q["'Show me inventory levels'"] --> USER["User Knowledge:\nWest Coast Manager\n'Only show CA, OR, WA'"]
+    Q["'Show me inventory levels'"] --> USER["User Knowledge:<br>West Coast Manager<br>'Only show CA, OR, WA'"]
 
-    USER --> FILTER["Applies regional filter\nautomatically"]
+    USER --> FILTER["Applies regional filter<br>automatically"]
 
-    FILTER --> RESULT["Shows only West Coast\ninventory"]
+    FILTER --> RESULT["Shows only West Coast<br>inventory"]
 
     style USER fill:#0D9373,color:#fff
 ```
@@ -148,13 +148,13 @@ The same question from a different user would show different data based on their
 
 ```mermaid
 flowchart LR
-    Q["'Which items are overstock?'"] --> QUERY["Query Knowledge:\n'Overstock = inventory > 90 days supply'"]
+    Q["'Which items are overstock?'"] --> QUERY["Query Knowledge:<br>'Overstock = inventory > 90 days supply'"]
 
-    QUERY --> CALC["Calculates:\ninventory_qty / (avg_daily_sales)"]
+    QUERY --> CALC["Calculates:<br>inventory_qty / (avg_daily_sales)"]
 
-    CALC --> FILTER["Filters:\nwhere days_supply > 90"]
+    CALC --> FILTER["Filters:<br>where days_supply > 90"]
 
-    FILTER --> RESULT["Returns overstock items\nwith consistent definition"]
+    FILTER --> RESULT["Returns overstock items<br>with consistent definition"]
 
     style QUERY fill:#0D9373,color:#fff
 ```
@@ -264,16 +264,16 @@ flowchart TD
     PARSE --> MATCH["Match Knowledge Nodes"]
 
     subgraph MATCHING["KNOWLEDGE MATCHING"]
-        M1["Check Query-Level\n(most specific)"]
-        M2["Check User-Level\n(user context)"]
-        M3["Check Global-Level\n(organization rules)"]
+        M1["Check Query-Level<br>(most specific)"]
+        M2["Check User-Level<br>(user context)"]
+        M3["Check Global-Level<br>(organization rules)"]
     end
 
     MATCH --> M1 --> M2 --> M3
 
-    M3 --> MERGE["Merge Applicable Knowledge\n(specific overrides general)"]
+    M3 --> MERGE["Merge Applicable Knowledge<br>(specific overrides general)"]
 
-    MERGE --> CONTEXT["Contextualized Query\nwith all relevant rules"]
+    MERGE --> CONTEXT["Contextualized Query<br>with all relevant rules"]
 
     CONTEXT --> EXECUTE["Execute Analysis"]
 

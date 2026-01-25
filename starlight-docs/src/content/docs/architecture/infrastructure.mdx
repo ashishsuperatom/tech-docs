@@ -3,35 +3,11 @@ title: 'Infrastructure'
 description: 'Deployment architecture and scaling'
 ---
 
+import InfrastructureDiagram from '../../../components/diagrams/architecture/InfrastructureDiagram';
+
 ## Deployment Architecture
 
-```mermaid
-flowchart TB
-    subgraph EDGE["Cloudflare Edge (Global)"]
-        CF["CDN + DDoS Protection"]
-        DO["Durable Objects"]
-    end
-
-    subgraph COMPUTE["Compute Layer"]
-        K8S["Kubernetes Cluster"]
-        PM2["PM2 Process Manager"]
-    end
-
-    subgraph DATA["Data Layer"]
-        PG["PostgreSQL"]
-        CHROMA["ChromaDB"]
-    end
-
-    USERS["Users"] --> CF
-    CF --> DO
-    DO --> K8S
-    K8S --> PG
-    K8S --> CHROMA
-
-    style EDGE fill:#f59e0b,color:#000
-    style COMPUTE fill:#0D9373,color:#fff
-    style DATA fill:#ec4899,color:#fff
-```
+<InfrastructureDiagram client:load />
 
 ## Scaling Model
 

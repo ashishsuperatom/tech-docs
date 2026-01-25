@@ -4,22 +4,11 @@ description: 'How Superatom AI processes queries and generates insights'
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import AIPipelineDiagram from '../../../components/diagrams/architecture/AIPipelineDiagram';
 
 ## AI Pipeline
 
-```mermaid
-flowchart TB
-    INPUT["User Question"] --> CLASSIFY["Intent Classification"]
-    CLASSIFY --> CONTEXT["Context Enrichment"]
-    CONTEXT --> GENERATE["Query Generation"]
-    GENERATE --> EXECUTE["Execution"]
-    EXECUTE --> ANALYZE["Result Analysis"]
-    ANALYZE --> VISUALIZE["Visualization Selection"]
-    VISUALIZE --> OUTPUT["Streamed Response"]
-
-    style INPUT fill:#0D9373,color:#fff
-    style OUTPUT fill:#07C983,color:#fff
-```
+<AIPipelineDiagram client:load />
 
 ## Multi-LLM Architecture
 

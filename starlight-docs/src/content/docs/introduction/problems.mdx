@@ -4,6 +4,15 @@ description: 'Why enterprise AI adoption has been nearly impossible—until now'
 ---
 
 import { Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+import DataChaosDiagram from '../../../components/diagrams/problems/DataChaosDiagram';
+import SemanticModelingDiagram from '../../../components/diagrams/problems/SemanticModelingDiagram';
+import GeographicComplexityDiagram from '../../../components/diagrams/problems/GeographicComplexityDiagram';
+import TribalKnowledgeDiagram from '../../../components/diagrams/problems/TribalKnowledgeDiagram';
+import GenerativeUIDiagram from '../../../components/diagrams/problems/GenerativeUIDiagram';
+import DryRunExecutionDiagram from '../../../components/diagrams/problems/DryRunExecutionDiagram';
+import MobileAppsDiagram from '../../../components/diagrams/problems/MobileAppsDiagram';
+import ZeroStorageDiagram from '../../../components/diagrams/problems/ZeroStorageDiagram';
+import ConnectedSolutionDiagram from '../../../components/diagrams/problems/ConnectedSolutionDiagram';
 
 The decision loop sounds simple: understand data, analyze, suggest actions, verify, execute, observe, repeat. In practice, **seven interconnected problems** have made this nearly impossible for enterprises.
 
@@ -17,24 +26,7 @@ Each problem builds on the previous. Solving them requires a systemic approach, 
 
 **The Challenge:** Enterprise data is messy, disconnected, and lacks context.
 
-```mermaid
-flowchart TD
-    subgraph REALITY["ENTERPRISE DATA REALITY"]
-        D1["Scattered Sources\nERP, DBs, Files, APIs"]
-        D2["Inconsistent Formats\nDifferent schemas per system"]
-        D3["Missing Context\nWhat does 'status=3' mean?"]
-        D4["Domain Blindness\nNo understanding of business meaning"]
-    end
-
-    D1 --> CHAOS["DATA CHAOS"]
-    D2 --> CHAOS
-    D3 --> CHAOS
-    D4 --> CHAOS
-    CHAOS --> FAIL["Cannot Feed AI Quality Data"]
-
-    style CHAOS fill:#ef4444,color:#fff
-    style FAIL fill:#ef4444,color:#fff
-```
+<DataChaosDiagram client:load />
 
 ### The Sub-Problems
 
@@ -53,31 +45,7 @@ flowchart TD
 
 For Problems 2, 3, and 4, Superatom AI makes sense of your data automatically:
 
-```mermaid
-flowchart LR
-    subgraph SOURCES["DATA SOURCES"]
-        S1[ERP Systems]
-        S2[Databases]
-        S3[File Systems]
-        S4[APIs]
-    end
-
-    subgraph ANALYSIS["SUPERATOM ANALYSIS"]
-        A1["Schema Analysis\nTable/column names, relationships"]
-        A2["Statistical Profiling\nDistinct values, distributions, patterns"]
-        A3["Domain Classification\nSupply chain? Retail? Finance?"]
-        A4["Query Generation\nCommon questions for this data"]
-    end
-
-    subgraph OUTPUT["OUTPUT"]
-        O1["Semantic Model\nUnified understanding of all data"]
-    end
-
-    S1 & S2 & S3 & S4 --> A1
-    A1 --> A2 --> A3 --> A4 --> O1
-
-    style O1 fill:#0D9373,color:#fff
-```
+<SemanticModelingDiagram client:load />
 
 <Tabs>
   <TabItem label="Schema Analysis">
@@ -130,22 +98,7 @@ This analysis typically takes ~2 days for a complex enterprise database. It lear
 
 ### The Geographic Complexity
 
-```mermaid
-flowchart TD
-    HQ["Headquarters"] --> R1["Region 1\nDifferent processes"]
-    HQ --> R2["Region 2\nDifferent terminology"]
-    HQ --> R3["Region 3\nDifferent data formats"]
-
-    R1 --> B1["Branch A\nLocal variations"]
-    R1 --> B2["Branch B\nLocal variations"]
-    R2 --> B3["Branch C\nLocal variations"]
-    R2 --> B4["Branch D\nLocal variations"]
-
-    style HQ fill:#0D9373,color:#fff
-    style R1 fill:#ef4444,color:#fff
-    style R2 fill:#ef4444,color:#fff
-    style R3 fill:#ef4444,color:#fff
-```
+<GeographicComplexityDiagram client:load />
 
 Different departments, branches, and geographies interpret data differently. A "sale" in Region 1 might include returns; in Region 2, it might not. Without this context, analysis is meaningless.
 
@@ -153,28 +106,7 @@ Different departments, branches, and geographies interpret data differently. A "
 
 Superatom captures organization-specific knowledge at **three levels**:
 
-```mermaid
-flowchart TB
-    subgraph LEVELS["TRIBAL KNOWLEDGE LEVELS"]
-        direction LR
-        L1["🌍 GLOBAL\nApplies to entire organization"]
-        L2["👤 USER\nSpecific to individual users"]
-        L3["❓ QUERY\nAttached to specific questions"]
-    end
-
-    Q["User asks:\n'What are our sales?'"] --> TK["Tribal Knowledge\nEngine"]
-
-    TK --> L1
-    TK --> L2
-    TK --> L3
-
-    L1 & L2 & L3 --> CONTEXT["Contextualized Query\nwith org-specific rules"]
-
-    CONTEXT --> ANSWER["Accurate Answer\nreflecting how THIS org works"]
-
-    style TK fill:#0D9373,color:#fff
-    style ANSWER fill:#07C983,color:#fff
-```
+<TribalKnowledgeDiagram client:load />
 
 | Level | Example | Effect |
 |-------|---------|--------|
@@ -245,16 +177,7 @@ Superatom pioneered **Generative UI**—automatically creating the perfect visua
 
   ![Generative UI Example](/images/customer-segmentation.png)
 
-```mermaid
-flowchart LR
-    Q["User Question"] --> AI["AI Analysis"]
-    AI --> DATA["Data Retrieved"]
-    DATA --> SELECT["Component Selection\n16+ visualization types"]
-    SELECT --> RENDER["Rendered UI\nInteractive, explorable"]
-
-    style SELECT fill:#0D9373,color:#fff
-    style RENDER fill:#07C983,color:#fff
-```
+<GenerativeUIDiagram client:load />
 
 | Component Type | Use Case | Auto-Selected When |
 |----------------|----------|-------------------|
@@ -290,19 +213,7 @@ flowchart LR
 
 Superatom implements a **simulation-first approach**:
 
-```mermaid
-flowchart TD
-    AI["AI Suggests Action"] --> DRY["Dry-Run Execution\nSimulated environment"]
-    DRY --> REVIEW["Human Review\nSee what WOULD happen"]
-    REVIEW --> APPROVE{Approved?}
-    APPROVE -->|Yes| COMMIT["Final Commit\nReal execution"]
-    APPROVE -->|No| MODIFY["Modify or Reject"]
-    MODIFY --> AI
-
-    style DRY fill:#f59e0b,color:#fff
-    style REVIEW fill:#0D9373,color:#fff
-    style COMMIT fill:#07C983,color:#fff
-```
+<DryRunExecutionDiagram client:load />
 
 **How it works:**
 
@@ -330,19 +241,7 @@ Superatom automatically generates **iOS and Android applications** from your dat
 
   ![Auto-Generated Mobile App](/images/mobile-app.png)
 
-```mermaid
-flowchart LR
-    DATA["Data Model"] --> ANALYSIS["Superatom Analysis"]
-    ANALYSIS --> IOS["iOS App\nAuto-generated"]
-    ANALYSIS --> ANDROID["Android App\nAuto-generated"]
-
-    IOS --> FIELD["Field Workers\nAccess from anywhere"]
-    ANDROID --> FIELD
-
-    style IOS fill:#0D9373,color:#fff
-    style ANDROID fill:#0D9373,color:#fff
-    style FIELD fill:#07C983,color:#fff
-```
+<MobileAppsDiagram client:load />
 
 - **Thin clients** with restricted, specific functionality
 - **Role-based** views and actions
@@ -403,32 +302,7 @@ When you employ a person, you control what they see and how they report. Program
 
 ### Superatom's Solution: Zero-Storage Architecture
 
-```mermaid
-flowchart TD
-    subgraph ENTERPRISE["YOUR ENTERPRISE NETWORK"]
-        DATA["Your Data"]
-        SA["Superatom\n(Deployed inside your network)"]
-        DATA <--> SA
-    end
-
-    subgraph SECURITY["SECURITY GUARANTEES"]
-        S1["Zero Data Storage\nNever stored outside your network"]
-        S2["Ephemeral Processing\nDeleted immediately after analysis"]
-        S3["End-to-End Encryption\nAll connections secured"]
-        S4["Enterprise IAM\nRole-based access control"]
-    end
-
-    SA --> S1
-    SA --> S2
-    SA --> S3
-    SA --> S4
-
-    style SA fill:#0D9373,color:#fff
-    style S1 fill:#07C983,color:#fff
-    style S2 fill:#07C983,color:#fff
-    style S3 fill:#07C983,color:#fff
-    style S4 fill:#07C983,color:#fff
-```
+<ZeroStorageDiagram client:load />
 
 | Security Feature | Implementation |
 |------------------|----------------|
@@ -443,36 +317,6 @@ flowchart TD
 
 These seven problems are interconnected, and so are Superatom's solutions:
 
-```mermaid
-flowchart TB
-    subgraph PROBLEMS["THE SEVEN PROBLEMS"]
-        P1[Data] --> P2[Tacit Knowledge]
-        P2 --> P3[Execution]
-        P3 --> P4[Action]
-        P4 --> P5[Accessibility]
-        P5 --> P6[Delivery]
-        P6 --> P7[Security]
-    end
-
-    subgraph SOLUTIONS["SUPERATOM SOLUTIONS"]
-        S1[Semantic Modeling] --> S2[Tribal Knowledge]
-        S2 --> S3[Generative UI]
-        S3 --> S4[Dry-Run Execution]
-        S4 --> S5[Auto Mobile Apps]
-        S5 --> S6[Reports & Dashboards]
-        S6 --> S7[Zero-Storage Architecture]
-    end
-
-    P1 -.-> S1
-    P2 -.-> S2
-    P3 -.-> S3
-    P4 -.-> S4
-    P5 -.-> S5
-    P6 -.-> S6
-    P7 -.-> S7
-
-    style PROBLEMS fill:#fef2f2
-    style SOLUTIONS fill:#f0fdf4
-```
+<ConnectedSolutionDiagram client:load />
 
 <LinkCard title="Continue to Our Innovations" href="/ip/overview" description="Learn about the intellectual property that powers these solutions" />

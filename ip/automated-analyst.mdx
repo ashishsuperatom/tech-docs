@@ -37,7 +37,7 @@ flowchart TB
     ANALYZE --> DETECT
     DETECT --> CAUSAL
     CAUSAL --> ALERT
-    ALERT --> USERS["Users\n(when it matters)"]
+    ALERT --> USERS["Users<br>(when it matters)"]
 
     style CONTINUOUS fill:#0D9373,color:#fff
     style USERS fill:#07C983,color:#fff
@@ -67,7 +67,7 @@ flowchart LR
     BASELINE --> COMPARE["Statistical Comparison"]
     COMPARE --> ANOMALY{"Anomaly?"}
 
-    ANOMALY -->|Yes| CLASSIFY["Classify:\n- Spike\n- Drop\n- Trend shift\n- Pattern break"]
+    ANOMALY -->|Yes| CLASSIFY["Classify:<br>Spike, Drop, Trend shift,<br>Pattern break"]
     ANOMALY -->|No| CONTINUE["Continue monitoring"]
 
     CLASSIFY --> INVESTIGATE["Trigger investigation"]
@@ -147,10 +147,10 @@ The Automated Analyst uses **Knowledge Nodes**—fundamental building blocks tha
 ```mermaid
 flowchart TB
     subgraph NODES["KNOWLEDGE NODE GRAPH"]
-        N1["Revenue\nSum of sales"] --> N2["Gross Margin\nRevenue - COGS"]
-        N2 --> N3["Net Margin\nGross - Operating Costs"]
-        N1 --> N4["Growth Rate\nYoY change"]
-        N4 --> N5["Trend\n3-month moving avg"]
+        N1["Revenue<br>Sum of sales"] --> N2["Gross Margin<br>Revenue - COGS"]
+        N2 --> N3["Net Margin<br>Gross - Operating Costs"]
+        N1 --> N4["Growth Rate<br>YoY change"]
+        N4 --> N5["Trend<br>3-month moving avg"]
     end
 
     N3 --> ALERT1["Alert if < 5%"]
@@ -239,7 +239,7 @@ flowchart LR
     DECOMPOSE --> SEASON["Seasonal Component"]
     DECOMPOSE --> RESIDUAL["Residual/Noise"]
 
-    TREND --> ANALYSIS["Analysis considers:\n- True underlying trend\n- Seasonal expectations\n- Genuine anomalies"]
+    TREND --> ANALYSIS["Analysis considers:<br>True underlying trend,<br>Seasonal expectations,<br>Genuine anomalies"]
 
     style ANALYSIS fill:#0D9373,color:#fff
 ```
@@ -254,11 +254,11 @@ The system knows that a December sales spike isn't an anomaly—but a December s
 flowchart TB
     subgraph CYCLE["CONTINUOUS INTELLIGENCE CYCLE"]
         direction TB
-        C1["Monitor\n(real-time)"]
-        C2["Detect\n(anomalies)"]
-        C3["Investigate\n(root cause)"]
-        C4["Alert\n(stakeholders)"]
-        C5["Learn\n(from feedback)"]
+        C1["Monitor<br>(real-time)"]
+        C2["Detect<br>(anomalies)"]
+        C3["Investigate<br>(root cause)"]
+        C4["Alert<br>(stakeholders)"]
+        C5["Learn<br>(from feedback)"]
     end
 
     C1 --> C2 --> C3 --> C4 --> C5 --> C1
@@ -328,12 +328,12 @@ The Automated Analyst is the final piece that closes the decision loop:
 ```mermaid
 flowchart TB
     subgraph COMPLETE["THE COMPLETE DECISION ENGINE"]
-        DATA["1. Data Connected\n(Semantic Modeling)"]
-        UNDERSTAND["2. Context Added\n(Tribal Knowledge)"]
-        ANALYZE["3. Analysis Performed\n(Coding Agents)"]
-        MONITOR["4. Continuous Monitoring\n(Automated Analyst)"]
-        INSIGHT["5. Insights Delivered\n(Generative UI)"]
-        ACTION["6. Actions Suggested\n(Decision Loop)"]
+        DATA["1. Data Connected<br>(Semantic Modeling)"]
+        UNDERSTAND["2. Context Added<br>(Tribal Knowledge)"]
+        ANALYZE["3. Analysis Performed<br>(Coding Agents)"]
+        MONITOR["4. Continuous Monitoring<br>(Automated Analyst)"]
+        INSIGHT["5. Insights Delivered<br>(Generative UI)"]
+        ACTION["6. Actions Suggested<br>(Decision Loop)"]
     end
 
     DATA --> UNDERSTAND --> ANALYZE --> MONITOR --> INSIGHT --> ACTION

@@ -4,6 +4,10 @@ description: 'AI agents that understand complex business data contexts'
 ---
 
 import { Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+import CodingAgentFlowDiagram from '../../../components/diagrams/ip/CodingAgentFlowDiagram';
+import AgentReasoningLoopDiagram from '../../../components/diagrams/ip/AgentReasoningLoopDiagram';
+import ToolRegistryDiagram from '../../../components/diagrams/ip/ToolRegistryDiagram';
+import ModelStrategyDiagram from '../../../components/diagrams/ip/ModelStrategyDiagram';
 
 ## The Breakthrough
 
@@ -17,37 +21,7 @@ import { Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/comp
 
 ## How Enterprise Coding Agents Work
 
-```mermaid
-flowchart TB
-    Q["Complex Question:\n'Why did margins drop in the\nNortheast last quarter?'"] --> AGENT["Superatom\nCoding Agent"]
-
-    subgraph CONTEXT["CONTEXT LAYER"]
-        SM["Semantic Model\nData relationships"]
-        TK["Tribal Knowledge\nOrg-specific rules"]
-        HIST["Query History\nPrior analysis"]
-    end
-
-    AGENT --> CONTEXT
-
-    subgraph EXECUTION["EXECUTION LOOP"]
-        direction TB
-        PLAN["1. Plan Analysis"]
-        CODE["2. Generate SQL/Code"]
-        EXEC["3. Execute"]
-        ANALYZE["4. Analyze Results"]
-        ITERATE["5. Iterate if Needed"]
-
-        PLAN --> CODE --> EXEC --> ANALYZE --> ITERATE
-        ITERATE --> PLAN
-    end
-
-    CONTEXT --> EXECUTION
-
-    EXECUTION --> RESULT["Root Cause Analysis:\n- Product mix shift (-3%)\n- Supplier cost increase (-2%)\n- Promotional discounting (-1.5%)"]
-
-    style AGENT fill:#0D9373,color:#fff
-    style RESULT fill:#07C983,color:#fff
-```
+<CodingAgentFlowDiagram client:load />
 
 ---
 
@@ -97,21 +71,7 @@ Before generating any code, the agent loads relevant context:
 
 The agent executes a reasoning loop:
 
-```mermaid
-flowchart LR
-    subgraph LOOP["AGENT REASONING LOOP"]
-        THINK["Think:\nWhat do I need to know?"]
-        ACT["Act:\nExecute query/analysis"]
-        OBSERVE["Observe:\nInterpret results"]
-        DECIDE["Decide:\nComplete or continue?"]
-    end
-
-    THINK --> ACT --> OBSERVE --> DECIDE
-    DECIDE -->|Continue| THINK
-    DECIDE -->|Complete| OUTPUT["Final Answer"]
-
-    style OUTPUT fill:#07C983,color:#fff
-```
+<AgentReasoningLoopDiagram client:load />
 
 **Example Iteration:**
 
@@ -207,35 +167,7 @@ RECOMMENDED ACTIONS:
 
 Agents have access to a suite of specialized tools:
 
-```mermaid
-flowchart LR
-    AGENT["Coding Agent"] --> TOOLS["Tool Registry"]
-
-    subgraph TOOLS_LIST["AVAILABLE TOOLS (21+)"]
-        direction TB
-        subgraph INVENTORY["Inventory (6)"]
-            I1["Deadstock Analyzer"]
-            I2["Overstock Calculator"]
-            I3["Transfer Optimizer"]
-        end
-        subgraph SALES["Sales (5)"]
-            S1["Sales Summary"]
-            S2["Trend Analyzer"]
-            S3["Forecast Generator"]
-        end
-        subgraph OPT["Optimization (2)"]
-            O1["MIP Solver"]
-            O2["Route Optimizer"]
-        end
-        subgraph REF["Reference (5)"]
-            R1["Branch Lookup"]
-            R2["Cost Calculator"]
-            R3["Location Mapper"]
-        end
-    end
-
-    TOOLS --> TOOLS_LIST
-```
+<ToolRegistryDiagram client:load />
 
 Each tool encapsulates domain expertise:
 
@@ -297,16 +229,7 @@ Superatom agents work with multiple LLM providers:
 | **Google Gemini** | Fast processing | Quick queries, real-time |
 | **Groq** | Ultra-fast | High-volume, simple queries |
 
-```mermaid
-flowchart LR
-    AGENT["Agent"] --> STRATEGY["Model Strategy"]
-
-    STRATEGY --> BEST["BEST\nHighest quality\n(Claude)"]
-    STRATEGY --> FAST["FAST\nLowest latency\n(Groq)"]
-    STRATEGY --> BALANCED["BALANCED\nCost-effective\n(GPT)"]
-
-    BEST & FAST & BALANCED --> RESULT["Result"]
-```
+<ModelStrategyDiagram client:load />
 
 **No vendor lock-in.** Switch providers based on cost, performance, or availability.
 

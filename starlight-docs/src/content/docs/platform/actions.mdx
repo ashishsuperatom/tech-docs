@@ -4,6 +4,7 @@ description: 'Set up workflows and triggers based on your data'
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import ActionsFlowDiagram from '../../../components/diagrams/platform/ActionsFlowDiagram';
 
 Automated Actions let you create workflows that respond to data conditions—from daily summaries to real-time alerts when critical thresholds are breached.
 
@@ -13,15 +14,7 @@ Automated Actions let you create workflows that respond to data conditions—fro
 
 ## How Actions Work
 
-```mermaid
-flowchart LR
-    TRIGGER["Trigger\n(Schedule or Condition)"] --> EXECUTE["Execute Analysis"]
-    EXECUTE --> ACTION["Take Action\n(Alert, Report, Workflow)"]
-    ACTION --> TRACK["Track Results"]
-
-    style TRIGGER fill:#0D9373,color:#fff
-    style ACTION fill:#07C983,color:#fff
-```
+<ActionsFlowDiagram client:load />
 
 Actions have three components:
 

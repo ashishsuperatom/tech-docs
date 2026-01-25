@@ -24,24 +24,24 @@ Our semantic modeling system performs a multi-stage analysis that transforms dis
 ```mermaid
 flowchart TB
     subgraph SOURCES["DATA SOURCES"]
-        S1["ERP Systems\nSAP, Oracle, Dynamics"]
-        S2["Databases\nPostgres, MySQL, SQL Server"]
-        S3["Data Warehouses\nSnowflake, BigQuery, Redshift"]
-        S4["Files\nCSV, Excel, JSON"]
-        S5["APIs\nREST, GraphQL"]
+        S1["ERP Systems<br>SAP, Oracle, Dynamics"]
+        S2["Databases<br>Postgres, MySQL, SQL Server"]
+        S3["Data Warehouses<br>Snowflake, BigQuery, Redshift"]
+        S4["Files<br>CSV, Excel, JSON"]
+        S5["APIs<br>REST, GraphQL"]
     end
 
     subgraph ANALYSIS["ANALYSIS PIPELINE"]
         direction TB
-        A1["Stage 1: Schema Analysis\nStructure & relationships"]
-        A2["Stage 2: Sample Extraction\nRepresentative data"]
-        A3["Stage 3: Statistical Profiling\nPatterns & distributions"]
-        A4["Stage 4: Domain Classification\nBusiness context"]
-        A5["Stage 5: Query Generation\nPossible questions"]
+        A1["Stage 1: Schema Analysis<br>Structure & relationships"]
+        A2["Stage 2: Sample Extraction<br>Representative data"]
+        A3["Stage 3: Statistical Profiling<br>Patterns & distributions"]
+        A4["Stage 4: Domain Classification<br>Business context"]
+        A5["Stage 5: Query Generation<br>Possible questions"]
     end
 
     subgraph OUTPUT["OUTPUT"]
-        O1["Semantic Model\nUnified understanding"]
+        O1["Semantic Model<br>Unified understanding"]
     end
 
     S1 & S2 & S3 & S4 & S5 --> A1
@@ -108,11 +108,11 @@ Deep statistical analysis of each field:
 ```mermaid
 flowchart LR
     subgraph PROFILE["STATISTICAL PROFILE"]
-        P1["Distinct Values\nCardinality analysis"]
-        P2["Distribution\nMean, median, std dev"]
-        P3["Frequency\nMost common values"]
-        P4["Ratios\nYes/No, True/False splits"]
-        P5["Patterns\nRegex detection"]
+        P1["Distinct Values<br>Cardinality analysis"]
+        P2["Distribution<br>Mean, median, std dev"]
+        P3["Frequency<br>Most common values"]
+        P4["Ratios<br>Yes/No, True/False splits"]
+        P5["Patterns<br>Regex detection"]
     end
 
     DATA["Field Data"] --> P1 & P2 & P3 & P4 & P5
@@ -219,10 +219,10 @@ As we add more domain knowledge and verticals, setup cost for new organizations 
 ```mermaid
 flowchart LR
     subgraph LEARNING["ACCUMULATED KNOWLEDGE"]
-        K1["Retail Domain\nPatterns & terminology"]
-        K2["Supply Chain\nWorkflows & metrics"]
-        K3["Finance\nStructures & compliance"]
-        K4["Healthcare\nRegulations & data types"]
+        K1["Retail Domain<br>Patterns & terminology"]
+        K2["Supply Chain<br>Workflows & metrics"]
+        K3["Finance<br>Structures & compliance"]
+        K4["Healthcare<br>Regulations & data types"]
     end
 
     NEW["New Organization"] --> MATCH["Pattern Matching"]
@@ -269,11 +269,11 @@ Enterprise data isn't static. Superatom handles evolution:
 ```mermaid
 flowchart LR
     subgraph CONNECTORS["DATA CONNECTORS"]
-        C1["JDBC\nPostgres, MySQL, SQL Server"]
-        C2["Native\nBigQuery, Snowflake, Databricks"]
-        C3["ERP\nSAP, Oracle, Dynamics"]
-        C4["File\nS3, GCS, Azure Blob"]
-        C5["API\nREST, GraphQL"]
+        C1["JDBC<br>Postgres, MySQL, SQL Server"]
+        C2["Native<br>BigQuery, Snowflake, Databricks"]
+        C3["ERP<br>SAP, Oracle, Dynamics"]
+        C4["File<br>S3, GCS, Azure Blob"]
+        C5["API<br>REST, GraphQL"]
     end
 
     subgraph ABSTRACTION["UNIFIED ABSTRACTION"]

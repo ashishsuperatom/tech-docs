@@ -3,43 +3,11 @@ title: 'Data Flow'
 description: 'How data moves through the Superatom platform'
 ---
 
+import DataFlowDiagram from '../../../components/diagrams/architecture/DataFlowDiagram';
+
 ## Request Lifecycle
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant UI as Chat UI
-    participant WS as WebSocket
-    participant DO as Durable Object
-    participant BE as Backend
-    participant AI as LLM
-    participant DB as Database
-
-    U->>UI: Types question
-    UI->>WS: Send message
-    WS->>DO: Route to project
-    DO->>BE: Forward request
-
-    BE->>AI: Classify intent
-    AI-->>BE: Intent + entities
-
-    BE->>AI: Generate SQL
-    AI-->>BE: Query
-
-    BE->>DB: Execute query
-    DB-->>BE: Results
-
-    BE->>AI: Select visualization
-    AI-->>BE: Component config
-
-    loop Streaming
-        BE-->>DO: Chunk
-        DO-->>WS: Forward
-        WS-->>UI: Render
-    end
-
-    UI-->>U: Complete response
-```
+<DataFlowDiagram client:load />
 
 ## Data Processing Stages
 

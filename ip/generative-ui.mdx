@@ -27,17 +27,17 @@ Traditional approach: Teams of BI developers building static dashboards.
 
 ```mermaid
 flowchart TB
-    Q["User Question\n'Show me top products by revenue'"] --> UNDERSTAND["1. UNDERSTAND\nParse intent & entities"]
+    Q["User Question<br>'Show me top products by revenue'"] --> UNDERSTAND["1. UNDERSTAND<br>Parse intent & entities"]
 
-    UNDERSTAND --> QUERY["2. QUERY\nGenerate & execute SQL"]
+    UNDERSTAND --> QUERY["2. QUERY<br>Generate & execute SQL"]
 
-    QUERY --> ANALYZE["3. ANALYZE\nProfile result data"]
+    QUERY --> ANALYZE["3. ANALYZE<br>Profile result data"]
 
-    ANALYZE --> SELECT["4. SELECT\nChoose optimal component"]
+    ANALYZE --> SELECT["4. SELECT<br>Choose optimal component"]
 
-    SELECT --> CONFIGURE["5. CONFIGURE\nSet visualization parameters"]
+    SELECT --> CONFIGURE["5. CONFIGURE<br>Set visualization parameters"]
 
-    CONFIGURE --> RENDER["6. RENDER\nInteractive UI component"]
+    CONFIGURE --> RENDER["6. RENDER<br>Interactive UI component"]
 
     style Q fill:#0D9373,color:#fff
     style RENDER fill:#07C983,color:#fff
@@ -76,10 +76,10 @@ Before visualization, we analyze the result set:
 
 ```mermaid
 flowchart LR
-    DATA["Query Results"] --> A1["Cardinality\nHow many unique values?"]
-    DATA --> A2["Data Types\nNumeric? Categorical? Temporal?"]
-    DATA --> A3["Distribution\nEven? Skewed? Outliers?"]
-    DATA --> A4["Relationships\nPart-to-whole? Time series?"]
+    DATA["Query Results"] --> A1["Cardinality<br>How many unique values?"]
+    DATA --> A2["Data Types<br>Numeric? Categorical? Temporal?"]
+    DATA --> A3["Distribution<br>Even? Skewed? Outliers?"]
+    DATA --> A4["Relationships<br>Part-to-whole? Time series?"]
 
     A1 & A2 & A3 & A4 --> DECISION["Component Selection Decision"]
 
@@ -222,15 +222,15 @@ The same data can be visualized differently based on context:
 ```mermaid
 flowchart LR
     subgraph ENGINE["GENERATIVE UI ENGINE"]
-        SELECTOR["Component\nSelector"]
-        MAPPER["Data\nMapper"]
-        CONFIG["Config\nGenerator"]
+        SELECTOR["Component<br>Selector"]
+        MAPPER["Data<br>Mapper"]
+        CONFIG["Config<br>Generator"]
     end
 
     subgraph LIBRARY["COMPONENT LIBRARY"]
-        CHARTS["Chart\nComponents"]
-        DISPLAY["Display\nComponents"]
-        INTERACTIVE["Interactive\nComponents"]
+        CHARTS["Chart<br>Components"]
+        DISPLAY["Display<br>Components"]
+        INTERACTIVE["Interactive<br>Components"]
     end
 
     subgraph RENDER["RENDER LAYER"]

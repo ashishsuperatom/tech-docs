@@ -75,13 +75,13 @@ flowchart TB
 ```mermaid
 flowchart TB
     subgraph LAYERS["SECURITY LAYERS"]
-        L1["Layer 1: Authentication\n• Secure login with hashed passwords\n• Session tokens with expiration\n• Role-based access control"]
+        L1["Layer 1: Authentication<br>Secure login, Session tokens,<br>Role-based access control"]
 
-        L2["Layer 2: Project Isolation\n• Each project in separate Durable Object\n• Zero cross-project data access\n• Independent scaling"]
+        L2["Layer 2: Project Isolation<br>Separate Durable Objects,<br>Zero cross-project access"]
 
-        L3["Layer 3: Data Protection\n• Parameterized SQL queries\n• Encrypted connections (TLS/SSL)\n• API key hashing"]
+        L3["Layer 3: Data Protection<br>Parameterized SQL,<br>Encrypted connections, Key hashing"]
 
-        L4["Layer 4: Message Validation\n• Zod schema validation\n• Type-safe communication\n• Input sanitization"]
+        L4["Layer 4: Message Validation<br>Zod schema validation,<br>Type-safe communication"]
     end
 
     L1 --> L2 --> L3 --> L4
