@@ -6,7 +6,7 @@ icon: 'chart-line'
 
 ## The Problem with On-Demand Analysis
 
-Traditional analytics—including conversational AI—only works when someone asks a question.
+Traditional analytics, including conversational AI, only works when someone asks a question.
 
 **What happens when no one's asking?**
 
@@ -15,7 +15,7 @@ Traditional analytics—including conversational AI—only works when someone as
 - Problems compound until they're crises
 - Patterns emerge and disappear unseen
 
-**Superatom's Automated Analyst runs continuously**, monitoring your data, surfacing insights, and alerting you to what matters—even at 3 AM on a Sunday.
+**Superatom's Automated Analyst runs continuously**, monitoring your data, surfacing insights, and alerting you to what matters, even at 3 AM on a Sunday.
 
 ---
 
@@ -39,8 +39,6 @@ flowchart TB
     CAUSAL --> ALERT
     ALERT --> USERS["Users<br>(when it matters)"]
 
-    style CONTINUOUS fill:#0D9373,color:#fff
-    style USERS fill:#07C983,color:#fff
 ```
 
 ---
@@ -62,7 +60,7 @@ The system watches key metrics automatically:
 ### 2. Anomaly Detection
 
 ```mermaid
-flowchart LR
+flowchart TD
     DATA["Incoming Data"] --> BASELINE["Historical Baseline"]
     BASELINE --> COMPARE["Statistical Comparison"]
     COMPARE --> ANOMALY{"Anomaly?"}
@@ -72,8 +70,6 @@ flowchart LR
 
     CLASSIFY --> INVESTIGATE["Trigger investigation"]
 
-    style ANOMALY fill:#f59e0b,color:#fff
-    style INVESTIGATE fill:#0D9373,color:#fff
 ```
 
 **Detection Methods:**
@@ -116,7 +112,6 @@ When something changes, the system automatically investigates **why**:
         NEW --> MARKETING["Marketing Spend"]
         NEW --> CONVERSION["Website Conversion"]
 
-        style MARKETING fill:#ef4444,color:#fff
     ```
 
     Automatically identifies: Marketing spend dropped → Fewer new customers → Lower order volume → Revenue decline
@@ -142,7 +137,7 @@ When something changes, the system automatically investigates **why**:
 
 ### 4. Knowledge Nodes
 
-The Automated Analyst uses **Knowledge Nodes**—fundamental building blocks that define how computations work:
+The Automated Analyst uses **Knowledge Nodes**, fundamental building blocks that define how computations work:
 
 ```mermaid
 flowchart TB
@@ -156,8 +151,6 @@ flowchart TB
     N3 --> ALERT1["Alert if < 5%"]
     N5 --> ALERT2["Alert if declining 3+ months"]
 
-    style ALERT1 fill:#ef4444,color:#fff
-    style ALERT2 fill:#ef4444,color:#fff
 ```
 
 Each node knows:
@@ -232,7 +225,7 @@ The Automated Analyst understands time in business context:
 ### Seasonality Awareness
 
 ```mermaid
-flowchart LR
+flowchart TD
     DATA["Raw Data"] --> DECOMPOSE["Decomposition"]
 
     DECOMPOSE --> TREND["Trend Component"]
@@ -241,10 +234,9 @@ flowchart LR
 
     TREND --> ANALYSIS["Analysis considers:<br>True underlying trend,<br>Seasonal expectations,<br>Genuine anomalies"]
 
-    style ANALYSIS fill:#0D9373,color:#fff
 ```
 
-The system knows that a December sales spike isn't an anomaly—but a December spike that's 30% below last December IS.
+The system knows that a December sales spike isn't an anomaly, but a December spike that's 30% below last December IS.
 
 ---
 
@@ -273,7 +265,6 @@ flowchart TB
     H2 --> C5
     H3 --> C1
 
-    style CYCLE fill:#0D9373,color:#fff
 ```
 
 **The system gets smarter over time:**
@@ -339,7 +330,6 @@ flowchart TB
     DATA --> UNDERSTAND --> ANALYZE --> MONITOR --> INSIGHT --> ACTION
     ACTION --> DATA
 
-    style MONITOR fill:#0D9373,color:#fff
 ```
 
 **Top leaders in the organization can just ask questions and get insights. We connect it to action systems. And it runs in a loop.**

@@ -1,6 +1,6 @@
 ---
 title: 'Beyond Business Intelligence'
-description: 'Why Superatom is not another BI tool—and why that matters'
+description: 'Why Superatom is not another BI tool, and why that matters'
 icon: 'scale-balanced'
 ---
 
@@ -52,10 +52,6 @@ flowchart TB
         S6 --> S3
     end
 
-    style T5 fill:#ef4444,color:#fff
-    style S4 fill:#0D9373,color:#fff
-    style S5 fill:#0D9373,color:#fff
-    style S6 fill:#07C983,color:#fff
 ```
 
 | Aspect | Traditional BI | Superatom |
@@ -87,12 +83,11 @@ flowchart TB
 ### The Traditional BI Workflow
 
 ```mermaid
-flowchart LR
+flowchart TD
     P1["Data Engineer"] --> T1["ETL Pipeline"] --> P2["BI Analyst"] --> T2["Queries"] --> P3["Designer"] --> T3["Dashboard"] --> R1["Static Dashboard"]
 
     R1 --> HUMAN["Human interprets & decides"]
 
-    style HUMAN fill:#ef4444,color:#fff
 ```
 
 **Total cost to answer a new business question:** $10,000+ and 4-8 weeks
@@ -100,7 +95,7 @@ flowchart LR
 ### The Superatom Workflow
 
 ```mermaid
-flowchart LR
+flowchart TD
     USER["Business User"] --> QUESTION["Asks question in English<br>'Why did sales drop?'"]
 
     QUESTION --> SUPERATOM["Superatom<br>(< 3 seconds)"]
@@ -111,9 +106,6 @@ flowchart LR
 
     VERIFY --> EXECUTE["Action executed<br>& tracked"]
 
-    style SUPERATOM fill:#0D9373,color:#fff
-    style INSIGHT fill:#0D9373,color:#fff
-    style EXECUTE fill:#07C983,color:#fff
 ```
 
 **Total cost to answer a new business question:** $0 marginal cost and < 3 seconds
@@ -155,23 +147,22 @@ flowchart LR
 Superatom isn't competing with BI tools. We're creating a new category.
 
 ```mermaid
-flowchart LR
+flowchart TD
     E1["1990s-2000s<br>Spreadsheets"] --> E2["2000s-2010s<br>BI Tools"] --> E3["2010s-2020s<br>Self-Service BI"] --> E4["2020s+<br>Decision Intelligence"]
 
-    style E4 fill:#0D9373,color:#fff
 ```
 
 ### What Decision Intelligence Means
 
 <Steps>
   <Step title="Automated Understanding">
-    AI automatically understands your data—no data engineering required.
+    AI automatically understands your data, with no data engineering required.
   </Step>
   <Step title="Natural Interaction">
     Anyone can ask questions in plain English. No training, no SQL, no dashboard navigation.
   </Step>
   <Step title="Insight Generation">
-    AI doesn't just display data—it finds patterns, anomalies, and root causes automatically.
+    AI doesn't just display data. It finds patterns, anomalies, and root causes automatically.
   </Step>
   <Step title="Action Recommendation">
     System suggests specific actions to address issues or capitalize on opportunities.
@@ -213,7 +204,6 @@ flowchart TD
     L2["Decision Intelligence - $50B+"] --> SUPERATOM
     L3["Action Automation - $100B+"] --> SUPERATOM
 
-    style SUPERATOM fill:#0D9373,color:#fff
 ```
 
 ---
@@ -230,7 +220,7 @@ flowchart TD
     Incumbent revenue depends on seats and services. Superatom's efficiency threatens their model.
   </Accordion>
   <Accordion title="3. Accumulated IP" icon="flask">
-    Our six core innovations—Semantic Modeling, Generative UI, Tribal Knowledge, Coding Agents, Automated Semantic Modeling, Automated Analyst—represent years of development.
+    Our six core innovations (Semantic Modeling, Generative UI, Tribal Knowledge, Coding Agents, Automated Semantic Modeling, Automated Analyst) represent years of development.
   </Accordion>
   <Accordion title="4. Data Flywheel" icon="rotate">
     Every deployment adds domain knowledge to our system. Each new customer makes us better for the next.
@@ -256,17 +246,17 @@ flowchart TD
 
 ### Why Now?
 
-1. **LLMs Have Matured** — Foundation models can now understand business context
-2. **Data Infrastructure is Ubiquitous** — Cloud data warehouses are standard
-3. **Enterprises Are Ready** — AI adoption has crossed the chasm
-4. **Talent is Scarce** — Organizations can't hire enough analysts
+1. **LLMs Have Matured** - Foundation models can now understand business context
+2. **Data Infrastructure is Ubiquitous** - Cloud data warehouses are standard
+3. **Enterprises Are Ready** - AI adoption has crossed the chasm
+4. **Talent is Scarce** - Organizations can't hire enough analysts
 
 ### Why Superatom?
 
-1. **Purpose-Built** — Not retrofitting existing tools
-2. **Full Stack** — From data connection to action execution
-3. **Enterprise-First** — Security, compliance, and scalability from day one
-4. **Domain Accumulation** — Every customer makes the platform smarter
+1. **Purpose-Built** - Not retrofitting existing tools
+2. **Full Stack** - From data connection to action execution
+3. **Enterprise-First** - Security, compliance, and scalability from day one
+4. **Domain Accumulation** - Every customer makes the platform smarter
 
 ### The Outcome
 

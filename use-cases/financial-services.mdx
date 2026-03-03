@@ -69,7 +69,7 @@ Set up workflows that continuously monitor risk positions and compliance require
 ## How It Works
 
 ```mermaid
-flowchart LR
+flowchart TD
     CORE["Core Banking"] --> SA["Superatom"]
     TRADE["Trading Platform"] --> SA
     RISK["Risk Systems"] --> SA
@@ -77,9 +77,6 @@ flowchart LR
     SA --> INS["Insights & Alerts"]
     SA --> ACT["Automated Actions"]
 
-    style SA fill:#0D9373,color:#fff,stroke:#0D9373
-    style INS fill:#07C983,color:#fff,stroke:#07C983
-    style ACT fill:#07C983,color:#fff,stroke:#07C983
 ```
 
 <Warning>

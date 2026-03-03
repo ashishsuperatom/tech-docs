@@ -151,19 +151,13 @@ Tribal Knowledge nodes ensure every user -- new or experienced -- works with the
 </Steps>
 
 ```mermaid
-flowchart LR
+flowchart TD
     TRIGGER["Daily 6 AM<br>Safety Stock Check"] --> ANALYZE["Calculate<br>Reorder Qty"]
     ANALYZE --> GATE["Manager<br>Approval Gate"]
     GATE -->|Approved| EXECUTE["Submit PO<br>to ERP"]
     GATE -->|Rejected| REVIEW["Manual<br>Review"]
     EXECUTE --> AUDIT["Audit<br>Trail"]
 
-    style TRIGGER fill:#0D9373,color:#fff,stroke:#0D9373
-    style ANALYZE fill:#0D9373,color:#fff,stroke:#0D9373
-    style GATE fill:#f59e0b,color:#fff,stroke:#f59e0b
-    style EXECUTE fill:#07C983,color:#fff,stroke:#07C983
-    style AUDIT fill:#07C983,color:#fff,stroke:#07C983
-    style REVIEW fill:#ef4444,color:#fff,stroke:#ef4444
 ```
 
 <Warning>

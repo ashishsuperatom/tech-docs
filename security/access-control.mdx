@@ -41,7 +41,7 @@ icon: 'users'
 
 ## Permission Enforcement
 
-Permissions are enforced at the query planning stage — before any SQL is generated or data is accessed.
+Permissions are enforced at the query planning stage, before any SQL is generated or data is accessed.
 
 <Steps>
   <Step title="Classify Question">
@@ -54,9 +54,9 @@ Permissions are enforced at the query planning stage — before any SQL is gener
     If permitted, row-level filters are automatically injected into the query based on the user's context
   </Step>
   <Step title="Generate or Restrict">
-    **If fully permitted** — query is generated and executed with row-level filters applied.
-    **If partially permitted** — response is restricted to permitted data, with an explanation of what is restricted.
-    **If not permitted** — the system explains what it cannot access.
+    **If fully permitted:** query is generated and executed with row-level filters applied.
+    **If partially permitted:** response is restricted to permitted data, with an explanation of what is restricted.
+    **If not permitted:** the system explains what it cannot access.
   </Step>
 </Steps>
 

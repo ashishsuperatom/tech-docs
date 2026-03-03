@@ -10,11 +10,11 @@ Superatom is deployed entirely within the customer's infrastructure. All platfor
 
 ## Deployment Model
 
-The entire platform — orchestrator, data-source agents, WebSocket server, UI, reporting engine, and audit storage — runs on the customer's infrastructure. There is no cloud-hosted instance.
+The entire platform, including the orchestrator, data-source agents, WebSocket server, UI, reporting engine, and audit storage, runs on the customer's infrastructure. There is no cloud-hosted instance.
 
 | Principle | Implementation |
 |-----------|----------------|
-| **Zero Storage** | Business data is never persisted in the platform — query, process, return, discard |
+| **Zero Storage** | Business data is never persisted in the platform: query, process, return, discard |
 | **In-Network Deployment** | All components run inside the customer's network as Docker containers |
 | **Ephemeral Processing** | Query results exist only in memory during processing, then are discarded |
 | **Severable Connection** | The platform can be disconnected instantly with no data loss |
@@ -23,7 +23,7 @@ The entire platform — orchestrator, data-source agents, WebSocket server, UI, 
 
 ## Agent Security Model
 
-Each connected data source has a dedicated agent — a containerized service that holds credentials only for its assigned source. The Main Agent (orchestrator) never holds database credentials and never directly accesses customer databases.
+Each connected data source has a dedicated agent, a containerized service that holds credentials only for its assigned source. The Main Agent (orchestrator) never holds database credentials and never directly accesses customer databases.
 
 ```mermaid
 flowchart TD
@@ -37,8 +37,6 @@ flowchart TD
     A3 -->|Read-only| DB3["SAP System"]
     ACTION -->|Write + Approval| DB1
 
-    style MAIN fill:#0D9373,color:#fff
-    style ACTION fill:#f59e0b,color:#fff
 ```
 
 Each agent runs in its own Docker container with isolated filesystem and memory. A compromised agent cannot access another agent's data or credentials.
@@ -75,7 +73,7 @@ Superatom delegates authentication to the customer's existing identity infrastru
 |--------|-------------|
 | **SAML 2.0** | Superatom acts as a Service Provider; the customer's IdP (Okta, Azure AD, OneLogin, etc.) handles authentication |
 | **OpenID Connect** | Standard OAuth 2.0 / OIDC flow with the customer's identity provider |
-| **Role Mapping** | Groups and roles from the IdP map directly to Superatom permission levels — no manual role configuration needed |
+| **Role Mapping** | Groups and roles from the IdP map directly to Superatom permission levels, with no manual role configuration needed |
 | **MFA** | Enforced by the identity provider; Superatom inherits the configured MFA policy |
 
 ### Session Management
@@ -107,7 +105,7 @@ Superatom delegates authentication to the customer's existing identity infrastru
 | **Column-level** | Which columns are visible | Individual salary amounts hidden from non-managers |
 | **Row-level** | Which rows are returned based on user context | Regional managers see only their region's data |
 
-Permissions are enforced at the query planning stage — before any SQL is generated or data is accessed. Rephrasing a question does not bypass permissions.
+Permissions are enforced at the query planning stage, before any SQL is generated or data is accessed. Rephrasing a question does not bypass permissions.
 
 ---
 

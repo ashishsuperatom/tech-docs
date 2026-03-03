@@ -4,7 +4,7 @@ description: "Approval workflows, dry-run capability, and write-back controls"
 icon: "lock"
 ---
 
-Write-back operations — creating purchase orders, updating records, triggering external systems — pass through a configurable approval model before execution. Every action is logged, and the system enforces separate credentials for write operations.
+Write-back operations, such as creating purchase orders, updating records, and triggering external systems, pass through a configurable approval model before execution. Every action is logged, and the system enforces separate credentials for write operations.
 
 ## Four-Gate Approval Model
 
@@ -18,7 +18,7 @@ Each write-back action is assigned to one of four approval gates based on risk l
 | **Dual control** | Critical, regulatory requirement | Write off inventory, adjust financial records |
 
 <Note>
-  Gate assignments are configured per action type by administrators. The platform enforces the assigned gate — it cannot be bypassed at runtime.
+  Gate assignments are configured per action type by administrators. The platform enforces the assigned gate, and it cannot be bypassed at runtime.
 </Note>
 
 ## Approval Workflow
@@ -98,4 +98,4 @@ Every action lifecycle event is recorded in the immutable audit trail:
   </Card>
 </CardGroup>
 
-The audit trail is immutable — once written, records cannot be modified or deleted by any user or administrator. See [Compliance](/security/compliance) for retention and export details.
+The audit trail is immutable: once written, records cannot be modified or deleted by any user or administrator. See [Compliance](/security/compliance) for retention and export details.

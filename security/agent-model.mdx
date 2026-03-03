@@ -10,7 +10,7 @@ This separation enforces credential isolation, limits blast radius on compromise
 
 ## Data-Source Agents
 
-A data-source agent is a containerized service dedicated to a single data source. When an organization connects PostgreSQL, BigQuery, and SAP, three separate agents are deployed — one per source.
+A data-source agent is a containerized service dedicated to a single data source. When an organization connects PostgreSQL, BigQuery, and SAP, three separate agents are deployed, one per source.
 
 Each agent:
 
@@ -73,11 +73,6 @@ graph TD
     RA3 --> DB3[(Database C)]
     WA -->|"Write path<br/>(requires approval)"| DB1
 
-    style MA fill:#2d3748,stroke:#4a5568,color:#e2e8f0
-    style RA1 fill:#1a365d,stroke:#2b6cb0,color:#e2e8f0
-    style RA2 fill:#1a365d,stroke:#2b6cb0,color:#e2e8f0
-    style RA3 fill:#1a365d,stroke:#2b6cb0,color:#e2e8f0
-    style WA fill:#744210,stroke:#d69e2e,color:#e2e8f0
 ```
 
 ## Compromise Containment

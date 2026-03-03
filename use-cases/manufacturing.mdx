@@ -65,7 +65,7 @@ Set up workflows that continuously monitor production and equipment health.
 ## How It Works
 
 ```mermaid
-flowchart LR
+flowchart TD
     MES["MES"] --> SA["Superatom"]
     ERP["ERP System"] --> SA
     IOT["SCADA / IoT"] --> SA
@@ -73,9 +73,6 @@ flowchart LR
     SA --> INS["Insights & Alerts"]
     SA --> ACT["Automated Actions"]
 
-    style SA fill:#0D9373,color:#fff,stroke:#0D9373
-    style INS fill:#07C983,color:#fff,stroke:#07C983
-    style ACT fill:#07C983,color:#fff,stroke:#07C983
 ```
 
 <Note>

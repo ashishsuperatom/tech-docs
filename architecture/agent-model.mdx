@@ -12,13 +12,13 @@ Superatom uses a multi-agent architecture where specialized agents handle distin
 
 The Main Agent is the orchestrator at the center of the system. When a user asks a question, the Main Agent handles the full request lifecycle:
 
-1. **Classifies the intent** — determines whether the request is a lookup, comparison, trend analysis, root cause investigation, forecast, or action
-2. **Determines data sources** — identifies which connected data sources are needed to answer the question
-3. **Checks permissions** — validates the user's access against the required data
-4. **Routes to agents** — dispatches the request to the appropriate data-source agent(s)
-5. **Synthesizes results** — combines responses from multiple agents for cross-source queries
-6. **Selects visualization** — picks the optimal chart or table component
-7. **Streams the response** — delivers results progressively back to the user
+1. **Classifies the intent:** determines whether the request is a lookup, comparison, trend analysis, root cause investigation, forecast, or action
+2. **Determines data sources:** identifies which connected data sources are needed to answer the question
+3. **Checks permissions:** validates the user's access against the required data
+4. **Routes to agents:** dispatches the request to the appropriate data-source agent(s)
+5. **Synthesizes results:** combines responses from multiple agents for cross-source queries
+6. **Selects visualization:** picks the optimal chart or table component
+7. **Streams the response:** delivers results progressively back to the user
 
 <Note>
   The Main Agent **never** directly accesses customer databases. It does not hold database credentials. All data access is delegated to data-source agents over internal WebSocket connections.
@@ -62,16 +62,6 @@ flowchart TD
 
     MA -. "WebSocket" .-> AA["Action Agents<br/><i>Write-back operations</i><br/><i>Separate credentials</i>"]
 
-    style MA fill:#e0f2fe,stroke:#0D9373
-    style A1 fill:#d1fae5,stroke:#0D9373
-    style A2 fill:#d1fae5,stroke:#0D9373
-    style A3 fill:#d1fae5,stroke:#0D9373
-    style A4 fill:#d1fae5,stroke:#0D9373
-    style AA fill:#fef3c7,stroke:#f59e0b
-    style DB1 fill:#fce7f3,stroke:#ec4899
-    style DB2 fill:#fce7f3,stroke:#ec4899
-    style DB3 fill:#fce7f3,stroke:#ec4899
-    style DB4 fill:#fce7f3,stroke:#ec4899
 ```
 
 ### Cross-Source Queries
@@ -139,17 +129,17 @@ Each component has a defined resource footprint for deployment planning:
 
 The Report Engine is a dedicated component that runs independently from the interactive query path. It handles background and scheduled workloads:
 
-- **Scheduled report generation and delivery** — recurring reports run on defined schedules
-- **Anomaly detection baseline models** — continuous learning from historical data patterns
-- **Continuous metric monitoring** — tracks key metrics and detects deviations
-- **Triggered alert investigation** — automatically investigates when alerts fire
+- **Scheduled report generation and delivery:** recurring reports run on defined schedules
+- **Anomaly detection baseline models:** continuous learning from historical data patterns
+- **Continuous metric monitoring:** tracks key metrics and detects deviations
+- **Triggered alert investigation:** automatically investigates when alerts fire
 
 <Note>
   The Report Engine is architecturally separate from the interactive query pipeline. Scheduled processing does not compete with interactive queries for resources, ensuring consistent response times for live users.
 </Note>
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph Interactive Path
         USER["User"] --> MA["Main Agent"]
         MA --> DSA["Data-Source Agents"]
@@ -163,13 +153,6 @@ flowchart LR
     DSA --> DB[("Customer<br/>Databases")]
     DSA2 --> DB
 
-    style USER fill:#e0f2fe,stroke:#0D9373
-    style MA fill:#e0f2fe,stroke:#0D9373
-    style DSA fill:#d1fae5,stroke:#0D9373
-    style RE fill:#fef3c7,stroke:#f59e0b
-    style DSA2 fill:#d1fae5,stroke:#0D9373
-    style SCHED fill:#fef3c7,stroke:#f59e0b
-    style DB fill:#fce7f3,stroke:#ec4899
 ```
 
 ---

@@ -69,7 +69,7 @@ Set up workflows that continuously monitor clinical operations and financial per
 ## How It Works
 
 ```mermaid
-flowchart LR
+flowchart TD
     EHR["EHR / EMR"] --> SA["Superatom"]
     CLAIMS["Claims Processing"] --> SA
     PHARM["Pharmacy Systems"] --> SA
@@ -77,9 +77,6 @@ flowchart LR
     SA --> INS["Insights & Alerts"]
     SA --> ACT["Automated Actions"]
 
-    style SA fill:#0D9373,color:#fff,stroke:#0D9373
-    style INS fill:#07C983,color:#fff,stroke:#07C983
-    style ACT fill:#07C983,color:#fff,stroke:#07C983
 ```
 
 <Warning>

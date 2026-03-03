@@ -12,7 +12,7 @@ BlueLinx Holdings is a U.S.-based wholesale distributor of residential and comme
 
 BlueLinx operates **64 branches** with **\$356M+ in on-hand inventory**. The core problem:
 
-- **\$12M+ in deadstock** — inventory with no sales in 365+ days across 57 branches
+- **\$12M+ in deadstock**, inventory with no sales in 365+ days across 57 branches
 - The problem wasn't just identifying dead stock, but figuring out **where to send it** so it generates ROI instead of sitting in branches with no demand
 - Manual analysis across 64 branches was impractical at scale
 
@@ -21,7 +21,7 @@ BlueLinx operates **64 branches** with **\$356M+ in on-hand inventory**. The cor
 ## The Approach
 
 - **Agentic AI** for intelligent deadstock identification and demand analysis
-- **Mixed Integer Linear Programming (MILP)** for optimal transfer route selection — evaluating demand, distance, and freight cost simultaneously
+- **Mixed Integer Linear Programming (MILP)** for optimal transfer route selection, evaluating demand, distance, and freight cost simultaneously
 - **Merging AI + domain-specific supply chain optimization algorithms** to make decisions that a general-purpose AI cannot
 
 ---
@@ -41,13 +41,13 @@ BlueLinx operates **64 branches** with **\$356M+ in on-hand inventory**. The cor
 
 ### 1. Inventory Intelligence Dashboard
 
-Real-time KPIs across 64 branches — revenue, orders, inventory, and margins at a glance.
+Real-time KPIs across 64 branches: revenue, orders, inventory, and margins at a glance.
 
 <Frame>
   <img src="/images/bluelinx-dashboard.png" alt="BlueLinx Inventory Intelligence Dashboard" />
 </Frame>
 
-The dashboard provides a unified view of quarterly revenue (\$475M), total orders (153K), on-hand inventory (\$356M), and external orders (\$65M) — giving leadership immediate visibility across the entire distribution network.
+The dashboard provides a unified view of quarterly revenue (\$475M), total orders (153K), on-hand inventory (\$356M), and external orders (\$65M), giving leadership immediate visibility across the entire distribution network.
 
 ---
 
@@ -59,7 +59,7 @@ Superatom automatically identified **\$24.7M in deadstock** and **\$118.6M in ov
   <img src="/images/bluelinx-deadstock-overstock.png" alt="Deadstock and Overstock by Branch" />
 </Frame>
 
-Each branch is ranked by deadstock and overstock value, making it immediately clear where the largest inventory problems exist — Portland, OR leads with \$2.2M in deadstock, while Bellingham leads overstock at \$6.5M.
+Each branch is ranked by deadstock and overstock value, making it immediately clear where the largest inventory problems exist. Portland, OR leads with \$2.2M in deadstock, while Bellingham leads overstock at \$6.5M.
 
 ---
 
@@ -89,7 +89,7 @@ Each recommendation shows:
 - **Destination branch** with proven demand
 - **Revenue potential** based on historical sales at the destination
 - **Freight cost** for the transfer
-- **ROI** — for example, LSL 1.35E TOLKO to Long Island shows **10.35x ROI**
+- **ROI** - for example, LSL 1.35E TOLKO to Long Island shows **10.35x ROI**
 
 ---
 
@@ -101,13 +101,13 @@ A geographic view of all 22 optimized transfer routes across the U.S. from a sin
   <img src="/images/bluelinx-transfer-map.png" alt="Transfer Route Visualization Map" />
 </Frame>
 
-The map shows transfer routes radiating from Birmingham to destinations across the country — each route optimized for demand match, distance, and cost. Larger circles indicate higher-value SKUs.
+The map shows transfer routes radiating from Birmingham to destinations across the country, each route optimized for demand match, distance, and cost. Larger circles indicate higher-value SKUs.
 
 ---
 
 ### 6. Transfer Order to Oracle ERP
 
-From insight to action — **62 SKUs transferred to 23 destinations** with a single command, written directly to Oracle ERP.
+From insight to action: **62 SKUs transferred to 23 destinations** with a single command, written directly to Oracle ERP.
 
 <Frame>
   <img src="/images/bluelinx-transfer-order.png" alt="Transfer Order Written to Oracle ERP" />
@@ -122,7 +122,7 @@ The transfer order is created in Oracle ERP with full traceability: order number
 | Capability | How It Was Used |
 |-----------|----------------|
 | **Agentic AI** | Connected to BlueLinx's MSSQL database, analyzed inventory across 64 branches |
-| **Domain Algorithms** | MILP optimization for transfer routing — not something a general LLM can do |
+| **Domain Algorithms** | MILP optimization for transfer routing, not something a general LLM can do |
 | **Generative UI** | Dashboards, tables, maps, and transfer details generated automatically |
 | **Action Execution** | Transfer orders written directly to Oracle ERP with human approval |
 | **Tribal Knowledge** | Branch-specific context (demand patterns, logistics constraints) captured and applied |

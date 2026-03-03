@@ -13,7 +13,7 @@ Before diving deeper, understand these core concepts that power Superatom.
 Superatom implements a continuous decision-making loop:
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["UNDERSTAND"] --> B["ANALYZE"]
     B --> C["SUGGEST"]
     C --> D["VERIFY"]
@@ -21,12 +21,6 @@ flowchart LR
     E --> F["OBSERVE"]
     F --> A
 
-    style A fill:#0D9373,color:#fff
-    style B fill:#0D9373,color:#fff
-    style C fill:#0D9373,color:#fff
-    style D fill:#07C983,color:#fff
-    style E fill:#07C983,color:#fff
-    style F fill:#07C983,color:#fff
 ```
 
 | Stage | What Happens |
@@ -70,10 +64,9 @@ Organization-specific knowledge captured at three levels:
 ```mermaid
 flowchart TD
     QUESTION["User Question"] --> ENGINE["Knowledge Engine"]
-    ENGINE --> G["🌍 GLOBAL"] & U["👤 USER"] & Q["❓ QUERY"]
+    ENGINE --> G["GLOBAL"] & U["USER"] & Q["QUERY"]
     G & U & Q --> ANSWER["Contextualized Answer"]
 
-    style ENGINE fill:#0D9373,color:#fff
 ```
 
 | Level | Example | Scope |
@@ -145,9 +138,9 @@ Visual representation of how concepts connect:
 </Frame>
 
 The graph shows relationships between:
-- **Entities** — Orders, Customers, Products
-- **Processes** — Workflows, lifecycles
-- **Insights** — Derived knowledge, calculations
+- **Entities** - Orders, Customers, Products
+- **Processes** - Workflows, lifecycles
+- **Insights** - Derived knowledge, calculations
 
 ---
 
@@ -156,7 +149,7 @@ The graph shows relationships between:
 AI agents that understand business context:
 
 ```mermaid
-flowchart LR
+flowchart TD
     Q["Complex Question"] --> AGENT["Coding Agent"]
 
     AGENT --> THINK["Think"]
@@ -166,7 +159,6 @@ flowchart LR
     DECIDE -->|No| THINK
     DECIDE -->|Yes| ANSWER["Answer"]
 
-    style AGENT fill:#0D9373,color:#fff
 ```
 
 Agents can:
@@ -182,15 +174,13 @@ Agents can:
 Safe action execution with human oversight:
 
 ```mermaid
-flowchart LR
+flowchart TD
     AI["AI Suggests Action"] --> SIM["Simulate"]
     SIM --> REVIEW["Human Review"]
     REVIEW --> APPROVE{"Approved?"}
     APPROVE -->|Yes| EXECUTE["Execute"]
     APPROVE -->|No| MODIFY["Modify/Reject"]
 
-    style SIM fill:#f59e0b,color:#fff
-    style REVIEW fill:#0D9373,color:#fff
 ```
 
 Actions are simulated first, showing what WOULD happen before committing.

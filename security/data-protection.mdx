@@ -11,12 +11,11 @@ Superatom NEVER stores your business data. All processing is ephemeral.
 </Note>
 
 ```mermaid
-flowchart LR
+flowchart TD
     DATA["Your Data"] --> PROCESS["Ephemeral Processing"]
     PROCESS --> RESULT["Results Returned"]
     PROCESS --> DELETE["Data Deleted"]
 
-    style DELETE fill:#0D9373,color:#fff
 ```
 
 ## What IS Stored
@@ -67,7 +66,7 @@ flowchart LR
 
 ## What the LLM Receives
 
-The LLM is called as a stateless inference service. Each request is constructed from scratch — no state persists between calls.
+The LLM is called as a stateless inference service. Each request is constructed from scratch, and no state persists between calls.
 
 ### Sent to the LLM
 

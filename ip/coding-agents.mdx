@@ -6,7 +6,7 @@ icon: 'robot'
 
 ## The Breakthrough
 
-**Coding agents are the most powerful outcome of modern AI.** They can write code, execute it, analyze results, and iterate—performing complex multi-step tasks autonomously.
+**Coding agents are the most powerful outcome of modern AI.** They can write code, execute it, analyze results, and iterate, performing complex multi-step tasks autonomously.
 
 **The problem:** Generic coding agents don't understand enterprise data contexts. They can write SQL, but they don't know that "sales" should exclude returns, or that "Q3" means fiscal Q3, or that the Miami branch data always arrives late.
 
@@ -44,8 +44,6 @@ flowchart TB
 
     EXECUTION --> RESULT["Root Cause Analysis:<br>Product mix shift, Supplier costs,<br>Promotional discounting"]
 
-    style AGENT fill:#0D9373,color:#fff
-    style RESULT fill:#07C983,color:#fff
 ```
 
 ---
@@ -97,7 +95,7 @@ Before generating any code, the agent loads relevant context:
 The agent executes a reasoning loop:
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph LOOP["AGENT REASONING LOOP"]
         THINK["Think:<br>What do I need to know?"]
         ACT["Act:<br>Execute query/analysis"]
@@ -109,7 +107,6 @@ flowchart LR
     DECIDE -->|Continue| THINK
     DECIDE -->|Complete| OUTPUT["Final Answer"]
 
-    style OUTPUT fill:#07C983,color:#fff
 ```
 
 **Example Iteration:**
@@ -207,7 +204,7 @@ RECOMMENDED ACTIONS:
 Agents have access to a suite of specialized tools:
 
 ```mermaid
-flowchart LR
+flowchart TD
     AGENT["Coding Agent"] --> TOOLS["Tool Registry"]
 
     subgraph TOOLS_LIST["AVAILABLE TOOLS (21+)"]
@@ -297,7 +294,7 @@ Superatom agents work with multiple LLM providers:
 | **Groq** | Ultra-fast | High-volume, simple queries |
 
 ```mermaid
-flowchart LR
+flowchart TD
     AGENT["Agent"] --> STRATEGY["Model Strategy"]
 
     STRATEGY --> BEST["BEST<br>Highest quality<br>(Claude)"]

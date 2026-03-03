@@ -4,7 +4,7 @@ description: 'Set up workflows and triggers based on your data'
 icon: 'bolt'
 ---
 
-Automated Actions let you create workflows that respond to data conditions—from daily summaries to real-time alerts when critical thresholds are breached.
+Automated Actions let you create workflows that respond to data conditions, from daily summaries to real-time alerts when critical thresholds are breached.
 
 <Frame>
   <img src="/images/automated-actions.png" alt="Automated Actions Dashboard" />
@@ -15,20 +15,18 @@ Automated Actions let you create workflows that respond to data conditions—fro
 ## How Actions Work
 
 ```mermaid
-flowchart LR
+flowchart TD
     TRIGGER["Trigger<br>(Schedule or Condition)"] --> EXECUTE["Execute Analysis"]
     EXECUTE --> ACTION["Take Action<br>(Alert, Report, Workflow)"]
     ACTION --> TRACK["Track Results"]
 
-    style TRIGGER fill:#0D9373,color:#fff
-    style ACTION fill:#07C983,color:#fff
 ```
 
 Actions have three components:
 
-1. **Trigger** — When to run
-2. **Analysis** — What to check or calculate
-3. **Action** — What to do with the results
+1. **Trigger:** When to run
+2. **Analysis:** What to check or calculate
+3. **Action:** What to do with the results
 
 ---
 
@@ -55,7 +53,7 @@ Write-back actions pass through configurable approval levels based on risk:
 
 ### Dry-Run Mode
 
-Any action can be simulated before activation. The system shows exactly what would happen — which records would be affected, what notifications would be sent, what values would change — without executing. Use dry-run mode during the first 1-2 weeks of a new workflow to validate its behavior.
+Any action can be simulated before activation. The system shows exactly what would happen: which records would be affected, what notifications would be sent, and what values would change, all without executing. Use dry-run mode during the first 1-2 weeks of a new workflow to validate its behavior.
 
 ---
 
@@ -99,9 +97,9 @@ Run when conditions are met:
     Start the action creation wizard
   </Step>
   <Step title="Choose Trigger Type">
-    - **Schedule** — Run at specific times (daily, weekly, monthly, cron)
-    - **Condition** — Run when data meets criteria (threshold, variance)
-    - **Event** — Run when data changes (new record, status update, webhook)
+    - **Schedule:** Run at specific times (daily, weekly, monthly, cron)
+    - **Condition:** Run when data meets criteria (threshold, variance)
+    - **Event:** Run when data changes (new record, status update, webhook)
   </Step>
   <Step title="Define the Analysis">
     Describe what to analyze: *"Check if daily revenue is more than 10% below forecast"*
@@ -266,10 +264,10 @@ View complete execution history:
 
 Actions can chain multiple analysis and action steps:
 
-1. **Detect** — Identify an anomaly or condition (e.g., inventory below safety stock)
-2. **Investigate** — Run root cause analysis (e.g., check demand spike, supplier delay, forecast error)
-3. **Assess** — Quantify impact (e.g., estimated stockout in 3 days, $45K revenue at risk)
-4. **Act** — Take action based on findings (e.g., generate PO, alert procurement manager, update dashboard)
+1. **Detect:** Identify an anomaly or condition (e.g., inventory below safety stock)
+2. **Investigate:** Run root cause analysis (e.g., check demand spike, supplier delay, forecast error)
+3. **Assess:** Quantify impact (e.g., estimated stockout in 3 days, $45K revenue at risk)
+4. **Act:** Take action based on findings (e.g., generate PO, alert procurement manager, update dashboard)
 
 Each step can branch based on the previous step's results, enabling intelligent automated responses.
 

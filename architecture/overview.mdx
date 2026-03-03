@@ -17,15 +17,6 @@ flowchart TD
     SDK_NODE --> PG["PostgreSQL"] & CHROMA["ChromaDB"]
     BACKEND --> CUSTOMER["Customer DBs"]
 
-    style UI fill:#e0f2fe,stroke:#0D9373
-    style SDK_WEB fill:#e0f2fe,stroke:#0D9373
-    style DO fill:#fef3c7,stroke:#f59e0b
-    style SDK_NODE fill:#d1fae5,stroke:#0D9373
-    style BACKEND fill:#d1fae5,stroke:#0D9373
-    style ANALYSIS fill:#d1fae5,stroke:#0D9373
-    style PG fill:#fce7f3,stroke:#ec4899
-    style CHROMA fill:#fce7f3,stroke:#ec4899
-    style CUSTOMER fill:#fce7f3,stroke:#ec4899
 ```
 
 ---
@@ -112,7 +103,7 @@ Superatom uses an agent-based architecture where each data source gets its own d
 
 | Component | Role | Database Access |
 |-----------|------|-----------------|
-| **Main Agent** | Orchestrates requests, communicates with LLM, synthesizes responses | None — no credentials |
+| **Main Agent** | Orchestrates requests, communicates with LLM, synthesizes responses | None, no credentials |
 | **Data-Source Agents** | One per connected database/API/file. Holds credentials, executes queries | Read-only |
 | **Action Agents** | Handle write-back operations with separate credentials | Write (with approval gates) |
 | **Report Engine** | Scheduled reports, anomaly detection, continuous monitoring | Via data-source agents |
@@ -135,7 +126,7 @@ Uses Cloudflare Workers and Durable Objects for the infrastructure layer. WebSoc
 
 ### On-Premise (Enterprise)
 
-All components — including the WebSocket server, Main Agent, data-source agents, and databases — run on the customer's infrastructure as Docker containers orchestrated with Docker Compose or Kubernetes. No external dependencies required (with self-hosted LLM option).
+All components, including the WebSocket server, Main Agent, data-source agents, and databases, run on the customer's infrastructure as Docker containers orchestrated with Docker Compose or Kubernetes. No external dependencies required (with self-hosted LLM option).
 
 <Card title="Infrastructure" icon="server" href="/architecture/infrastructure">
   Deployment specs, scaling, and on-premise requirements
@@ -190,7 +181,7 @@ Full TypeScript with Zod validation:
 ### Horizontal Scaling
 
 ```mermaid
-flowchart LR
+flowchart TD
     LOAD["Load Growth"] --> P1["Project A"] & P2["Project B"] & P3["Project C"]
     P1 --> B1["Backend A"]
     P2 --> B2["Backend B"]

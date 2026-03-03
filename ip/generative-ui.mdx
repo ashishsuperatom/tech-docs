@@ -39,8 +39,6 @@ flowchart TB
 
     CONFIGURE --> RENDER["RENDER<br>Interactive UI"]
 
-    style Q fill:#0D9373,color:#fff
-    style RENDER fill:#07C983,color:#fff
 ```
 
 ### Stage 1: Understanding Intent
@@ -75,7 +73,7 @@ LIMIT 10
 Before visualization, we analyze the result set:
 
 ```mermaid
-flowchart LR
+flowchart TD
     DATA["Query Results"] --> A1["Cardinality<br>How many unique values?"]
     DATA --> A2["Data Types<br>Numeric? Categorical? Temporal?"]
     DATA --> A3["Distribution<br>Even? Skewed? Outliers?"]
@@ -83,7 +81,6 @@ flowchart LR
 
     A1 & A2 & A3 & A4 --> DECISION["Component Selection Decision"]
 
-    style DECISION fill:#0D9373,color:#fff
 ```
 
 ### Stage 4: Component Selection
@@ -193,13 +190,6 @@ flowchart TD
     Q6 -->|Yes| SCATTER["Scatter Plot"]
     Q6 -->|No| TABLE["Data Table"]
 
-    style KPI fill:#0D9373,color:#fff
-    style LINE fill:#0D9373,color:#fff
-    style MULTI_LINE fill:#0D9373,color:#fff
-    style PIE fill:#0D9373,color:#fff
-    style BAR fill:#0D9373,color:#fff
-    style SCATTER fill:#0D9373,color:#fff
-    style TABLE fill:#0D9373,color:#fff
 ```
 
 ### Contextual Adaptation
@@ -220,7 +210,7 @@ The same data can be visualized differently based on context:
 ### Component Architecture
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph ENGINE["GENERATIVE UI ENGINE"]
         SELECTOR["Component<br>Selector"]
         MAPPER["Data<br>Mapper"]

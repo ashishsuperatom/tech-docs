@@ -15,7 +15,7 @@ Every organization has knowledge that exists only in people's heads:
     Unwritten rules specific to this organization
   </Card>
   <Card title="Experiential Knowledge" icon="graduation-cap">
-    *"We tried that approach in 2019—it doesn't work with our suppliers"*
+    *"We tried that approach in 2019, and it doesn't work with our suppliers"*
 
     Learned through doing, never documented
   </Card>
@@ -37,12 +37,10 @@ Superatom captures tribal knowledge at **three levels**, each with different sco
 ```mermaid
 flowchart TD
     QUERY["User Question"] --> ENGINE["Knowledge Engine"]
-    ENGINE --> L1["🌍 GLOBAL"] & L2["👤 USER"] & L3["❓ QUERY"]
+    ENGINE --> L1["GLOBAL"] & L2["USER"] & L3["QUERY"]
     L1 & L2 & L3 --> CONTEXT["Contextualized Query"]
     CONTEXT --> ANSWER["Organization-Specific Answer"]
 
-    style ENGINE fill:#0D9373,color:#fff
-    style ANSWER fill:#07C983,color:#fff
 ```
 
 ---
@@ -65,14 +63,13 @@ flowchart TD
 ### How It Works
 
 ```mermaid
-flowchart LR
+flowchart TD
     Q["'What were Q3 sales?'"] --> GLOBAL["Global Knowledge:<br>Fiscal year starts April 1"]
 
     GLOBAL --> INTERPRET["Interprets Q3 as<br>Oct 1 - Dec 31"]
 
     INTERPRET --> SQL["SELECT SUM(amount)<br>WHERE date BETWEEN<br>'2025-10-01' AND '2025-12-31'"]
 
-    style GLOBAL fill:#0D9373,color:#fff
 ```
 
 Without global knowledge, "Q3" might be interpreted as calendar Q3 (Jul-Sep) instead of fiscal Q3.
@@ -97,14 +94,13 @@ Without global knowledge, "Q3" might be interpreted as calendar Q3 (Jul-Sep) ins
 ### How It Works
 
 ```mermaid
-flowchart LR
+flowchart TD
     Q["'Show me inventory levels'"] --> USER["User Knowledge:<br>West Coast Manager<br>'Only show CA, OR, WA'"]
 
     USER --> FILTER["Applies regional filter<br>automatically"]
 
     FILTER --> RESULT["Shows only West Coast<br>inventory"]
 
-    style USER fill:#0D9373,color:#fff
 ```
 
 The same question from a different user would show different data based on their knowledge nodes.
@@ -133,7 +129,7 @@ The same question from a different user would show different data based on their
 </Frame>
 
 ```mermaid
-flowchart LR
+flowchart TD
     Q["'Which items are overstock?'"] --> QUERY["Query Knowledge:<br>'Overstock = inventory > 90 days supply'"]
 
     QUERY --> CALC["Calculates:<br>inventory_qty / (avg_daily_sales)"]
@@ -142,7 +138,6 @@ flowchart LR
 
     FILTER --> RESULT["Returns overstock items<br>with consistent definition"]
 
-    style QUERY fill:#0D9373,color:#fff
 ```
 
 ---
@@ -195,14 +190,12 @@ flowchart TD
     CUSTOMER --> SEGMENT["Segmentation"]
     INVENTORY --> DEADSTOCK["Deadstock Rules"] & OVERSTOCK["Overstock Rules"]
 
-    style DEADSTOCK fill:#0D9373,color:#fff
-    style OVERSTOCK fill:#0D9373,color:#fff
 ```
 
 This graph enables:
-- **Relationship traversal** — Understanding how concepts connect
-- **Context inheritance** — Child nodes inherit parent knowledge
-- **Conflict resolution** — More specific nodes override general ones
+- **Relationship traversal** - Understanding how concepts connect
+- **Context inheritance** - Child nodes inherit parent knowledge
+- **Conflict resolution** - More specific nodes override general ones
 
 ---
 
@@ -240,8 +233,6 @@ flowchart TD
     MATCH --> M1["Query-Level"] --> M2["User-Level"] --> M3["Global-Level"]
     M3 --> MERGE["Merge Knowledge"] --> CONTEXT["Contextualized Query"] --> EXECUTE["Execute"]
 
-    style MERGE fill:#0D9373,color:#fff
-    style EXECUTE fill:#07C983,color:#fff
 ```
 
 **Priority Order:**

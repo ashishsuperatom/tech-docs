@@ -1,6 +1,6 @@
 ---
 title: 'The Seven Problems'
-description: 'Why enterprise AI adoption has been nearly impossible—until now'
+description: 'Why enterprise AI adoption has been nearly impossible, until now'
 icon: 'triangle-exclamation'
 ---
 
@@ -31,9 +31,6 @@ flowchart TD
     D1 & D2 & D3 & D4 --> CHAOS["DATA CHAOS"]
     CHAOS --> FAIL["Cannot Feed AI Quality Data"]
 
-    style TITLE fill:#fef3c7,stroke:#f59e0b
-    style CHAOS fill:#ef4444,color:#fff
-    style FAIL fill:#ef4444,color:#fff
 ```
 
 ### The Sub-Problems
@@ -54,12 +51,11 @@ flowchart TD
 For Problems 2, 3, and 4, Superatom AI makes sense of your data automatically:
 
 ```mermaid
-flowchart LR
+flowchart TD
     S1[ERP Systems] & S2[Databases] & S3[File Systems] & S4[APIs] --> A1
 
     A1["Schema Analysis"] --> A2["Statistical Profiling"] --> A3["Domain Classification"] --> A4["Query Generation"] --> O1["Semantic Model"]
 
-    style O1 fill:#0D9373,color:#fff
 ```
 
 <Tabs>
@@ -126,10 +122,6 @@ flowchart TD
     R2 --> B3["Branch C<br>Local variations"]
     R2 --> B4["Branch D<br>Local variations"]
 
-    style HQ fill:#0D9373,color:#fff
-    style R1 fill:#ef4444,color:#fff
-    style R2 fill:#ef4444,color:#fff
-    style R3 fill:#ef4444,color:#fff
 ```
 
 Different departments, branches, and geographies interpret data differently. A "sale" in Region 1 might include returns; in Region 2, it might not. Without this context, analysis is meaningless.
@@ -142,14 +134,12 @@ Superatom captures organization-specific knowledge at **three levels**:
 flowchart TD
     Q["User Question"] --> TK["Tribal Knowledge Engine"]
 
-    TK --> L1["🌍 GLOBAL"] & L2["👤 USER"] & L3["❓ QUERY"]
+    TK --> L1["GLOBAL"] & L2["USER"] & L3["QUERY"]
 
     L1 & L2 & L3 --> CONTEXT["Contextualized Query"]
 
     CONTEXT --> ANSWER["Accurate Answer"]
 
-    style TK fill:#0D9373,color:#fff
-    style ANSWER fill:#07C983,color:#fff
 ```
 
 | Level | Example | Effect |
@@ -197,21 +187,19 @@ flowchart TD
 
 ### Superatom's Solution: Generative UI
 
-Superatom pioneered **Generative UI**—automatically creating the perfect visualization for any data:
+Superatom pioneered **Generative UI**, automatically creating the perfect visualization for any data:
 
 <Frame>
   <img src="/images/customer-segmentation.png" alt="Generative UI Example" />
 </Frame>
 
 ```mermaid
-flowchart LR
+flowchart TD
     Q["User Question"] --> AI["AI Analysis"]
     AI --> DATA["Data Retrieved"]
     DATA --> SELECT["Component Selection<br>16+ visualization types"]
     SELECT --> RENDER["Rendered UI<br>Interactive, explorable"]
 
-    style SELECT fill:#0D9373,color:#fff
-    style RENDER fill:#07C983,color:#fff
 ```
 
 | Component Type | Use Case | Auto-Selected When |
@@ -242,7 +230,7 @@ flowchart LR
     AI doesn't know what's *possible* in your organization. Suggestions may be impractical, costly, or politically impossible.
   </Card>
   <Card title="Accountability Gap" icon="scale-balanced">
-    AI is non-deterministic—it can make mistakes. Who's responsible when it does?
+    AI is non-deterministic, and it can make mistakes. Who's responsible when it does?
   </Card>
 </CardGroup>
 
@@ -259,21 +247,18 @@ flowchart TD
     APPROVE -->|No| MODIFY["Modify or Reject"]
     MODIFY --> AI
 
-    style DRY fill:#f59e0b,color:#fff
-    style REVIEW fill:#0D9373,color:#fff
-    style COMMIT fill:#07C983,color:#fff
 ```
 
 **How it works:**
 
 1. **AI suggests an action** (e.g., "Transfer 500 units from Warehouse A to B")
-2. **Action is committed to a simulated system**—you see exactly what would happen
-3. **Human reviews the simulation**—costs, impacts, side effects
-4. **Human approves or rejects**—maintaining accountability
+2. **Action is committed to a simulated system**, and you see exactly what would happen
+3. **Human reviews the simulation**: costs, impacts, side effects
+4. **Human approves or rejects**, maintaining accountability
 5. **Only then is the action executed** in the real system
 
 <Note>
-As confidence builds from historical accuracy, low-stakes decisions can be automated—but humans always have the option to intervene.
+As confidence builds from historical accuracy, low-stakes decisions can be automated, but humans always have the option to intervene.
 </Note>
 
 ---
@@ -284,7 +269,7 @@ As confidence builds from historical accuracy, low-stakes decisions can be autom
 
 **The Challenge:** Not all data is accessible everywhere. Field workers need insights too.
 
-A warehouse manager needs to see KPIs and take actions from the warehouse floor—but they don't have an office setup with them. Traditional solution: build mobile apps. Traditional problem: **mobile apps are expensive and time-consuming**.
+A warehouse manager needs to see KPIs and take actions from the warehouse floor, but they don't have an office setup with them. Traditional solution: build mobile apps. Traditional problem: **mobile apps are expensive and time-consuming**.
 
 ### Superatom's Solution: Auto-Generated Mobile Apps
 
@@ -295,7 +280,7 @@ Superatom automatically generates **iOS and Android applications** from your dat
 </Frame>
 
 ```mermaid
-flowchart LR
+flowchart TD
     DATA["Data Model"] --> ANALYSIS["Superatom Analysis"]
     ANALYSIS --> IOS["iOS App<br>Auto-generated"]
     ANALYSIS --> ANDROID["Android App<br>Auto-generated"]
@@ -303,15 +288,12 @@ flowchart LR
     IOS --> FIELD["Field Workers<br>Access from anywhere"]
     ANDROID --> FIELD
 
-    style IOS fill:#0D9373,color:#fff
-    style ANDROID fill:#0D9373,color:#fff
-    style FIELD fill:#07C983,color:#fff
 ```
 
 - **Thin clients** with restricted, specific functionality
 - **Role-based** views and actions
 - **Offline capable** for disconnected environments
-- **Zero development cost**—generated automatically
+- **Zero development cost**, generated automatically
 
 ---
 
@@ -374,16 +356,11 @@ When you employ a person, you control what they see and how they report. Program
 ### Superatom's Solution: Zero-Storage Architecture
 
 ```mermaid
-flowchart LR
+flowchart TD
     DATA["Your Data"] <--> SA["Superatom"]
 
     SA --> S1["Zero Storage"] & S2["Ephemeral Processing"] & S3["Encryption"] & S4["Enterprise IAM"]
 
-    style SA fill:#0D9373,color:#fff
-    style S1 fill:#07C983,color:#fff
-    style S2 fill:#07C983,color:#fff
-    style S3 fill:#07C983,color:#fff
-    style S4 fill:#07C983,color:#fff
 ```
 
 | Security Feature | Implementation |
@@ -400,7 +377,7 @@ flowchart LR
 These seven problems are interconnected, and so are Superatom's solutions:
 
 ```mermaid
-flowchart LR
+flowchart TD
     P1[Data] -.-> S1[Semantic Modeling]
     P2[Tacit Knowledge] -.-> S2[Tribal Knowledge]
     P3[Execution] -.-> S3[Generative UI]
@@ -409,20 +386,6 @@ flowchart LR
     P6[Delivery] -.-> S6[Reports & Dashboards]
     P7[Security] -.-> S7[Zero-Storage]
 
-    style P1 fill:#fecaca,stroke:#ef4444
-    style P2 fill:#fecaca,stroke:#ef4444
-    style P3 fill:#fecaca,stroke:#ef4444
-    style P4 fill:#fecaca,stroke:#ef4444
-    style P5 fill:#fecaca,stroke:#ef4444
-    style P6 fill:#fecaca,stroke:#ef4444
-    style P7 fill:#fecaca,stroke:#ef4444
-    style S1 fill:#bbf7d0,stroke:#22c55e
-    style S2 fill:#bbf7d0,stroke:#22c55e
-    style S3 fill:#bbf7d0,stroke:#22c55e
-    style S4 fill:#bbf7d0,stroke:#22c55e
-    style S5 fill:#bbf7d0,stroke:#22c55e
-    style S6 fill:#bbf7d0,stroke:#22c55e
-    style S7 fill:#bbf7d0,stroke:#22c55e
 ```
 
 <Card title="Continue to Our Innovations" icon="flask" href="/ip/overview">

@@ -6,7 +6,7 @@ icon: 'link'
 
 ## The Challenge
 
-Enterprise data is scattered across dozens of systems—ERPs, databases, file systems, APIs—each with its own schema, terminology, and logic. Making sense of how all these pieces connect has traditionally required:
+Enterprise data is scattered across dozens of systems (ERPs, databases, file systems, APIs), each with its own schema, terminology, and logic. Making sense of how all these pieces connect has traditionally required:
 
 - Expensive data engineering teams
 - Months of integration work
@@ -47,7 +47,6 @@ flowchart TB
     S1 & S2 & S3 & S4 & S5 --> A1
     A1 --> A2 --> A3 --> A4 --> A5 --> O1
 
-    style O1 fill:#0D9373,color:#fff
 ```
 
 ---
@@ -106,7 +105,7 @@ We retrieve representative samples from each field to understand actual data cha
 Deep statistical analysis of each field:
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph PROFILE["STATISTICAL PROFILE"]
         P1["Distinct Values<br>Cardinality analysis"]
         P2["Distribution<br>Mean, median, std dev"]
@@ -119,7 +118,6 @@ flowchart LR
 
     P1 & P2 & P3 & P4 & P5 --> INSIGHT["Field Intelligence"]
 
-    style INSIGHT fill:#0D9373,color:#fff
 ```
 
 **Example Output:**
@@ -217,7 +215,7 @@ Based on all previous analysis, we generate:
 As we add more domain knowledge and verticals, setup cost for new organizations approaches zero:
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph LEARNING["ACCUMULATED KNOWLEDGE"]
         K1["Retail Domain<br>Patterns & terminology"]
         K2["Supply Chain<br>Workflows & metrics"]
@@ -229,7 +227,6 @@ flowchart LR
     K1 & K2 & K3 & K4 --> MATCH
     MATCH --> MODEL["Instant Semantic Model"]
 
-    style MODEL fill:#0D9373,color:#fff
 ```
 
 Each new deployment adds to our knowledge base. Each addition makes the next deployment faster.
@@ -267,7 +264,7 @@ Enterprise data isn't static. Superatom handles evolution:
 ### Connection Layer
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph CONNECTORS["DATA CONNECTORS"]
         C1["JDBC<br>Postgres, MySQL, SQL Server"]
         C2["Native<br>BigQuery, Snowflake, Databricks"]

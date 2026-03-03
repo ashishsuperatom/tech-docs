@@ -52,12 +52,6 @@ graph LR
         RA2 --> DB2[(Database)]
     end
 
-    style UI fill:#2d3748,stroke:#4a5568,color:#e2e8f0
-    style WS fill:#2d3748,stroke:#4a5568,color:#e2e8f0
-    style MA fill:#2d3748,stroke:#4a5568,color:#e2e8f0
-    style LLM fill:#1a365d,stroke:#2b6cb0,color:#e2e8f0
-    style RA1 fill:#1a365d,stroke:#2b6cb0,color:#e2e8f0
-    style RA2 fill:#1a365d,stroke:#2b6cb0,color:#e2e8f0
 ```
 
 In this configuration:
@@ -69,7 +63,7 @@ In this configuration:
 
 ## What the LLM Receives
 
-The LLM is a stateless inference service. Each request is constructed from scratch — no state persists between calls.
+The LLM is a stateless inference service. Each request is constructed from scratch, and no state persists between calls.
 
 ### Sent to the LLM
 
@@ -93,7 +87,7 @@ The LLM is a stateless inference service. Each request is constructed from scrat
 | User identities or conversation content | User data |
 
 <Warning>
-  The LLM receives only structural metadata — table names, column names, data types, and business definitions. It never receives the actual data stored in those tables.
+  The LLM receives only structural metadata: table names, column names, data types, and business definitions. It never receives the actual data stored in those tables.
 </Warning>
 
 ## No Training on Customer Data
