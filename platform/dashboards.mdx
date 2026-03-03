@@ -110,14 +110,48 @@ Choose from built-in themes or customize:
 
 ## Interactive Features
 
-### Global Filters
+### Filtering System
 
-Add filters that affect all components:
+Dashboards support a layered filtering system that gives users precise control over what data is displayed.
+
+#### Global Filters
+
+Affect all tiles simultaneously:
 
 - **Date Range** — Filter entire dashboard by time period
 - **Region** — Show data for specific regions
 - **Product** — Focus on product categories
 - **Custom** — Any dimension in your data
+
+Global filters are auto-derived from the data dimensions present across tiles. When you add tiles that share common dimensions (like region or date), those dimensions automatically become available as global filters.
+
+#### Tile-Level Filters
+
+Individual tiles can have their own filter overrides that narrow or modify the global filter scope. For example, a global filter set to "All Regions" can be overridden on a specific tile to show only "Northeast" for a focused comparison.
+
+#### Cross-Filtering
+
+Click a data point in one tile to filter related tiles:
+
+- Click "Northeast" on a regional bar chart — all other tiles filter to Northeast data
+- Click "Q3" on a timeline — all tiles narrow to Q3
+- Click a product category — see its impact across all metrics
+
+Cross-filtering works automatically when tiles share common dimensions.
+
+#### Filter Persistence
+
+Filter selections are saved with the dashboard. When users return, they see their last-applied filters. Shared dashboards preserve the creator's default filters, while each viewer can apply their own overrides without affecting others.
+
+#### URL Parameters
+
+Filters can be set via URL parameters, enabling direct links to specific filtered views:
+
+```
+/dashboards/executive-overview?region=Northeast&period=Q3-2025
+```
+
+This is useful for sending pre-filtered dashboard links in reports, emails, or Slack alerts.
 
 ### Drill-Down
 

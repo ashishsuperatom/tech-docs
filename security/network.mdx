@@ -1,0 +1,101 @@
+---
+title: "Network & Data Flow"
+description: "What leaves your network, what stays, and air-gapped deployment"
+icon: "network-wired"
+---
+
+Superatom is deployed entirely within customer infrastructure. All external communication is outbound HTTPS only. No inbound ports need to be opened.
+
+## Outbound Traffic
+
+The platform makes two categories of outbound HTTPS calls:
+
+| Destination | Content | Can Be Proxied |
+|---|---|---|
+| **LLM provider API** | Schema metadata, generated SQL, questions, tribal knowledge | Yes |
+| **Superatom platform** | Usage telemetry (query counts, response times, feature usage) | Yes |
+
+Both destinations can be routed through the organization's existing forward proxy or firewall.
+
+<Note>
+  In air-gapped deployments with a self-hosted LLM, both outbound connections are eliminated. Zero data leaves the network perimeter.
+</Note>
+
+## What Never Leaves the Network
+
+The following data categories are processed entirely within the customer's infrastructure and never transmitted externally:
+
+- Raw data rows or individual records
+- PII or sensitive business data
+- Database credentials
+- Query results
+- File contents
+- User identities or conversation content
+
+## No Inbound Connections Required
+
+Superatom requires no inbound ports to be opened. All external communication is initiated outbound by the platform. There are no webhooks, callbacks, or remote access channels.
+
+## Air-Gapped Deployment
+
+For environments that cannot make any external calls, Superatom supports deployment with a self-hosted LLM running within the customer's network.
+
+```mermaid
+graph LR
+    subgraph Customer Network
+        UI["Web UI"] --> WS["WebSocket Server"]
+        WS --> MA["Main Agent"]
+        MA --> LLM["Self-Hosted LLM"]
+        MA --> RA1["Read Agent"]
+        MA --> RA2["Read Agent"]
+        RA1 --> DB1[(Database)]
+        RA2 --> DB2[(Database)]
+    end
+
+    style UI fill:#2d3748,stroke:#4a5568,color:#e2e8f0
+    style WS fill:#2d3748,stroke:#4a5568,color:#e2e8f0
+    style MA fill:#2d3748,stroke:#4a5568,color:#e2e8f0
+    style LLM fill:#1a365d,stroke:#2b6cb0,color:#e2e8f0
+    style RA1 fill:#1a365d,stroke:#2b6cb0,color:#e2e8f0
+    style RA2 fill:#1a365d,stroke:#2b6cb0,color:#e2e8f0
+```
+
+In this configuration:
+
+- Open-source or licensed models run on the customer's GPU infrastructure
+- The Main Agent calls the LLM over the internal network
+- No external API calls are made
+- All telemetry is disabled or routed internally
+
+## What the LLM Receives
+
+The LLM is a stateless inference service. Each request is constructed from scratch — no state persists between calls.
+
+### Sent to the LLM
+
+| Data | Purpose |
+|---|---|
+| Schema metadata (table/column names, types) | Correct SQL generation |
+| Generated SQL queries | Validation and refinement |
+| Natural language questions | Intent classification |
+| Tribal knowledge definitions | Business context (e.g., "Sales excludes returns") |
+| Aggregated statistics (cardinality, distribution) | Query optimization |
+
+### Never Sent to the LLM
+
+| Data | Category |
+|---|---|
+| Raw data rows or individual records | Business data |
+| PII (names, emails, addresses, SSNs) | Personal data |
+| Database credentials or connection strings | Secrets |
+| Query results or actual business numbers | Business data |
+| File contents or document data | Business data |
+| User identities or conversation content | User data |
+
+<Warning>
+  The LLM receives only structural metadata — table names, column names, data types, and business definitions. It never receives the actual data stored in those tables.
+</Warning>
+
+## No Training on Customer Data
+
+Customer data, queries, and knowledge nodes are never used to train or fine-tune models. The LLM provider receives stateless inference requests only. This applies to both cloud-hosted and self-hosted LLM configurations.

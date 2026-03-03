@@ -1,0 +1,101 @@
+---
+title: "Action Safety"
+description: "Approval workflows, dry-run capability, and write-back controls"
+icon: "lock"
+---
+
+Write-back operations — creating purchase orders, updating records, triggering external systems — pass through a configurable approval model before execution. Every action is logged, and the system enforces separate credentials for write operations.
+
+## Four-Gate Approval Model
+
+Each write-back action is assigned to one of four approval gates based on risk level:
+
+| Gate | Risk Level | Example |
+|---|---|---|
+| **Auto-execute** | Low risk, reversible | Tag an item, add a note, send a notification |
+| **User confirm** | Medium risk, user reviews parameters | Update a price, change a status |
+| **Manager approve** | High risk, affects budget or contracts | Approve a purchase order, change credit terms |
+| **Dual control** | Critical, regulatory requirement | Write off inventory, adjust financial records |
+
+<Note>
+  Gate assignments are configured per action type by administrators. The platform enforces the assigned gate — it cannot be bypassed at runtime.
+</Note>
+
+## Approval Workflow
+
+<Steps>
+  <Step title="User initiates action">
+    A user requests a write-back operation through the platform (e.g., "Create a purchase order for 500 units of part X").
+  </Step>
+  <Step title="System classifies the action">
+    The platform identifies the action type and its assigned approval gate.
+  </Step>
+  <Step title="Dry-run simulation (optional)">
+    The user can request a dry-run to see exactly what would change without writing any data.
+  </Step>
+  <Step title="Approval gate enforced">
+    Depending on the gate, the action either auto-executes, requires user confirmation, manager approval, or dual-control sign-off.
+  </Step>
+  <Step title="Execution and audit">
+    Once approved, the Action Agent executes the operation. The full lifecycle is recorded in the audit trail.
+  </Step>
+</Steps>
+
+## Dry-Run Capability
+
+Any action can be simulated before execution. The dry-run:
+
+- Shows exactly what data would be created, modified, or deleted
+- Executes against the target system in read-only mode where supported
+- Produces the same output format as a live execution, clearly labeled as a simulation
+- Is logged in the audit trail as a dry-run event
+
+<Warning>
+  Dry-run results reflect the system state at the time of simulation. If underlying data changes between dry-run and execution, the actual outcome may differ.
+</Warning>
+
+## Rollback Declarations
+
+Every action declares its reversibility before the user confirms execution:
+
+| Declaration | Meaning | Example |
+|---|---|---|
+| **Reversible** | Can be fully undone programmatically | Adding a tag, creating a draft record |
+| **Conditionally reversible** | Can be undone if certain conditions are met | Updating a status (reversible if downstream processes have not started) |
+| **Irreversible** | Cannot be undone once executed | Sending an external notification, writing off inventory |
+
+The reversibility declaration is displayed to the user and approver before execution. Irreversible actions require explicit acknowledgment.
+
+## Separate Credentials
+
+Action Agents use write-capable credentials that are entirely separate from read-only data-source agent credentials:
+
+| Agent type | Credential scope | Access mode |
+|---|---|---|
+| **Data-source agent** | Single data source | Read-only |
+| **Action agent** | Single data source (write path) | Write-capable |
+
+Credentials are stored within each agent's isolated container. No credential sharing occurs between read and write agents.
+
+## Action Audit Trail
+
+Every action lifecycle event is recorded in the immutable audit trail:
+
+<CardGroup cols={2}>
+  <Card title="Recorded for every action">
+    - Who initiated the action
+    - What the action would do (parameters, target system)
+    - Which approval gate was required
+    - Who approved or rejected (and when)
+    - Dry-run results (if requested)
+  </Card>
+  <Card title="Recorded on execution">
+    - Exact operation executed
+    - Target system response
+    - Success or failure status
+    - Rollback eligibility at time of execution
+    - Timestamp for every step
+  </Card>
+</CardGroup>
+
+The audit trail is immutable — once written, records cannot be modified or deleted by any user or administrator. See [Compliance](/security/compliance) for retention and export details.

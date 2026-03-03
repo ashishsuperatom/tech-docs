@@ -1,0 +1,96 @@
+---
+title: 'Implementation Overview'
+description: 'How Superatom gets deployed in your organization'
+icon: 'rocket'
+---
+
+Superatom deploys within your infrastructure as a set of Docker containers. There is no cloud instance, no data migration, and no third-party environment. The platform connects to your existing databases and serves users from within your network.
+
+---
+
+## Approach
+
+Superatom's **automated semantic modeling** handles what traditional BI tools require consultants to do manually. When a data source is connected, the system:
+
+<Steps>
+  <Step title="Schema Analysis">
+    Analyzes the database schema and profiles the data automatically.
+  </Step>
+  <Step title="Business-Term Mapping">
+    Proposes mappings between database columns and business terms your team actually uses.
+  </Step>
+  <Step title="Queryable Model">
+    Builds a queryable semantic model so teams can start asking questions immediately.
+  </Step>
+  <Step title="Continuous Refinement">
+    Improves through usage and structured feedback as domain experts capture tribal knowledge.
+  </Step>
+</Steps>
+
+---
+
+## Timeline at a Glance
+
+Core implementation takes **6-8 weeks**, with an additional 4-week optimization phase.
+
+| Week | Phase | What Happens |
+|------|-------|--------------|
+| 1-2 | Deploy and Connect | Platform deployed. Chat Agent live. Priority questions validated. |
+| 2-4 | Build Knowledge and Refine | Semantic model enriched. Tribal knowledge captured. Permissions configured. |
+| 4-6 | Dashboards, Reports, and Workflows | Dashboards shared. Reports scheduled. Workflows configured. Mobile enabled. |
+| 6-8 | Go-Live and Activation | Full production. Autonomous monitoring live. All teams onboarded. |
+| 8-12 | Optimization and Expansion | Performance tuned. Additional sources connected. Admin trained. |
+
+---
+
+## Phase Overview
+
+<CardGroup cols={2}>
+  <Card title="Phase 1: Deploy and Connect" icon="plug">
+    Platform running on your infrastructure with initial data sources connected and the Chat Agent answering questions. Power users validate answers against live data.
+  </Card>
+  <Card title="Phase 2: Build Knowledge and Refine" icon="brain">
+    The semantic model is enriched with organizational context through structured feedback and tribal knowledge capture. Common questions reach high accuracy.
+  </Card>
+  <Card title="Phase 3: Dashboards, Reports, and Workflows" icon="chart-mixed">
+    Operational dashboards, scheduled reports, automated workflows, and mobile access are configured and deployed.
+  </Card>
+  <Card title="Phase 4: Go-Live and Activation" icon="circle-check">
+    Full production deployment. Autonomous monitoring is activated. All user groups are onboarded across the organization.
+  </Card>
+  <Card title="Phase 5: Optimization and Expansion" icon="chart-line-up">
+    Performance optimization, expanded use cases, stress testing, and knowledge transfer to your admin team.
+  </Card>
+</CardGroup>
+
+<Note>
+  Superatom deploys entirely within your infrastructure. No customer data leaves your network. The only outbound connection is HTTPS to the LLM provider, which can be proxied or replaced with a self-hosted model for air-gapped environments.
+</Note>
+
+---
+
+## Learn More
+
+<CardGroup cols={3}>
+  <Card
+    title="Implementation Phases"
+    icon="list-check"
+    href="/implementation/phases"
+  >
+    Detailed breakdown of each phase with deliverables and responsibilities
+  </Card>
+  <Card
+    title="Infrastructure Requirements"
+    icon="server"
+    href="/implementation/infrastructure"
+  >
+    Server specs, network requirements, and deployment options
+  </Card>
+  <Card
+    title="Timeline & Responsibilities"
+    icon="calendar"
+    href="/implementation/timeline"
+  >
+    Week-by-week schedule and what your team provides
+  </Card>
+</CardGroup>

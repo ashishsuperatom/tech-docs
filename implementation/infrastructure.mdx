@@ -1,0 +1,156 @@
+---
+title: 'Infrastructure Requirements'
+description: 'Server specifications, network requirements, and deployment options'
+icon: 'server'
+---
+
+Superatom deploys entirely within your infrastructure as Docker containers. This page covers the compute, storage, and network requirements for a production deployment.
+
+---
+
+## Core Platform Components
+
+| Component | Purpose | Minimum | Recommended |
+|-----------|---------|---------|-------------|
+| **Main Agent** | Orchestration, routing, query planning, synthesis | 4 vCPU, 16 GB RAM | 8 vCPU, 32 GB RAM |
+| **WebSocket Server** | Internal agent communication | 2 vCPU, 4 GB RAM | 4 vCPU, 8 GB RAM |
+| **Web UI Server** | Serves the frontend application | 2 vCPU, 4 GB RAM | 4 vCPU, 8 GB RAM |
+| **Graph Database** | Metadata, tribal knowledge, query history (PostgreSQL with Apache AGE or Neo4j) | 4 vCPU, 16 GB RAM | 8 vCPU, 32 GB RAM, SSD |
+| **Report Engine** | Scheduled reports, anomaly detection, baseline models | 4 vCPU, 16 GB RAM | 8 vCPU, 32 GB RAM |
+| **Audit Storage** | Immutable audit trail | S3-compatible or local filesystem | S3-compatible with lifecycle policies |
+
+<Note>
+  The recommended specs support production-scale workloads with concurrent users. Minimum specs are suitable for pilot deployments and proof-of-concept environments.
+</Note>
+
+---
+
+## Data-Source Agents
+
+Each connected data source gets its own dedicated agent container. A typical deployment runs 5-20 agents.
+
+| Resource | Per Agent | Notes |
+|----------|-----------|-------|
+| **Compute** | 1-2 vCPU, 2-4 GB RAM | One agent per data source |
+| **Storage** | 1-5 GB | Local memory and query cache. Not shared between agents. |
+| **Container runtime** | Docker (minimum), Kubernetes (recommended at scale) | Agents are distributed as Docker containers |
+| **Database access** | Read-only credentials to its data source | Write credentials only for explicit Action Agents |
+
+---
+
+## Network Requirements
+
+| Requirement | Detail |
+|-------------|--------|
+| **Internal network** | All platform components communicate over internal network |
+| **Database access** | Agents need network access to their respective databases (internal) |
+| **Outbound HTTPS** | To LLM provider API (can be proxied) |
+| **Outbound HTTPS** | To Superatom platform for usage telemetry (can be restricted or proxied) |
+| **Inbound connections** | None required |
+| **Self-hosted LLM** | For air-gapped environments: deploy LLM on-premise for zero outbound traffic |
+
+<Warning>
+  Inbound connections are **not** required. All communication is outbound-only. For air-gapped environments, deploy a self-hosted LLM on-premise to eliminate all outbound traffic.
+</Warning>
+
+---
+
+## Deployment Architecture
+
+The platform is deployed as Docker containers, orchestrated with Docker Compose (smaller deployments) or Kubernetes with Helm charts (production scale).
+
+```mermaid
+flowchart TD
+    subgraph INFRA["Customer Infrastructure"]
+        subgraph CLUSTER["Kubernetes Cluster / Docker Compose"]
+            MA["Main Agent"]
+            WS["WebSocket Server"]
+            UI["Web UI Server"]
+            RE["Report Engine"]
+            GDB["Graph Database"]
+            AS["Audit Storage"]
+
+            subgraph AGENTS["Data-Source Agents"]
+                A1["Agent: Source 1"]
+                A2["Agent: Source 2"]
+                AN["Agent: Source N"]
+            end
+        end
+
+        DB1["Customer DB 1"]
+        DB2["Customer DB 2"]
+        DBN["Customer DB N"]
+
+        A1 --> DB1
+        A2 --> DB2
+        AN --> DBN
+    end
+
+    CLUSTER -->|"Outbound HTTPS only"| LLM["LLM Provider\n(or self-hosted on-premise)"]
+
+    style INFRA fill:#f0fdf4,stroke:#16a34a
+    style CLUSTER fill:#e0f2fe,stroke:#0284c7
+    style AGENTS fill:#fef3c7,stroke:#f59e0b
+    style LLM fill:#fce7f3,stroke:#ec4899
+    style MA fill:#dbeafe,stroke:#3b82f6
+    style WS fill:#dbeafe,stroke:#3b82f6
+    style UI fill:#dbeafe,stroke:#3b82f6
+    style RE fill:#dbeafe,stroke:#3b82f6
+    style GDB fill:#dbeafe,stroke:#3b82f6
+    style AS fill:#dbeafe,stroke:#3b82f6
+    style A1 fill:#fef9c3,stroke:#eab308
+    style A2 fill:#fef9c3,stroke:#eab308
+    style AN fill:#fef9c3,stroke:#eab308
+    style DB1 fill:#fce7f3,stroke:#ec4899
+    style DB2 fill:#fce7f3,stroke:#ec4899
+    style DBN fill:#fce7f3,stroke:#ec4899
+```
+
+---
+
+## Docker Compose vs Kubernetes
+
+<AccordionGroup>
+  <Accordion title="Docker Compose">
+    Suitable for **pilot deployments**, proof-of-concept environments, and smaller organizations with fewer than 10 data sources and limited concurrent users.
+
+    - Single-host deployment
+    - Simpler setup and management
+    - Lower operational overhead
+    - Manual scaling
+  </Accordion>
+  <Accordion title="Kubernetes with Helm Charts">
+    Recommended for **production deployments** at scale, organizations with many data sources, and environments that require high availability.
+
+    - Multi-node deployment with automatic failover
+    - Horizontal scaling of agents and platform components
+    - Rolling updates with zero downtime
+    - Resource limits and autoscaling policies
+    - Integration with existing cluster monitoring and alerting
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Both deployment options use the same container images. You can start with Docker Compose for a pilot and migrate to Kubernetes for production without re-implementation.
+</Note>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Implementation Phases"
+    icon="list-check"
+    href="/implementation/phases"
+  >
+    Detailed phase-by-phase deployment plan
+  </Card>
+  <Card
+    title="Timeline & Responsibilities"
+    icon="calendar"
+    href="/implementation/timeline"
+  >
+    Week-by-week schedule and what your team provides
+  </Card>
+</CardGroup>

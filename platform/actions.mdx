@@ -26,9 +26,36 @@ flowchart LR
 
 Actions have three components:
 
-1. **Trigger** — When to run (schedule or data condition)
+1. **Trigger** — When to run
 2. **Analysis** — What to check or calculate
 3. **Action** — What to do with the results
+
+---
+
+## Trigger Types
+
+| Type | Description | Examples |
+|------|-------------|----------|
+| **Schedule-based** | Run at defined intervals | Daily at 7 AM, weekly on Monday, monthly on the 1st, custom cron |
+| **Condition-based** | Fire when a metric crosses a threshold | Revenue deviates >15% from forecast, inventory below safety stock |
+| **Event-based** | Respond to data changes or external signals | New record appears, status changes, external webhook fires |
+
+---
+
+## Approval Gates
+
+Write-back actions pass through configurable approval levels based on risk:
+
+| Gate | Risk Level | Example |
+|------|------------|---------|
+| **Auto-execute** | Low risk, reversible | Tag an item, add a note, send a notification |
+| **User confirm** | Medium risk, user reviews parameters | Update a price, change a status |
+| **Manager approve** | High risk, affects budget or contracts | Approve a purchase order, change credit terms |
+| **Dual control** | Critical, regulatory requirement | Write off inventory, adjust financial records |
+
+### Dry-Run Mode
+
+Any action can be simulated before activation. The system shows exactly what would happen — which records would be affected, what notifications would be sent, what values would change — without executing. Use dry-run mode during the first 1-2 weeks of a new workflow to validate its behavior.
 
 ---
 
@@ -72,8 +99,9 @@ Run when conditions are met:
     Start the action creation wizard
   </Step>
   <Step title="Choose Trigger Type">
-    - **Schedule** — Run at specific times
-    - **Condition** — Run when data meets criteria
+    - **Schedule** — Run at specific times (daily, weekly, monthly, cron)
+    - **Condition** — Run when data meets criteria (threshold, variance)
+    - **Event** — Run when data changes (new record, status update, webhook)
   </Step>
   <Step title="Define the Analysis">
     Describe what to analyze: *"Check if daily revenue is more than 10% below forecast"*
@@ -231,6 +259,19 @@ View complete execution history:
 - What actions were taken
 - Who received outputs
 - Any errors encountered
+
+---
+
+## Multi-Step Workflows
+
+Actions can chain multiple analysis and action steps:
+
+1. **Detect** — Identify an anomaly or condition (e.g., inventory below safety stock)
+2. **Investigate** — Run root cause analysis (e.g., check demand spike, supplier delay, forecast error)
+3. **Assess** — Quantify impact (e.g., estimated stockout in 3 days, $45K revenue at risk)
+4. **Act** — Take action based on findings (e.g., generate PO, alert procurement manager, update dashboard)
+
+Each step can branch based on the previous step's results, enabling intelligent automated responses.
 
 ---
 

@@ -27,6 +27,30 @@
   },
   "tabs": [
     {
+      "name": "Architecture",
+      "url": "architecture"
+    },
+    {
+      "name": "Security",
+      "url": "security"
+    },
+    {
+      "name": "Intellectual Property",
+      "url": "ip"
+    },
+    {
+      "name": "Implementation",
+      "url": "implementation"
+    },
+    {
+      "name": "Use Cases",
+      "url": "use-cases"
+    },
+    {
+      "name": "Case Studies",
+      "url": "case-studies"
+    },
+    {
       "name": "API Reference",
       "url": "api-reference"
     },
@@ -47,7 +71,7 @@
       ]
     },
     {
-      "group": "Platform",
+      "group": "Product",
       "pages": [
         "platform/chat-agent",
         "platform/dashboards",
@@ -61,10 +85,23 @@
       "group": "Architecture",
       "pages": [
         "architecture/overview",
+        "architecture/agent-model",
         "architecture/data-flow",
         "architecture/modules",
         "architecture/ai-engine",
         "architecture/infrastructure"
+      ]
+    },
+    {
+      "group": "Security & Data Privacy",
+      "pages": [
+        "security/overview",
+        "security/agent-model",
+        "security/data-protection",
+        "security/access-control",
+        "security/action-safety",
+        "security/network",
+        "security/compliance"
       ]
     },
     {
@@ -79,11 +116,31 @@
       ]
     },
     {
-      "group": "Security & Compliance",
+      "group": "Implementation",
       "pages": [
-        "security/overview",
-        "security/data-protection",
-        "security/access-control"
+        "implementation/overview",
+        "implementation/phases",
+        "implementation/infrastructure",
+        "implementation/timeline"
+      ]
+    },
+    {
+      "group": "Use Cases",
+      "pages": [
+        "use-cases/overview",
+        "use-cases/supply-chain",
+        "use-cases/retail",
+        "use-cases/financial-services",
+        "use-cases/healthcare",
+        "use-cases/manufacturing",
+        "use-cases/by-role",
+        "use-cases/scenarios"
+      ]
+    },
+    {
+      "group": "Case Studies",
+      "pages": [
+        "case-studies/overview"
       ]
     },
     {

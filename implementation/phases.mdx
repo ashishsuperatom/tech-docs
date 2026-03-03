@@ -1,0 +1,224 @@
+---
+title: 'Implementation Phases'
+description: 'Five-phase deployment from connect to optimize'
+icon: 'list-check'
+---
+
+Superatom implementation follows five phases over 6-12 weeks. Each phase has clear objectives, defined responsibilities, and concrete deliverables.
+
+---
+
+## Phase 1: Deploy and Connect (Weeks 1-2)
+
+**Objective:** Platform running on customer infrastructure with initial data sources connected and the Chat Agent answering questions.
+
+<Steps>
+  <Step title="Provision Infrastructure">
+    Your IT team provisions server resources and sets up the Docker or Kubernetes environment. See [Infrastructure Requirements](/implementation/infrastructure) for specs.
+  </Step>
+  <Step title="Deploy Platform Components">
+    Superatom deploys the Main Agent, WebSocket server, Web UI, and Report Engine on your infrastructure.
+  </Step>
+  <Step title="Connect Data Sources">
+    Data-source agents are deployed for each connected source. Read-only database credentials are provided by your DBA team.
+  </Step>
+  <Step title="Automated Schema Analysis">
+    The system runs automated schema analysis and statistical profiling, then generates an initial semantic model with proposed business-term mappings.
+  </Step>
+  <Step title="Validate Priority Questions">
+    Your designated power users validate 5-10 high-priority questions against live data. SSO integration and initial role-based access control are configured.
+  </Step>
+</Steps>
+
+### Responsibilities
+
+| Customer Team | Superatom Team |
+|---------------|----------------|
+| Provision infrastructure (servers, Docker/K8s) | Deploy platform components on customer infrastructure |
+| Provide read-only database credentials per source | Deploy data-source agents for each connected source |
+| Identify 5-10 high-priority questions | Run automated schema analysis and statistical profiling |
+| Designate 2-3 power users for validation | Generate initial semantic model with business-term mappings |
+| | Validate priority questions against live data |
+| | Configure SSO integration and initial RBAC |
+
+### Data Source Connection Times
+
+| Source Type | Typical Setup Time |
+|-------------|-------------------|
+| PostgreSQL, MySQL, SQL Server | Less than 1 hour |
+| BigQuery, Snowflake, Redshift, Databricks, ClickHouse | Less than 1 hour |
+| SAP, Oracle ERP, Dynamics 365 | 1-3 days |
+| Excel, CSV, Parquet files | Less than 30 minutes |
+| REST APIs, GraphQL | 1-2 hours |
+
+**Deliverable:** Chat Agent is live. Power users can ask questions and receive visual answers from connected data sources.
+
+---
+
+## Phase 2: Build Knowledge and Refine (Weeks 2-4)
+
+**Objective:** The semantic model is enriched with organizational context. Accuracy improves through structured feedback and tribal knowledge capture.
+
+<Steps>
+  <Step title="Use the Chat Agent Daily">
+    Your team uses the Chat Agent for regular analytical work, surfacing real questions and real-world edge cases.
+  </Step>
+  <Step title="Provide Corrections and Context">
+    When interpretations are inaccurate, users provide corrections (e.g., "Revenue here means net revenue excluding returns"). These corrections are captured as knowledge nodes or golden paths -- not used for LLM retraining.
+  </Step>
+  <Step title="Create Knowledge Nodes">
+    Domain experts define critical business terms and calculation rules as structured Knowledge Nodes at Global, User, and Query levels.
+  </Step>
+  <Step title="Configure Access Controls">
+    Column-level and row-level access controls are set up based on your organization's permission structure.
+  </Step>
+  <Step title="Expand Data Sources">
+    Additional data-source agents are deployed as new sources are identified beyond the initial set.
+  </Step>
+</Steps>
+
+### Responsibilities
+
+| Customer Team | Superatom Team |
+|---------------|----------------|
+| Use the Chat Agent for daily analytical work | Refine the semantic model based on corrections and usage patterns |
+| Provide corrections when interpretations are inaccurate | Build golden paths for frequently asked questions |
+| Create Knowledge Nodes for critical business definitions | Configure tribal knowledge at Global, User, and Query levels |
+| Identify additional questions and use cases | Set up column-level and row-level access controls |
+| | Deploy additional data-source agents as needed |
+
+### How Accuracy Improves
+
+Accuracy improvement in this phase comes from two mechanisms:
+
+<AccordionGroup>
+  <Accordion title="Semantic Model Refinement">
+    When users correct a misinterpretation, that correction is captured as a **knowledge node** or a **golden path**. Future queries that match the same pattern use the corrected interpretation. This is not LLM retraining -- it is updating the business rules and mappings that guide query generation.
+  </Accordion>
+  <Accordion title="Tribal Knowledge Capture">
+    Domain experts explicitly define how their organization uses terms, what filters should be applied by default, and what business rules govern calculations. These definitions are stored as **structured knowledge nodes** and applied automatically to relevant queries.
+  </Accordion>
+</AccordionGroup>
+
+<Warning>
+  Accuracy is not a single number. It varies by query type, data source, and how well the organization's tribal knowledge has been captured. The table below breaks down how different categories of queries behave and how each is addressed.
+</Warning>
+
+### Accuracy by Query Category
+
+| Category | Example | How It's Addressed |
+|----------|---------|-------------------|
+| **Ambiguous terminology** | "Revenue" means different things to different departments | Add a Global Knowledge Node defining "revenue" for the organization |
+| **Complex multi-step analysis** | Questions requiring 5+ joins across multiple sources | Refine the semantic model and add golden paths for these patterns |
+| **Edge cases in business logic** | Fiscal year boundaries, special handling for certain product categories | Add Query-level Knowledge Nodes for specific edge cases |
+| **Data quality issues** | Inconsistent formats, missing foreign keys, stale data | Identified during usage; addressed at the data source level |
+
+Simple lookups may reach near-perfect accuracy in week 1. Complex cross-source analysis may require additional knowledge nodes through weeks 2-4. Edge cases surface over time and are addressed as they appear.
+
+**Deliverable:** Semantic model is enriched with organizational knowledge. Common questions are answered accurately. Tribal knowledge is captured and applied. Permission structure is configured.
+
+---
+
+## Phase 3: Dashboards, Reports, and Workflows (Weeks 4-6)
+
+**Objective:** Operational dashboards are built, reports are scheduled, automated workflows are configured, and mobile access is enabled.
+
+<Steps>
+  <Step title="Build Dashboards">
+    Your team builds dashboards for key use cases: executive overview, sales performance, inventory health, and other operational views.
+  </Step>
+  <Step title="Configure Scheduled Reports">
+    Reports are set up on recurring schedules -- daily KPI summaries, weekly reviews, monthly executive reports -- with delivery via email, Slack, or Teams.
+  </Step>
+  <Step title="Deploy Anomaly Detection in Shadow Mode">
+    The anomaly detection engine observes historical patterns to learn what "normal" looks like for each monitored metric. During shadow mode, it generates alerts internally but does not deliver them, allowing threshold tuning without alert fatigue.
+  </Step>
+  <Step title="Set Up Workflows and Actions">
+    Triggered workflows (anomaly detection, threshold alerts, low-stock warnings) and approval workflows for write-back actions are configured.
+  </Step>
+  <Step title="Enable Mobile Access">
+    Mobile app access is enabled for on-the-go analytics.
+  </Step>
+</Steps>
+
+### Responsibilities
+
+| Customer Team | Superatom Team |
+|---------------|----------------|
+| Build dashboards for key use cases | Configure dashboard templates from conversation history |
+| Configure scheduled reports | Set up reporting schedules and delivery channels |
+| Define triggered workflows | Deploy anomaly detection engine in shadow mode |
+| Define approval workflows for write-back actions | Configure Action Agents for write-back integrations |
+| | Enable mobile app access |
+
+**Deliverable:** Dashboards are live and shared. Reports run on schedule. Workflows are configured with approval gates. Anomaly detection is learning in the background. Mobile access is available.
+
+---
+
+## Phase 4: Go-Live and Activation (Weeks 6-8)
+
+**Objective:** Full production deployment. Autonomous monitoring is activated. All user groups are onboarded.
+
+<Steps>
+  <Step title="Review Shadow-Mode Results">
+    Your team reviews anomaly detection results from shadow mode and approves or tunes thresholds before going live.
+  </Step>
+  <Step title="Activate Autonomous Monitoring">
+    Anomaly detection transitions from shadow mode to live alerting with root cause analysis included in every alert.
+  </Step>
+  <Step title="Onboard All Teams">
+    Remaining teams and user groups are onboarded. End-to-end workflows are validated: question to insight to action to result.
+  </Step>
+  <Step title="Security Audit">
+    Superatom conducts a security audit, verifies access controls, and validates audit trail completeness.
+  </Step>
+</Steps>
+
+### Responsibilities
+
+| Customer Team | Superatom Team |
+|---------------|----------------|
+| Review shadow-mode anomaly results | Transition anomaly detection to live alerting |
+| Approve and tune alert thresholds | Enable autonomous investigation with root cause analysis |
+| Activate autonomous monitoring for critical metrics | Configure cross-source analytics |
+| Onboard remaining teams and user groups | Conduct security audit and access control verification |
+| Validate end-to-end workflows | Validate audit trail completeness |
+
+**Deliverable:** Platform is fully operational. Chat, dashboards, reports, mobile, workflows, and autonomous monitoring are all live. All teams are onboarded.
+
+---
+
+## Phase 5: Optimization and Expansion (Weeks 8-12)
+
+**Objective:** Performance optimization, expanded use cases, stress testing, and knowledge transfer to the customer's admin team.
+
+<Steps>
+  <Step title="Performance Optimization">
+    Pre-materialize common cross-source joins, optimize golden path caching, and tune LLM call frequency for faster response times.
+  </Step>
+  <Step title="Expand Use Cases">
+    Connect additional data sources and extend to new departments and question types. Ongoing feedback refines accuracy for new query patterns.
+  </Step>
+  <Step title="Load and Stress Testing">
+    Run load testing and stress testing at production scale to verify performance benchmarks.
+  </Step>
+  <Step title="Advanced Workflows">
+    Configure complex multi-step processes, escalation paths, and automated decision chains.
+  </Step>
+  <Step title="Admin Training and Knowledge Transfer">
+    Train the customer's admin team on platform management, knowledge node administration, and data source onboarding.
+  </Step>
+</Steps>
+
+### Responsibilities
+
+| Customer Team | Superatom Team |
+|---------------|----------------|
+| Identify additional data sources to connect | Performance optimization (caching, joins, LLM tuning) |
+| Expand use cases to new departments | Accuracy refinement for production edge cases |
+| Provide ongoing feedback on new query patterns | Load testing and stress testing at scale |
+| Define advanced tribal knowledge rules for edge cases | Advanced workflow configuration |
+| | Admin training and knowledge transfer |
+| | Configure additional monitoring rules and reporting templates |
+
+**Deliverable:** Fully optimized deployment. Performance benchmarks verified. Admin team trained. Expansion roadmap defined.

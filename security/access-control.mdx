@@ -1,6 +1,6 @@
 ---
 title: 'Access Control'
-description: 'User permissions and data access'
+description: 'User permissions, data access, and enforcement'
 icon: 'users'
 ---
 
@@ -15,44 +15,148 @@ icon: 'users'
 | Role | Description | Capabilities |
 |------|-------------|--------------|
 | **Viewer** | Read-only access | View dashboards, ask questions |
-| **Analyst** | Standard user | Viewer + export, bookmark, create |
-| **Admin** | Project admin | Analyst + user management |
+| **Analyst** | Standard user | Viewer + export, bookmark, create dashboards and reports |
+| **Admin** | Project admin | Analyst + user management, data sources, knowledge nodes |
 | **Super Admin** | System admin | Admin + system configuration |
 
 ## Permission Levels
 
-### Project Access
-- Which projects a user can see
-- Assigned by admin
+### Source-Level Access
+- Which data sources a user can query
+- Finance team accesses financial databases; Operations accesses logistics databases
 
-### Data Source Access
-- Which databases/tables
-- Configurable per user/role
-
-### Row-Level Security
-- Filter data based on user attributes
-- Example: Regional managers see only their region
+### Table-Level Access
+- Which tables within a source are visible
+- The salary table is restricted to HR and executives
 
 ### Column-Level Security
-- Hide sensitive columns
-- Example: Hide salary from non-HR
+- Hide sensitive columns from specific roles
+- Individual salary amounts hidden from non-managers; department averages remain visible
+
+### Row-Level Security
+- Automatically filter data based on user context
+- Regional managers see only their region's data; business unit heads see only their unit's metrics
+
+---
+
+## Permission Enforcement
+
+Permissions are enforced at the query planning stage — before any SQL is generated or data is accessed.
+
+<Steps>
+  <Step title="Classify Question">
+    The Main Agent classifies the question and identifies required data concepts (tables, columns, metrics)
+  </Step>
+  <Step title="Check Permissions">
+    The permission engine checks: does this user have access to the required sources, tables, and columns?
+  </Step>
+  <Step title="Apply Row Filters">
+    If permitted, row-level filters are automatically injected into the query based on the user's context
+  </Step>
+  <Step title="Generate or Restrict">
+    **If fully permitted** — query is generated and executed with row-level filters applied.
+    **If partially permitted** — response is restricted to permitted data, with an explanation of what is restricted.
+    **If not permitted** — the system explains what it cannot access.
+  </Step>
+</Steps>
+
+<Note>
+Enforcement operates on the resolved query plan, not the natural language input. Rephrasing a question does not bypass permissions.
+</Note>
+
+---
+
+## Inference Attack Protection
+
+Aggregation queries over small groups could potentially reveal individual records (e.g., average salary in a one-person department).
+
+Superatom applies cardinality checks:
+- Aggregations are suppressed for groups below a configurable minimum record count (default: 5)
+- If a query would produce an aggregation over too few rows, the system either suppresses that group or returns a broader aggregation
+
+---
 
 ## Permission Matrix
 
-| Action | Viewer | Analyst | Admin |
-|--------|--------|---------|-------|
-| View dashboards | Yes | Yes | Yes |
-| Ask questions | Yes | Yes | Yes |
-| Export data | No | Yes | Yes |
-| Create bookmarks | No | Yes | Yes |
-| Create dashboards | No | Yes | Yes |
-| Manage users | No | No | Yes |
-| Configure sources | No | No | Yes |
+| Action | Viewer | Analyst | Admin | Super Admin |
+|--------|--------|---------|-------|-------------|
+| View dashboards | Yes | Yes | Yes | Yes |
+| Ask questions | Yes | Yes | Yes | Yes |
+| Export data | No | Yes | Yes | Yes |
+| Create bookmarks | No | Yes | Yes | Yes |
+| Create dashboards | No | Yes | Yes | Yes |
+| Schedule reports | No | Yes | Yes | Yes |
+| Configure workflows | No | No | Yes | Yes |
+| Manage data sources | No | No | Yes | Yes |
+| Manage knowledge nodes | No | No | Yes | Yes |
+| Manage users | No | No | Yes | Yes |
+| System configuration | No | No | No | Yes |
+
+---
 
 ## SSO Integration
 
-Coming soon:
+Superatom delegates authentication to the customer's existing identity infrastructure:
+
+| Method | Description |
+|--------|-------------|
+| **SAML 2.0** | Superatom acts as a Service Provider; the customer's IdP handles authentication |
+| **OpenID Connect** | Standard OAuth 2.0 / OIDC flow with the customer's identity provider |
+| **Role Mapping** | Groups and roles from the IdP map directly to Superatom permission levels |
+| **MFA** | Enforced by the identity provider; Superatom inherits the configured MFA policy |
+
+### Supported Identity Providers
+
 - Okta
-- Azure AD
-- SAML 2.0
-- OpenID Connect
+- Microsoft Azure AD / Entra ID
+- OneLogin
+- Any SAML 2.0 or OpenID Connect compliant provider
+
+### User Deprovisioning
+
+Disabling a user in the identity provider immediately revokes their Superatom access. No separate deprovisioning step is required.
+
+---
+
+## Dashboard & Report Sharing
+
+Every dashboard and report has its own sharing controls:
+
+| Level | Capabilities |
+|-------|-------------|
+| **View** | See the dashboard or report, cannot modify |
+| **Edit** | Modify components, layout, and configuration |
+| **Admin** | Manage sharing settings and delete |
+
+Share with specific users by email, with entire roles, or via public link (optional, for non-sensitive dashboards).
+
+---
+
+## Mobile Access Control
+
+Mobile apps inherit the same permission model:
+- Role-based views (executives see KPIs, managers see team metrics, field workers see task-specific views)
+- Biometric authentication (Face ID, Touch ID, fingerprint) required
+- Automatic session timeout
+- MDM (Mobile Device Management) compatible
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Agent Security Model"
+    icon="shield-halved"
+    href="/security/agent-model"
+  >
+    How agent isolation protects data access
+  </Card>
+  <Card
+    title="Action Safety"
+    icon="lock"
+    href="/security/action-safety"
+  >
+    Approval gates for write-back operations
+  </Card>
+</CardGroup>

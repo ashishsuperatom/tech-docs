@@ -1,88 +1,89 @@
 ---
 title: 'Security Overview'
-description: 'Enterprise-grade security for your data'
+description: 'Security architecture, data protection, and access controls'
 icon: 'shield'
 ---
 
-Security is the #1 concern for enterprise AI adoption. Superatom addresses this with a **zero-storage architecture** and comprehensive security controls.
+Superatom is deployed entirely within the customer's infrastructure. All platform components run as Docker containers on the customer's servers. Business data is processed ephemerally and never stored in the platform.
 
 ---
 
-## The Security Challenge
+## Deployment Model
 
-Why enterprises hesitate to adopt AI systems:
-
-<CardGroup cols={2}>
-  <Card title="Data Leakage Risk" icon="water">
-    Programs can be exploited to leak sensitive data
-  </Card>
-  <Card title="AI Hallucinations" icon="brain">
-    AI can generate false information affecting decisions
-  </Card>
-  <Card title="Prompt Injection" icon="syringe">
-    Malicious prompts can change AI behavior
-  </Card>
-  <Card title="Access Control" icon="lock">
-    Ensuring users only see authorized data
-  </Card>
-</CardGroup>
-
----
-
-## Zero-Storage Architecture
-
-<Note>
-**Superatom NEVER stores your data.** The platform is deployed within your enterprise network and data never leaves your control.
-</Note>
-
-```mermaid
-flowchart LR
-    DATA["Your Data"] <--> SA["Superatom Platform"]
-    SA --> G1["Zero Storage"] & G2["Ephemeral"] & G3["Encrypted"] & G4["IAM"]
-
-    style SA fill:#0D9373,color:#fff
-```
-
-### How It Works
+The entire platform — orchestrator, data-source agents, WebSocket server, UI, reporting engine, and audit storage — runs on the customer's infrastructure. There is no cloud-hosted instance.
 
 | Principle | Implementation |
 |-----------|----------------|
-| **Zero Storage** | Data is never persisted outside your network |
-| **Ephemeral Processing** | Data deleted immediately after analysis |
-| **In-Network Deployment** | Superatom runs inside your enterprise |
-| **Connection Severable** | Can disconnect Superatom instantly |
+| **Zero Storage** | Business data is never persisted in the platform — query, process, return, discard |
+| **In-Network Deployment** | All components run inside the customer's network as Docker containers |
+| **Ephemeral Processing** | Query results exist only in memory during processing, then are discarded |
+| **Severable Connection** | The platform can be disconnected instantly with no data loss |
 
 ---
 
-## Security Layers
+## Agent Security Model
+
+Each connected data source has a dedicated agent — a containerized service that holds credentials only for its assigned source. The Main Agent (orchestrator) never holds database credentials and never directly accesses customer databases.
 
 ```mermaid
 flowchart TD
-    L1["Authentication"] --> L2["Project Isolation"] --> L3["Data Protection"] --> L4["Message Validation"]
+    MAIN["Main Agent<br>(Orchestrator)"] -->|WebSocket| A1["Agent: PostgreSQL"]
+    MAIN -->|WebSocket| A2["Agent: BigQuery"]
+    MAIN -->|WebSocket| A3["Agent: SAP"]
+    MAIN -->|WebSocket| ACTION["Action Agent<br>(Write operations)"]
 
-    style L1 fill:#0D9373,color:#fff
-    style L2 fill:#0D9373,color:#fff
-    style L3 fill:#0D9373,color:#fff
-    style L4 fill:#0D9373,color:#fff
+    A1 -->|Read-only| DB1["PostgreSQL DB"]
+    A2 -->|Read-only| DB2["BigQuery"]
+    A3 -->|Read-only| DB3["SAP System"]
+    ACTION -->|Write + Approval| DB1
+
+    style MAIN fill:#0D9373,color:#fff
+    style ACTION fill:#f59e0b,color:#fff
 ```
+
+Each agent runs in its own Docker container with isolated filesystem and memory. A compromised agent cannot access another agent's data or credentials.
+
+<Card title="Agent Security Model" icon="shield-halved" href="/security/agent-model">
+  Full details on agent isolation, credential separation, and security boundaries
+</Card>
+
+---
+
+## What the LLM Receives
+
+The LLM is a stateless inference service. Each request is constructed from scratch with no memory between calls.
+
+| Sent to LLM | Never Sent to LLM |
+|---|---|
+| Schema metadata (table/column names, types) | Raw data rows or individual records |
+| Generated SQL queries (for validation) | PII (names, emails, addresses, SSNs) |
+| Natural language questions | Database credentials or connection strings |
+| Tribal knowledge definitions | Query results or business numbers |
+| Aggregated statistics (cardinality, distribution) | File contents or document data |
+
+Customer data, queries, and knowledge nodes are never used to train or fine-tune models. The LLM provider receives stateless inference requests only.
 
 ---
 
 ## Authentication
 
-### Password Security
-
-- **Hashing** — Passwords never stored in plain text
-- **Session Tokens** — JWT with configurable expiration
-- **Secure Transmission** — All auth over HTTPS
-
 ### SSO Integration
 
-Coming soon:
-- Okta
-- Microsoft Azure AD / Office 365
-- SAML 2.0
-- OpenID Connect
+Superatom delegates authentication to the customer's existing identity infrastructure:
+
+| Method | Description |
+|--------|-------------|
+| **SAML 2.0** | Superatom acts as a Service Provider; the customer's IdP (Okta, Azure AD, OneLogin, etc.) handles authentication |
+| **OpenID Connect** | Standard OAuth 2.0 / OIDC flow with the customer's identity provider |
+| **Role Mapping** | Groups and roles from the IdP map directly to Superatom permission levels — no manual role configuration needed |
+| **MFA** | Enforced by the identity provider; Superatom inherits the configured MFA policy |
+
+### Session Management
+
+- JWT tokens with configurable expiration
+- Automatic logout on inactivity
+- All authentication over HTTPS
+- Disabling a user in the IdP immediately revokes Superatom access
 
 ---
 
@@ -93,99 +94,83 @@ Coming soon:
 | Role | Data Access | Actions |
 |------|-------------|---------|
 | **Viewer** | Read permitted data | View dashboards, ask questions |
-| **Analyst** | Read permitted data | All viewer + export, bookmark |
-| **Admin** | Full access | All analyst + user management |
-| **Super Admin** | Full access | All admin + system configuration |
+| **Analyst** | Read permitted data | All viewer + export, bookmark, create |
+| **Admin** | Full project access | All analyst + user management |
+| **Super Admin** | Full system access | All admin + system configuration |
 
 ### Data-Level Permissions
 
-Control access at multiple levels:
+| Level | Controls | Example |
+|-------|----------|---------|
+| **Source-level** | Which data sources a user can query | Finance team accesses financial databases; Operations accesses logistics |
+| **Table-level** | Which tables within a source are visible | Salary table restricted to HR and executives |
+| **Column-level** | Which columns are visible | Individual salary amounts hidden from non-managers |
+| **Row-level** | Which rows are returned based on user context | Regional managers see only their region's data |
 
-- **Project** — Which projects a user can access
-- **Data Source** — Which databases/tables
-- **Row-Level** — Filter data by user attributes
-- **Column-Level** — Hide sensitive columns
-
----
-
-## Network Security
-
-### Encryption
-
-| Connection | Encryption |
-|------------|------------|
-| Browser ↔ Cloudflare | TLS 1.3 |
-| Cloudflare ↔ Backend | TLS 1.3 |
-| Backend ↔ Database | TLS/SSL |
-
-### Network Isolation
-
-- Deploy in private VPC
-- No public internet exposure
-- VPN access only (optional)
+Permissions are enforced at the query planning stage — before any SQL is generated or data is accessed. Rephrasing a question does not bypass permissions.
 
 ---
 
-## SQL Injection Prevention
+## Encryption
 
-All database queries use parameterized statements:
-
-```sql
--- NEVER this (vulnerable):
-SELECT * FROM users WHERE id = 'user_input_here'
-
--- ALWAYS this (safe):
-SELECT * FROM users WHERE id = $1
--- Parameters passed separately
-```
-
-Superatom's query generation:
-1. AI generates query structure
-2. Parameters extracted separately
-3. Query executed with parameterization
-4. Results returned safely
-
----
-
-## API Security
-
-### API Key Management
-
-- Keys hashed before storage
-- Configurable expiration
-- Scope limitations
-- Usage tracking
-
-### Rate Limiting
-
-- Per-user limits
-- Per-API-key limits
-- Automatic throttling
+| Layer | Method |
+|-------|--------|
+| Browser ↔ Web UI | TLS 1.3 |
+| Agent ↔ WebSocket Server | TLS (WSS) |
+| Agent ↔ Database | SSL/TLS (database-native) |
+| Platform ↔ LLM Provider | TLS 1.3 (only external traffic) |
+| Metadata at rest | AES-256 |
+| Agent container volumes | AES-256 |
+| Audit trail | AES-256 |
+| API keys | SHA-256 hashing |
+| Passwords | bcrypt hashing |
 
 ---
 
 ## Audit Logging
 
-Complete audit trail of all activity:
+Every interaction is recorded in an immutable audit trail stored on the customer's infrastructure:
 
 | Event | Logged Data |
 |-------|-------------|
-| **Queries** | Who, what, when, results count |
+| **Queries** | Who asked, what was asked, SQL executed, data accessed, what was returned |
+| **Actions** | Write operations, approval decisions, escalations |
 | **Exports** | Data exported, format, destination |
-| **Access** | Login attempts, session activity |
-| **Changes** | Configuration modifications |
+| **Access** | Login attempts, session activity, permission checks |
+| **Changes** | Configuration modifications, knowledge node updates |
 
-### Log Retention
+The audit trail is immutable, queryable within Superatom, and exportable to SIEM systems.
 
-- Configurable retention period
-- Export to SIEM systems
-- Compliance reporting
+---
+
+## Tenant Isolation
+
+For multi-department or multi-business-unit deployments:
+
+| Layer | Isolation Method |
+|-------|-----------------|
+| **WebSocket sessions** | Each department has its own session scope |
+| **Knowledge** | Per-tenant tribal knowledge, query history, and golden paths |
+| **LLM context** | Prompts constructed per-request, scoped to the requesting tenant |
+| **Audit trail** | Per-tenant records; one department cannot view another's history |
+| **Data access** | Per-tenant data source permissions; row-level filtering by tenant |
+
+---
+
+## SQL Injection Prevention
+
+All queries use parameterized statements:
+
+```sql
+-- Parameters passed separately from query structure
+SELECT * FROM users WHERE id = $1
+```
+
+The AI generates the query structure; parameters are extracted and passed separately. User input is never concatenated into SQL strings.
 
 ---
 
 ## Prompt Injection Defense
-
-Protection against malicious prompt manipulation:
 
 <Steps>
   <Step title="Input Sanitization">
@@ -198,63 +183,61 @@ Protection against malicious prompt manipulation:
     AI outputs validated before execution
   </Step>
   <Step title="Action Confirmation">
-    Dangerous actions require human approval
+    Write operations require human approval through configurable approval gates
   </Step>
 </Steps>
 
 ---
 
-## Compliance
+## Company Access
 
-### Certifications (Roadmap)
-
-- SOC 2 Type II
-- ISO 27001
-- GDPR compliance
-- HIPAA (healthcare deployments)
-
-### Data Residency
-
-- Deploy in your preferred region
-- Data never leaves your jurisdiction
-- Regional compliance requirements met
+Superatom as a company does not have access to customer deployments. There is no remote access, admin portal, or backdoor. Support is provided using only usage telemetry: query counts, response times, error rates, and feature usage.
 
 ---
 
-## Security Best Practices
+## Further Reading
 
-<AccordionGroup>
-  <Accordion title="Use Strong Authentication" icon="lock">
-    Enable SSO, enforce strong passwords, use MFA where available.
-  </Accordion>
-  <Accordion title="Principle of Least Privilege" icon="user-shield">
-    Grant minimum necessary permissions to each user.
-  </Accordion>
-  <Accordion title="Monitor Audit Logs" icon="eye">
-    Regularly review access patterns and anomalies.
-  </Accordion>
-  <Accordion title="Keep Systems Updated" icon="rotate">
-    Apply security patches promptly.
-  </Accordion>
-</AccordionGroup>
-
----
-
-## Next Steps
-
-<CardGroup cols={2}>
+<CardGroup cols={3}>
+  <Card
+    title="Agent Security Model"
+    icon="shield-halved"
+    href="/security/agent-model"
+  >
+    Agent isolation and credential separation
+  </Card>
   <Card
     title="Data Protection"
     icon="database"
     href="/security/data-protection"
   >
-    How data is protected at rest and in transit
+    Zero-storage architecture and encryption
   </Card>
   <Card
     title="Access Control"
     icon="users"
     href="/security/access-control"
   >
-    Detailed permission system documentation
+    Permission system and enforcement
+  </Card>
+  <Card
+    title="Action Safety"
+    icon="lock"
+    href="/security/action-safety"
+  >
+    Approval gates and write-back controls
+  </Card>
+  <Card
+    title="Network & Data Flow"
+    icon="network-wired"
+    href="/security/network"
+  >
+    What leaves your network and air-gapped options
+  </Card>
+  <Card
+    title="Compliance"
+    icon="certificate"
+    href="/security/compliance"
+  >
+    SOC 2, GDPR, HIPAA, ISO 27001
   </Card>
 </CardGroup>

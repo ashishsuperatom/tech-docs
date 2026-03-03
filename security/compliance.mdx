@@ -1,0 +1,72 @@
+---
+title: "Compliance"
+description: "SOC 2, GDPR, HIPAA, ISO 27001, and CCPA compliance support"
+icon: "certificate"
+---
+
+Superatom runs within the customer's existing infrastructure and operates within the customer's established compliance perimeter. Adding Superatom does not change the organization's compliance boundary.
+
+## Framework Support
+
+| Framework | How Supported |
+|---|---|
+| **SOC 2 Type II** | Full audit trail, access controls, encryption at rest and in transit, change management |
+| **GDPR** | Data remains in customer infrastructure; no cross-border transfer; right to erasure supported; data minimization inherent (LLM sees only metadata) |
+| **HIPAA** | PHI remains in customer network; all processing is local; access controls support minimum necessary standard; audit logging meets requirements |
+| **ISO 27001** | Information security controls align: risk assessment, access management, cryptography, operations security |
+| **CCPA** | Consumer data stays in customer perimeter; deletion requests executable; data access tracking supports disclosure requirements |
+
+<Note>
+  The platform inherits the organization's existing certifications. Because all components deploy on-premise, the compliance posture of the underlying infrastructure extends to Superatom.
+</Note>
+
+## Data Residency
+
+Deploy in any preferred region. Data never leaves the jurisdiction. Regional compliance requirements are met through the on-premise deployment model.
+
+<AccordionGroup>
+  <Accordion title="Single-region deployment">
+    All platform components and data remain within a single geographic region. No cross-region replication occurs unless explicitly configured by the customer's infrastructure team.
+  </Accordion>
+  <Accordion title="Multi-region deployment">
+    For organizations operating across jurisdictions, each region can host an independent Superatom deployment. Data stays within each region's boundary.
+  </Accordion>
+  <Accordion title="Air-gapped environments">
+    Self-hosted LLM deployment eliminates all external traffic. Zero data leaves the network perimeter, meeting the strictest residency requirements.
+  </Accordion>
+</AccordionGroup>
+
+## Tenant Isolation
+
+For organizations deploying across multiple business units or departments, isolation is enforced at every layer:
+
+| Layer | Isolation Method |
+|---|---|
+| **WebSocket sessions** | Each department/tenant has its own session scope; no cross-tenant message visibility |
+| **Knowledge and context** | Per-tenant tribal knowledge, query history, and golden paths |
+| **LLM context** | Prompts constructed per-request, scoped to the requesting tenant |
+| **Audit trail** | Per-tenant audit records; one department cannot view another's history |
+| **Data access** | Per-tenant data source permissions; row-level filtering by tenant |
+
+## Audit Trail for Compliance
+
+The immutable audit trail supports compliance requirements across all frameworks:
+
+<CardGroup cols={2}>
+  <Card title="What is logged">
+    - User identity (from SSO), role, IP address
+    - Natural language question (verbatim)
+    - Decomposed query plan and target agents
+    - Exact SQL queries and API calls executed
+    - Table names, column names, row counts, filter conditions
+    - Write-back actions, approval decisions, escalations
+    - Timestamp for every step
+  </Card>
+  <Card title="Audit trail properties">
+    - **Immutable** — records cannot be modified or deleted
+    - **Stored on customer infrastructure** — S3-compatible storage, local filesystem, or database
+    - **Queryable** — the audit trail is itself a data source within Superatom
+    - **Exportable** — standard formats for SIEM, compliance, and governance tool integration
+    - **Configurable retention** — set retention periods per organizational policy
+  </Card>
+</CardGroup>

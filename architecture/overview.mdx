@@ -106,6 +106,43 @@ sequenceDiagram
 
 ---
 
+## Agent-Based Architecture
+
+Superatom uses an agent-based architecture where each data source gets its own dedicated, containerized agent. The Main Agent (orchestrator) coordinates everything but never directly accesses customer databases or holds database credentials.
+
+| Component | Role | Database Access |
+|-----------|------|-----------------|
+| **Main Agent** | Orchestrates requests, communicates with LLM, synthesizes responses | None — no credentials |
+| **Data-Source Agents** | One per connected database/API/file. Holds credentials, executes queries | Read-only |
+| **Action Agents** | Handle write-back operations with separate credentials | Write (with approval gates) |
+| **Report Engine** | Scheduled reports, anomaly detection, continuous monitoring | Via data-source agents |
+
+This separation provides security isolation (the LLM-facing component cannot access data), independent scaling per data source, and fault isolation (one failing agent doesn't affect others).
+
+<Card title="Agent Architecture" icon="cubes" href="/architecture/agent-model">
+  Deep dive into agent isolation, communication, and scaling
+</Card>
+
+---
+
+## Deployment Models
+
+Superatom supports two deployment configurations:
+
+### Cloud-Hosted
+
+Uses Cloudflare Workers and Durable Objects for the infrastructure layer. WebSocket connections are managed at the edge with hibernation support for cost efficiency.
+
+### On-Premise (Enterprise)
+
+All components — including the WebSocket server, Main Agent, data-source agents, and databases — run on the customer's infrastructure as Docker containers orchestrated with Docker Compose or Kubernetes. No external dependencies required (with self-hosted LLM option).
+
+<Card title="Infrastructure" icon="server" href="/architecture/infrastructure">
+  Deployment specs, scaling, and on-premise requirements
+</Card>
+
+---
+
 ## Key Design Decisions
 
 ### WebSocket-First Communication
@@ -223,18 +260,18 @@ Each project has:
 
 <CardGroup cols={2}>
   <Card
+    title="Agent Architecture"
+    icon="cubes"
+    href="/architecture/agent-model"
+  >
+    Agent isolation, communication, and scaling
+  </Card>
+  <Card
     title="Data Flow"
     icon="diagram-project"
     href="/architecture/data-flow"
   >
     Detailed request/response flow
-  </Card>
-  <Card
-    title="Modules"
-    icon="cubes"
-    href="/architecture/modules"
-  >
-    Deep dive into each module
   </Card>
   <Card
     title="AI Engine"
@@ -244,10 +281,17 @@ Each project has:
     How the intelligence layer works
   </Card>
   <Card
+    title="Modules"
+    icon="puzzle-piece"
+    href="/architecture/modules"
+  >
+    Deep dive into each module
+  </Card>
+  <Card
     title="Infrastructure"
-    icon="cloud"
+    icon="server"
     href="/architecture/infrastructure"
   >
-    Deployment and scaling
+    Deployment specs and scaling
   </Card>
 </CardGroup>
