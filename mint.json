@@ -25,6 +25,16 @@
     "name": "Get Started",
     "url": "https://superatom.ai/"
   },
+  "tabs": [
+    {
+      "name": "API Reference",
+      "url": "api-reference"
+    },
+    {
+      "name": "Guides",
+      "url": "guides"
+    }
+  ],
   "navigation": [
     {
       "group": "Getting Started",
