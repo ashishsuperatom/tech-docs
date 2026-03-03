@@ -116,7 +116,9 @@
     {
       "group": "Case Studies",
       "pages": [
-        "case-studies/overview"
+        "case-studies/overview",
+        "case-studies/bluelinx",
+        "case-studies/premier-energies"
       ]
     },
     {

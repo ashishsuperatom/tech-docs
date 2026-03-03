@@ -1,0 +1,149 @@
+---
+title: 'BlueLinx: Inventory Optimization'
+description: 'AI-powered deadstock identification and transfer optimization for a U.S. building products distributor'
+icon: 'warehouse'
+---
+
+BlueLinx Holdings is a U.S.-based wholesale distributor of residential and commercial building products, offering materials like lumber, siding, millwork, and engineered wood through a broad network of distribution centers. Headquartered in Marietta, Georgia, the company serves national home centers, pro dealers, specialty distributors, and industrial manufacturers with value-added services and supply chain solutions.
+
+---
+
+## The Challenge
+
+BlueLinx operates **64 branches** with **$356M+ in on-hand inventory**. The core problem:
+
+- **$12M+ in deadstock** — inventory with no sales in 365+ days across 57 branches
+- The problem wasn't just identifying dead stock, but figuring out **where to send it** so it generates ROI instead of sitting in branches with no demand
+- Manual analysis across 64 branches was impractical at scale
+
+---
+
+## The Approach
+
+- **Agentic AI** for intelligent deadstock identification and demand analysis
+- **Mixed Integer Linear Programming (MILP)** for optimal transfer route selection — evaluating demand, distance, and freight cost simultaneously
+- **Merging AI + domain-specific supply chain optimization algorithms** to make decisions that a general-purpose AI cannot
+
+---
+
+## The Outcome
+
+| Metric | Result |
+|--------|--------|
+| **Deadstock identified** | $12M+ across 57 branches |
+| **Transfer optimization** | MILP-computed optimal routes across the U.S. |
+| **ERP integration** | Automated transfer orders pushed directly to Oracle ERP |
+| **ROI** | Up to 504x on individual item transfers |
+
+---
+
+## Walkthrough
+
+### 1. Inventory Intelligence Dashboard
+
+Real-time KPIs across 64 branches — revenue, orders, inventory, and margins at a glance.
+
+<Frame>
+  <img src="/images/bluelinx-dashboard.png" alt="BlueLinx Inventory Intelligence Dashboard" />
+</Frame>
+
+The dashboard provides a unified view of quarterly revenue ($475M), total orders (153K), on-hand inventory ($356M), and external orders ($65M) — giving leadership immediate visibility across the entire distribution network.
+
+---
+
+### 2. Deadstock & Overstock by Branch
+
+Superatom automatically identified **$24.7M in deadstock** and **$118.6M in overstock** across 57 branches.
+
+<Frame>
+  <img src="/images/bluelinx-deadstock-overstock.png" alt="Deadstock and Overstock by Branch" />
+</Frame>
+
+Each branch is ranked by deadstock and overstock value, making it immediately clear where the largest inventory problems exist — Portland, OR leads with $2.2M in deadstock, while Bellingham leads overstock at $6.5M.
+
+---
+
+### 3. AI-Identified Deadstock Items
+
+Drilling into a specific branch (Birmingham), Superatom identified **76 SKUs worth $220K** with zero sales in 365+ days.
+
+<Frame>
+  <img src="/images/bluelinx-deadstock-items.png" alt="AI-Identified Deadstock Items at Birmingham" />
+</Frame>
+
+Each item shows the SKU, category, and value. The user can click **Analyze Transfer Options** to find the best destinations for these items using MILP optimization.
+
+---
+
+### 4. Transfer Optimization via MILP
+
+Mixed Integer Linear Programming evaluates demand, distance, and freight cost to find **optimal transfer destinations**.
+
+<Frame>
+  <img src="/images/bluelinx-transfer-milp.png" alt="Transfer Optimization via MILP" />
+</Frame>
+
+For Birmingham's 76 deadstock items: **62 are transferable** to branches with active demand. The system computed **22 optimal routes** covering 61 SKUs, with a total transfer value of $184K and freight cost of $125K.
+
+Each recommendation shows:
+- **Destination branch** with proven demand
+- **Revenue potential** based on historical sales at the destination
+- **Freight cost** for the transfer
+- **ROI** — for example, LSL 1.35E TOLKO to Long Island shows **10.35x ROI**
+
+---
+
+### 5. Transfer Route Visualization
+
+A geographic view of all 22 optimized transfer routes across the U.S. from a single source branch.
+
+<Frame>
+  <img src="/images/bluelinx-transfer-map.png" alt="Transfer Route Visualization Map" />
+</Frame>
+
+The map shows transfer routes radiating from Birmingham to destinations across the country — each route optimized for demand match, distance, and cost. Larger circles indicate higher-value SKUs.
+
+---
+
+### 6. Transfer Order to Oracle ERP
+
+From insight to action — **62 SKUs transferred to 23 destinations** with a single command, written directly to Oracle ERP.
+
+<Frame>
+  <img src="/images/bluelinx-transfer-order.png" alt="Transfer Order Written to Oracle ERP" />
+</Frame>
+
+The transfer order is created in Oracle ERP with full traceability: order number (#TO-98177), SKU count (62), total value ($184K), freight cost ($125K), and itemized destination breakdown. This closes the loop from AI analysis to real-world action.
+
+---
+
+## Key Capabilities Demonstrated
+
+| Capability | How It Was Used |
+|-----------|----------------|
+| **Agentic AI** | Connected to BlueLinx's MSSQL database, analyzed inventory across 64 branches |
+| **Domain Algorithms** | MILP optimization for transfer routing — not something a general LLM can do |
+| **Generative UI** | Dashboards, tables, maps, and transfer details generated automatically |
+| **Action Execution** | Transfer orders written directly to Oracle ERP with human approval |
+| **Tribal Knowledge** | Branch-specific context (demand patterns, logistics constraints) captured and applied |
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Premier Energies"
+    icon="solar-panel"
+    href="/case-studies/premier-energies"
+  >
+    Plant maintenance and spare parts optimization
+  </Card>
+  <Card
+    title="Use Cases"
+    icon="lightbulb"
+    href="/use-cases/overview"
+  >
+    Explore more industry applications
+  </Card>
+</CardGroup>
