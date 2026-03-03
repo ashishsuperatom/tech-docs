@@ -10,9 +10,9 @@ BlueLinx Holdings is a U.S.-based wholesale distributor of residential and comme
 
 ## The Challenge
 
-BlueLinx operates **64 branches** with **\$356M+ in on-hand inventory**. The core problem:
+BlueLinx operates **64 branches** with **356M+ in on-hand inventory**. The core problem:
 
-- **\$12M+ in deadstock**, inventory with no sales in 365+ days across 57 branches
+- **12M+ in deadstock**, inventory with no sales in 365+ days across 57 branches
 - The problem wasn't just identifying dead stock, but figuring out **where to send it** so it generates ROI instead of sitting in branches with no demand
 - Manual analysis across 64 branches was impractical at scale
 
@@ -30,7 +30,7 @@ BlueLinx operates **64 branches** with **\$356M+ in on-hand inventory**. The cor
 
 | Metric | Result |
 |--------|--------|
-| **Deadstock identified** | \$12M+ across 57 branches |
+| **Deadstock identified** | 12M+ across 57 branches |
 | **Transfer optimization** | MILP-computed optimal routes across the U.S. |
 | **ERP integration** | Automated transfer orders pushed directly to Oracle ERP |
 | **ROI** | Up to 504x on individual item transfers |
@@ -47,25 +47,25 @@ Real-time KPIs across 64 branches: revenue, orders, inventory, and margins at a 
   <img src="/images/bluelinx-dashboard.png" alt="BlueLinx Inventory Intelligence Dashboard" />
 </Frame>
 
-The dashboard provides a unified view of quarterly revenue (\$475M), total orders (153K), on-hand inventory (\$356M), and external orders (\$65M), giving leadership immediate visibility across the entire distribution network.
+The dashboard provides a unified view of quarterly revenue (475M), total orders (153K), on-hand inventory (356M), and external orders (65M), giving leadership immediate visibility across the entire distribution network.
 
 ---
 
 ### 2. Deadstock & Overstock by Branch
 
-Superatom automatically identified **\$24.7M in deadstock** and **\$118.6M in overstock** across 57 branches.
+Superatom automatically identified **24.7M in deadstock** and **118.6M in overstock** across 57 branches.
 
 <Frame>
   <img src="/images/bluelinx-deadstock-overstock.png" alt="Deadstock and Overstock by Branch" />
 </Frame>
 
-Each branch is ranked by deadstock and overstock value, making it immediately clear where the largest inventory problems exist. Portland, OR leads with \$2.2M in deadstock, while Bellingham leads overstock at \$6.5M.
+Each branch is ranked by deadstock and overstock value, making it immediately clear where the largest inventory problems exist. Portland, OR leads with 2.2M in deadstock, while Bellingham leads overstock at 6.5M.
 
 ---
 
 ### 3. AI-Identified Deadstock Items
 
-Drilling into a specific branch (Birmingham), Superatom identified **76 SKUs worth \$220K** with zero sales in 365+ days.
+Drilling into a specific branch (Birmingham), Superatom identified **76 SKUs worth 220K** with zero sales in 365+ days.
 
 <Frame>
   <img src="/images/bluelinx-deadstock-items.png" alt="AI-Identified Deadstock Items at Birmingham" />
@@ -83,7 +83,7 @@ Mixed Integer Linear Programming evaluates demand, distance, and freight cost to
   <img src="/images/bluelinx-transfer-milp.png" alt="Transfer Optimization via MILP" />
 </Frame>
 
-For Birmingham's 76 deadstock items: **62 are transferable** to branches with active demand. The system computed **22 optimal routes** covering 61 SKUs, with a total transfer value of \$184K and freight cost of \$125K.
+For Birmingham's 76 deadstock items: **62 are transferable** to branches with active demand. The system computed **22 optimal routes** covering 61 SKUs, with a total transfer value of 184K and freight cost of 125K.
 
 Each recommendation shows:
 - **Destination branch** with proven demand
@@ -113,7 +113,7 @@ From insight to action: **62 SKUs transferred to 23 destinations** with a single
   <img src="/images/bluelinx-transfer-order.png" alt="Transfer Order Written to Oracle ERP" />
 </Frame>
 
-The transfer order is created in Oracle ERP with full traceability: order number (#TO-98177), SKU count (62), total value (\$184K), freight cost (\$125K), and itemized destination breakdown. This closes the loop from AI analysis to real-world action.
+The transfer order is created in Oracle ERP with full traceability: order number (#TO-98177), SKU count (62), total value (184K), freight cost (125K), and itemized destination breakdown. This closes the loop from AI analysis to real-world action.
 
 ---
 

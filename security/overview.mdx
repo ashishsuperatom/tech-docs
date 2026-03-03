@@ -161,7 +161,7 @@ All queries use parameterized statements:
 
 ```sql
 -- Parameters passed separately from query structure
-SELECT * FROM users WHERE id = $1
+SELECT * FROM users WHERE id = :id
 ```
 
 The AI generates the query structure; parameters are extracted and passed separately. User input is never concatenated into SQL strings.

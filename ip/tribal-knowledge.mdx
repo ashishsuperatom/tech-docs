@@ -155,9 +155,9 @@ knowledge_node:
   content:
     description: "Items with inventory exceeding 90 days of sales"
     calculation: |
-      - Structural products: Rolling 90 days COGS > $0
-      - Decking products (MajorMinorCode = '0103DEC'): Rolling 180 days COGS > $0
-      - Specialty products: Rolling 120 days COGS > $0
+      - Structural products: Rolling 90 days COGS > 0
+      - Decking products (MajorMinorCode = '0103DEC'): Rolling 180 days COGS > 0
+      - Specialty products: Rolling 120 days COGS > 0
 
     key_columns:
       - "FactInventoryDaily.OnHandInventory"

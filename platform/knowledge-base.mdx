@@ -287,9 +287,9 @@ description: |
   The rolling period varies by product type.
 
 rules:
-  - "Structural products (ProductType = 'Structural'): Rolling 90 days COGS > $0"
-  - "Decking products (MajorMinorCode = '0103DEC'): Rolling 180 days COGS > $0"
-  - "Specialty products: Rolling 120 days COGS > $0"
+  - "Structural products (ProductType = 'Structural'): Rolling 90 days COGS > 0"
+  - "Decking products (MajorMinorCode = '0103DEC'): Rolling 180 days COGS > 0"
+  - "Specialty products: Rolling 120 days COGS > 0"
 
 key_columns:
   - "FactInventoryDaily.OnHandInventory"
