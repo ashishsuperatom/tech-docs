@@ -13,9 +13,6 @@ Superatom deploys entirely within your infrastructure as Docker containers. This
 | Component | Purpose | Minimum | Recommended |
 |-----------|---------|---------|-------------|
 | **Main Agent** | Orchestration, routing, query planning, synthesis | 4 vCPU, 16 GB RAM | 8 vCPU, 32 GB RAM |
-| **WebSocket Server** | Internal agent communication | 2 vCPU, 4 GB RAM | 4 vCPU, 8 GB RAM |
-| **Web UI Server** | Serves the frontend application | 2 vCPU, 4 GB RAM | 4 vCPU, 8 GB RAM |
-| **Graph Database** | Metadata, tribal knowledge, query history (PostgreSQL with Apache AGE or Neo4j) | 4 vCPU, 16 GB RAM | 8 vCPU, 32 GB RAM, SSD |
 | **Report Engine** | Scheduled reports, anomaly detection, baseline models | 4 vCPU, 16 GB RAM | 8 vCPU, 32 GB RAM |
 | **Audit Storage** | Immutable audit trail | S3-compatible or local filesystem | S3-compatible with lifecycle policies |
 
@@ -64,10 +61,7 @@ flowchart TD
     subgraph INFRA["Customer Infrastructure"]
         subgraph CLUSTER["Kubernetes Cluster / Docker Compose"]
             MA["Main Agent"]
-            WS["WebSocket Server"]
-            UI["Web UI Server"]
             RE["Report Engine"]
-            GDB["Graph Database"]
             AS["Audit Storage"]
 
             subgraph AGENTS["Data-Source Agents"]
@@ -93,10 +87,7 @@ flowchart TD
     style AGENTS fill:#fef3c7,stroke:#f59e0b
     style LLM fill:#fce7f3,stroke:#ec4899
     style MA fill:#dbeafe,stroke:#3b82f6
-    style WS fill:#dbeafe,stroke:#3b82f6
-    style UI fill:#dbeafe,stroke:#3b82f6
     style RE fill:#dbeafe,stroke:#3b82f6
-    style GDB fill:#dbeafe,stroke:#3b82f6
     style AS fill:#dbeafe,stroke:#3b82f6
     style A1 fill:#fef9c3,stroke:#eab308
     style A2 fill:#fef9c3,stroke:#eab308
