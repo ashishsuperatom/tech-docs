@@ -19,10 +19,20 @@ icon: 'rocket'
 
 ## Step 1: Log In
 
-Navigate to your Superatom workspace URL and log in with your credentials.
+Navigate to your Superatom workspace URL and log in with your credentials or enterprise SSO.
 
-<Frame>
-  <img src="/images/ui-overview.png" alt="Superatom Dashboard" />
+<Frame caption="Login to the Superatom AI platform">
+  <img src="/images/login-page.png" alt="Superatom Login Page" />
+</Frame>
+
+After logging in, you'll see the home page where you can create and manage projects:
+
+<Frame caption="Home page — create and manage projects">
+  <img src="/images/home-projects.png" alt="Superatom Home Page" />
+</Frame>
+
+<Frame caption="Create a new project">
+  <img src="/images/create-project.png" alt="Create New Project" />
 </Frame>
 
 You'll see the main interface with the sidebar navigation:
@@ -73,13 +83,15 @@ You'll see the main interface with the sidebar navigation:
 Superatom automatically analyzes your connected data:
 
 ```mermaid
-flowchart TD
+flowchart LR
     CONNECT["Connect"] --> SCHEMA["Analyze Schema"]
     SCHEMA --> SAMPLE["Sample Data"]
     SAMPLE --> PROFILE["Statistical Profile"]
     PROFILE --> DOMAIN["Domain Classification"]
     DOMAIN --> READY["Ready!"]
 
+    style CONNECT fill:#0D9373,color:#fff
+    style READY fill:#07C983,color:#fff
 ```
 
 This typically takes 2-5 minutes for a medium-sized database. You'll be notified when complete.
@@ -214,6 +226,6 @@ Make the AI smarter about YOUR organization:
 
 ## Need Help?
 
-- **Documentation** - You're in the right place
-- **Support** - support@superatom.ai
-- **Community** - Join our Slack workspace
+- **Documentation** — You're in the right place
+- **Support** — support@superatom.ai
+- **Community** — Join our Slack workspace

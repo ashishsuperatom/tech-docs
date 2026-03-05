@@ -4,10 +4,14 @@ description: 'Auto-generated iOS and Android apps for field access'
 icon: 'mobile'
 ---
 
-Superatom automatically generates mobile applications from your data model, giving field workers, executives, and anyone on the go instant access to insights and actions.
+Superatom automatically generates mobile applications from your data model—giving field workers, executives, and anyone on the go instant access to insights and actions.
 
 <Frame>
   <img src="/images/mobile-app.png" alt="Superatom Mobile App" />
+</Frame>
+
+<Frame caption="Android and iOS Superatom applications">
+  <img src="/images/mobile-apps-overview.png" alt="Mobile Apps Overview" />
 </Frame>
 
 ---
@@ -16,7 +20,7 @@ Superatom automatically generates mobile applications from your data model, givi
 
 Traditional approach to mobile data access:
 - **Months** of development time
-- **50K-200K** development cost
+- **$50K-200K** development cost
 - **Ongoing maintenance** burden
 - **Separate codebase** to manage
 
@@ -27,13 +31,15 @@ Traditional approach to mobile data access:
 ## How It Works
 
 ```mermaid
-flowchart TD
+flowchart LR
     DATA["Your Data Model"] --> ANALYSIS["Superatom Analysis"]
     ANALYSIS --> IOS["iOS App"]
     ANALYSIS --> ANDROID["Android App"]
     IOS --> USERS["Field Workers"]
     ANDROID --> USERS
 
+    style IOS fill:#0D9373,color:#fff
+    style ANDROID fill:#0D9373,color:#fff
 ```
 
 <Steps>
@@ -79,6 +85,43 @@ Natural language works on mobile too:
 - See streaming responses
 - View auto-generated visualizations
 
+### Android App
+
+<CardGroup cols={3}>
+  <Frame>
+    <img src="/images/android-app.png" alt="Android App" />
+  </Frame>
+  <Frame>
+    <img src="/images/android-app-2.png" alt="Android App" />
+  </Frame>
+  <Frame>
+    <img src="/images/android-app-3.png" alt="Android App" />
+  </Frame>
+</CardGroup>
+
+<CardGroup cols={3}>
+  <Frame>
+    <img src="/images/android-app-4.png" alt="Android App" />
+  </Frame>
+  <Frame>
+    <img src="/images/android-app-5.png" alt="Android App" />
+  </Frame>
+  <Frame>
+    <img src="/images/android-app-6.png" alt="Android App" />
+  </Frame>
+</CardGroup>
+
+### iOS App
+
+<CardGroup cols={2}>
+  <Frame>
+    <img src="/images/ios-app-1.png" alt="iOS App" />
+  </Frame>
+  <Frame>
+    <img src="/images/ios-app-2.png" alt="iOS App" />
+  </Frame>
+</CardGroup>
+
 ### Take Actions
 
 Execute approved actions from the field:
@@ -93,6 +136,10 @@ Execute approved actions from the field:
 
 <Frame>
   <img src="/images/apps-overview.png" alt="Apps Overview" />
+</Frame>
+
+<Frame caption="Edit and manage app permissions">
+  <img src="/images/mobile-app-permissions.png" alt="Mobile App Permissions" />
 </Frame>
 
 ### App Configuration
@@ -123,9 +170,9 @@ Different users see different things:
 ## Offline Capabilities
 
 Work without internet connection:
-- **Cached data:** Recent queries available offline
-- **Queued actions:** Submit actions when reconnected
-- **Sync indicator:** Know when data was last updated
+- **Cached data** — Recent queries available offline
+- **Queued actions** — Submit actions when reconnected
+- **Sync indicator** — Know when data was last updated
 
 ---
 

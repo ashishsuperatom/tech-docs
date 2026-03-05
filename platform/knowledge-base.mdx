@@ -16,6 +16,14 @@ Connect to your enterprise databases and data warehouses:
   <img src="/images/data-sources.png" alt="Data Sources" />
 </Frame>
 
+<Frame caption="Connected data sources overview">
+  <img src="/images/data-sources-connected.png" alt="Connected Data Sources" />
+</Frame>
+
+<Frame caption="Data sources tab — connect to databases, warehouses, files, APIs, CRM, or cloud">
+  <img src="/images/data-sources-tab.png" alt="Data Sources Tab" />
+</Frame>
+
 ### Supported Databases
 
 <CardGroup cols={3}>
@@ -45,6 +53,29 @@ Connect to your enterprise databases and data warehouses:
   </Card>
 </CardGroup>
 
+### Connection Types
+
+<CardGroup cols={2}>
+  <Frame caption="Databases">
+    <img src="/images/connect-databases.png" alt="Connect Databases" />
+  </Frame>
+  <Frame caption="Data Warehouses">
+    <img src="/images/connect-datawarehouses.png" alt="Connect Data Warehouses" />
+  </Frame>
+  <Frame caption="Files">
+    <img src="/images/connect-files.png" alt="Connect Files" />
+  </Frame>
+  <Frame caption="APIs">
+    <img src="/images/connect-apis.png" alt="Connect APIs" />
+  </Frame>
+  <Frame caption="CRM">
+    <img src="/images/connect-crm.png" alt="Connect CRM" />
+  </Frame>
+  <Frame caption="Cloud">
+    <img src="/images/connect-cloud.png" alt="Connect Cloud" />
+  </Frame>
+</CardGroup>
+
 ### Connection Times
 
 | Source Type | Typical Setup Time |
@@ -63,6 +94,10 @@ Connect to your enterprise databases and data warehouses:
   </Step>
   <Step title="Select Database Type">
     Choose from the supported database types
+
+    <Frame caption="Add a new data source connection">
+      <img src="/images/add-datasource-form.png" alt="Add Data Source Form" />
+    </Frame>
   </Step>
   <Step title="Enter Connection Details">
     - Host/Server address
@@ -150,9 +185,9 @@ Upload and manage reference documents:
 </CardGroup>
 
 Documents are:
-- **Searchable:** AI uses them for context
-- **Categorized:** By type and topic
-- **Versioned:** Track changes over time
+- **Searchable** — AI uses them for context
+- **Categorized** — By type and topic
+- **Versioned** — Track changes over time
 
 ---
 
@@ -211,9 +246,9 @@ Visualize and manage organizational knowledge:
 
 The graph visualizes relationships between:
 
-- **Entities:** Orders, Customers, Products, etc.
-- **Processes:** Order lifecycle, payment flow, shipping
-- **Categories:** Overview, Structure, Data, Relationships, Insights
+- **Entities** — Orders, Customers, Products, etc.
+- **Processes** — Order lifecycle, payment flow, shipping
+- **Categories** — Overview, Structure, Data, Relationships, Insights
 
 ### Node Categories
 
@@ -236,6 +271,10 @@ Create and manage knowledge nodes that guide AI analysis:
   <img src="/images/knowledge-nodes-list.png" alt="Knowledge Nodes List" />
 </Frame>
 
+<Frame caption="Knowledge nodes management page">
+  <img src="/images/knowledge-nodes-page.png" alt="Knowledge Nodes Page" />
+</Frame>
+
 ### Node Types
 
 | Type | Purpose |
@@ -250,13 +289,21 @@ Create and manage knowledge nodes that guide AI analysis:
   <img src="/images/knowledge-node-detail.png" alt="Knowledge Node Detail" />
 </Frame>
 
+<Frame caption="Create a new knowledge node">
+  <img src="/images/create-kb-node.png" alt="Create Knowledge Node" />
+</Frame>
+
+<Frame caption="Edit an existing knowledge node">
+  <img src="/images/edit-kb-node.png" alt="Edit Knowledge Node" />
+</Frame>
+
 Each node includes:
 
-- **Title:** Clear, descriptive name
-- **Description:** What this knowledge represents
-- **Rules:** Specific conditions and calculations
-- **Key Columns:** Data fields involved
-- **Formula:** How to calculate (if applicable)
+- **Title** — Clear, descriptive name
+- **Description** — What this knowledge represents
+- **Rules** — Specific conditions and calculations
+- **Key Columns** — Data fields involved
+- **Formula** — How to calculate (if applicable)
 
 ### Why Tribal Knowledge Matters
 
@@ -268,7 +315,7 @@ Each node includes:
     The same term means the same thing for every user across the organization
   </Card>
   <Card title="Onboarding" icon="user-plus">
-    New employees get organization-aware AI from day one, with no ramp-up period
+    New employees get organization-aware AI from day one — no ramp-up period
   </Card>
   <Card title="Knowledge Preservation" icon="vault">
     Institutional knowledge persists through employee turnover instead of walking out the door
@@ -287,9 +334,9 @@ description: |
   The rolling period varies by product type.
 
 rules:
-  - "Structural products (ProductType = 'Structural'): Rolling 90 days COGS > 0"
-  - "Decking products (MajorMinorCode = '0103DEC'): Rolling 180 days COGS > 0"
-  - "Specialty products: Rolling 120 days COGS > 0"
+  - "Structural products (ProductType = 'Structural'): Rolling 90 days COGS > $0"
+  - "Decking products (MajorMinorCode = '0103DEC'): Rolling 180 days COGS > $0"
+  - "Specialty products: Rolling 120 days COGS > $0"
 
 key_columns:
   - "FactInventoryDaily.OnHandInventory"
@@ -306,20 +353,32 @@ formula: "OnHandInventory - (Rolling Period COGS)"
 
 View the semantic model Superatom has built:
 
+<Frame caption="Schema overview">
+  <img src="/images/schema-overview.png" alt="Schema Overview" />
+</Frame>
+
+<Frame caption="Semantic model">
+  <img src="/images/semantic-model.png" alt="Semantic Model" />
+</Frame>
+
+<Frame caption="Edit the semantic model">
+  <img src="/images/semantic-model-edit.png" alt="Edit Semantic Model" />
+</Frame>
+
 ### What's Included
 
-- **Tables:** All discovered tables and their purposes
-- **Columns:** Field-level details with data types
-- **Relationships:** Foreign keys and joins
-- **Statistics:** Row counts, distributions, patterns
+- **Tables** — All discovered tables and their purposes
+- **Columns** — Field-level details with data types
+- **Relationships** — Foreign keys and joins
+- **Statistics** — Row counts, distributions, patterns
 
 ### Using the Data Model
 
 The data model powers:
-- **Natural language understanding:** Mapping questions to tables
-- **Query generation:** Building correct SQL
-- **Visualization selection:** Choosing appropriate charts
-- **Tribal knowledge application:** Applying org-specific rules
+- **Natural language understanding** — Mapping questions to tables
+- **Query generation** — Building correct SQL
+- **Visualization selection** — Choosing appropriate charts
+- **Tribal knowledge application** — Applying org-specific rules
 
 ---
 

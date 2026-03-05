@@ -4,10 +4,22 @@ description: 'Automated analysis and scheduled report delivery'
 icon: 'file-lines'
 ---
 
-Superatom's Reports module combines AI-powered analysis with automated delivery, ensuring insights reach the right people at the right time.
+Superatom's Reports module combines AI-powered analysis with automated delivery—ensuring insights reach the right people at the right time.
 
 <Frame>
   <img src="/images/reports-overview.png" alt="Reports Overview" />
+</Frame>
+
+### Reports List
+
+View all generated reports and create new ones:
+
+<Frame caption="Reports page — view and create reports">
+  <img src="/images/reports-list.png" alt="Reports List" />
+</Frame>
+
+<Frame caption="Report detail view — create, schedule, and share">
+  <img src="/images/report-detail.png" alt="Report Detail" />
 </Frame>
 
 ---
@@ -55,6 +67,10 @@ Automate report generation and delivery:
   <img src="/images/report-scheduling.png" alt="Report Scheduling" />
 </Frame>
 
+<Frame caption="Report scheduler form">
+  <img src="/images/report-scheduler.png" alt="Report Scheduler" />
+</Frame>
+
 ### Schedule Options
 
 | Setting | Options |
@@ -91,12 +107,16 @@ Share reports with team members:
   <img src="/images/report-sharing.png" alt="Report Sharing" />
 </Frame>
 
+<Frame caption="Manage report permissions">
+  <img src="/images/report-permissions.png" alt="Report Permissions" />
+</Frame>
+
 ### Sharing Options
 
 - **Select recipients** by name, email, or role
 - **Add a message** to provide context
-- **Set permissions:** view only or edit
-- **Track views:** see who accessed the report
+- **Set permissions** — view only or edit
+- **Track views** — see who accessed the report
 
 ---
 
@@ -107,11 +127,12 @@ Share reports with team members:
 Automated delivery on a recurring basis:
 
 ```mermaid
-flowchart TD
+flowchart LR
     SCHEDULE["Schedule<br>(Weekly, Monday 9 AM)"] --> GENERATE["Generate Report"]
     GENERATE --> DELIVER["Deliver to Recipients"]
     DELIVER --> TRACK["Track Opens/Views"]
 
+    style GENERATE fill:#0D9373,color:#fff
 ```
 
 Use cases:
@@ -124,12 +145,14 @@ Use cases:
 Sent when specific conditions are met:
 
 ```mermaid
-flowchart TD
+flowchart LR
     MONITOR["Monitor Metric"] --> THRESHOLD{"Threshold\nBreached?"}
     THRESHOLD -->|Yes| GENERATE["Generate Report"]
     THRESHOLD -->|No| MONITOR
     GENERATE --> ALERT["Send Alert Report"]
 
+    style THRESHOLD fill:#f59e0b,color:#fff
+    style ALERT fill:#ef4444,color:#fff
 ```
 
 Use cases:
