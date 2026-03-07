@@ -25,6 +25,12 @@
     "name": "Get Started",
     "url": "https://superatom.ai/"
   },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/index"
+    }
+  ],
   "navigation": [
     {
       "group": "",
