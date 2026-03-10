@@ -25,6 +25,7 @@
     "name": "Get Started",
     "url": "https://superatom.ai/"
   },
+  "js": "/scripts/video-modal.js",
   "redirects": [
     {
       "source": "/",

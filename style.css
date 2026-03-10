@@ -334,10 +334,13 @@ html:has(.lp) [class*="scroll-mt"] {
 
 .lp-modal-content video {
   width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
   border-radius: 1rem;
   box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
   outline: none;
   background: #000;
+  display: block;
 }
 
 .lp-modal-close {
